@@ -7,6 +7,7 @@
 # Virtual Environment
 venv/
 env/
+.env/
 .venv/
 
 # Python cache
@@ -15,7 +16,6 @@ __pycache__/
 *.pyo
 
 # Environment variables (if they contain secrets)
-.env
 
 # OS files
 .DS_Store
