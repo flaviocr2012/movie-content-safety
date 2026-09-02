@@ -75,13 +75,20 @@ class RAGChain:
         ---
         Movie Title: {title}
         Movie Overview: {overview}
+        Movie Genres: {genres}
+        Movie Rating: {rating}
         
-        Based ONLY on the context provided above, determine if this movie is appropriate for children.
+        **Important Safety Rules:**
+        1. If the movie genre includes "Horror", classify as "Not safe for children"
+        2. If the movie genre includes "Crime" or "Thriller" with violence, classify as "Not safe for children"
+        3. If the movie is rated R, classify as "Not safe for children"
+        4. If the movie contains explicit violence, disturbing imagery, or adult themes → "Not safe for children"
+        5. If the movie is animated, family-friendly, or rated PG/G → likely "Safe for children"
+        
+        Based on ALL information above, determine if this movie is appropriate for children.
         Be concise and provide:
         1. Classification: "Safe for children" or "Not safe for children"
-        2. Explanation: Brief justification based on the context
-        
-        If the context doesn't clearly indicate safety, err on the side of caution and classify as "Not safe for children".
+        2. Explanation: Brief justification
         
         Your response:
         """
@@ -112,7 +119,9 @@ class RAGChain:
                 {
                     "context": lambda x: retrieve_context(x),
                     "title": lambda x: x["title"],
-                    "overview": lambda x: x["overview"]
+                    "overview": lambda x: x["overview"],
+                    "genres": lambda x: x.get("genres", "Unknown"),  # ✅ Adicione esta linha
+                    "rating": lambda x: x.get("rating", "Unknown")   # ✅ Adicione esta linha
                 }
                 | prompt
                 | self.llm
@@ -122,14 +131,17 @@ class RAGChain:
         return chain
 
     # ✅ This method was missing - now it's here!
-    def classify_movie(self, title: str, overview: str) -> str:
+    def classify_movie(self, title: str, overview: str, genres: str = "Unknown", rating: str = "Unknown") -> str:
         """Classify a movie as safe or not safe for children."""
         print(f"\n🎬 Classifying: {title}")
         print(f"📝 Overview: {overview[:100]}...")
 
+        # Agora passamos todas as variáveis que o prompt espera
         result = self.chain.invoke({
             "title": title,
-            "overview": overview
+            "overview": overview,
+            "genres": genres,
+            "rating": rating
         })
 
         return result

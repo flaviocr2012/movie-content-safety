@@ -1,26 +1,102 @@
 question,answer
-"Does this movie contain extreme graphic violence?","No"
-"Does this movie contain strong sexual content?","No"
-"Does this movie contain gore or gruesome scenes?","No"
-"Does this movie contain frequent use of strong profanity?","No"
-"Does this movie contain depictions of drug use?","No"
-"Does this movie contain scenes of torture?","No"
-"Does this movie contain explicit nudity?","No"
-"Does this movie contain disturbing or frightening imagery?","No"
-"Does this movie contain themes of suicide or self-harm?","No"
-"Does this movie contain hate speech or discrimination?","No"
-"Is the movie appropriate for children aged 5-10?","Yes"
-"Is the movie focused on positive messages and moral lessons?","Yes"
-"Is the movie suitable for family viewing?","Yes"
-"Does the movie promote kindness and friendship?","Yes"
-"Does the movie have an uplifting or happy ending?","Yes"
-"Is the movie educational or informative for children?","Yes"
-"Does the movie feature animated characters?","Yes"
-"Is the movie based on a children's book or fairy tale?","Yes"
-"Does the movie contain mild cartoon violence (e.g., slapstick)?","Yes"
-"Does the movie contain age-appropriate humor for children?","Yes"
-"Does the movie contain scenes that might scare young children?","No"
-"Does the movie have a parental guidance rating (PG) or lower?","Yes"
-"Does the movie contain any adult themes?","No"
-"Is the movie's runtime suitable for children's attention span (under 2 hours)?","Yes"
-"Does the movie feature talking animals or friendly creatures?","Yes"
+Does this movie contain extreme graphic violence?,No
+Does this movie contain strong sexual content?,No
+Does this movie contain gore or gruesome scenes?,No
+Does this movie contain frequent use of strong profanity?,No
+Does this movie contain depictions of drug use?,No
+Does this movie contain scenes of torture?,No
+Does this movie contain explicit nudity?,No
+Does this movie contain disturbing or frightening imagery?,No
+Does this movie contain themes of suicide or self-harm?,No
+Does this movie contain hate speech or discrimination?,No
+Is The Dark Knight appropriate for children?,No
+Does The Dark Knight contain extreme graphic violence?,Yes
+Does The Dark Knight contain disturbing imagery?,Yes
+Is The Lion King appropriate for children?,Yes
+Does The Lion King contain extreme graphic violence?,No
+Is Pulp Fiction appropriate for children?,No
+Does Pulp Fiction contain strong violence?,Yes
+Is Finding Nemo appropriate for children?,Yes
+Does Finding Nemo contain extreme graphic violence?,No
+Is Toy Story appropriate for children?,Yes
+Is Shrek appropriate for children?,Yes
+Is The Godfather appropriate for children?,No
+Does The Godfather contain violence?,Yes
+Is The Matrix appropriate for children?,No
+Does The Matrix contain violence?,Yes
+Is Titanic appropriate for children?,Yes
+Does Titanic contain explicit content?,No
+Is Harry Potter appropriate for children?,Yes
+Does Harry Potter contain violence?,Mild fantasy violence
+Is The Lord of the Rings appropriate for children?,Yes
+Does The Lord of the Rings contain violence?,Fantasy violence
+Is Star Wars appropriate for children?,Yes
+Does Star Wars contain violence?,Fantasy violence
+Is Home Alone appropriate for children?,Yes
+Does Home Alone contain violence?,Slapstick cartoon violence
+Is Frozen appropriate for children?,Yes
+Does Frozen contain disturbing imagery?,No
+Is The Conjuring appropriate for children?,No
+Does The Conjuring contain disturbing imagery?,Yes
+Is The Terminator appropriate for children?,No
+Does The Terminator contain violence?,Yes
+Is Die Hard appropriate for children?,No
+Does Die Hard contain violence?,Yes
+Is The Avengers appropriate for children?,Yes
+Does The Avengers contain violence?,Fantasy violence
+Is Toy Story appropriate for children?,Yes
+Does Toy Story contain violence?,Slapstick cartoon violence
+Is Toy Story 2 appropriate for children?,Yes
+Does Toy Story 2 contain violence?,Slapstick cartoon violence
+Is Toy Story 3 appropriate for children?,Yes
+Does Toy Story 3 contain violence?,Slapstick cartoon violence
+Is Cars appropriate for children?,Yes
+Does Cars contain violence?,No
+Is Monsters Inc appropriate for children?,Yes
+Does Monsters Inc contain violence?,No
+Is Inside Out appropriate for children?,Yes
+Does Inside Out contain violence?,No
+Is Up appropriate for children?,Yes
+Does Up contain violence?,No
+Is Coco appropriate for children?,Yes
+Does Coco contain violence?,No
+Is Frozen appropriate for children?,Yes
+Does Frozen contain violence?,Fantasy violence
+Is Moana appropriate for children?,Yes
+Does Moana contain violence?,Fantasy violence
+Is Zootopia appropriate for children?,Yes
+Does Zootopia contain violence?,Cartoon violence
+Is The Incredibles appropriate for children?,Yes
+Does The Incredibles contain violence?,Cartoon violence
+Is Ratatouille appropriate for children?,Yes
+Does Ratatouille contain violence?,No
+Is Wall-E appropriate for children?,Yes
+Does Wall-E contain violence?,No
+Is Brave appropriate for children?,Yes
+Does Brave contain violence?,Fantasy violence
+Is Tangled appropriate for children?,Yes
+Does Tangled contain violence?,Cartoon violence
+Is How to Train Your Dragon appropriate for children?,Yes
+Does How to Train Your Dragon contain violence?,Fantasy violence
+Is Shrek appropriate for children?,Yes
+Does Shrek contain violence?,Cartoon violence
+Is Kung Fu Panda appropriate for children?,Yes
+Does Kung Fu Panda contain violence?,Cartoon violence
+Is Madagascar appropriate for children?,Yes
+Does Madagascar contain violence?,Cartoon violence
+Is Ice Age appropriate for children?,Yes
+Does Ice Age contain violence?,Cartoon violence
+Is The Secret Life of Pets appropriate for children?,Yes
+Does The Secret Life of Pets contain violence?,Cartoon violence
+Is Sing appropriate for children?,Yes
+Does Sing contain violence?,No
+Is The Bad Guys appropriate for children?,Yes
+Does The Bad Guys contain violence?,Cartoon violence
+Is Puss in Boots appropriate for children?,Yes
+Does Puss in Boots contain violence?,Cartoon violence
+Is The Croods appropriate for children?,Yes
+Does The Croods contain violence?,Cartoon violence
+Is Trolls appropriate for children?,Yes
+Does Trolls contain violence?,No
+Is Hotel Transylvania appropriate for children?,Yes
+Does Hotel Transylvania contain violence?,Cartoon violence
