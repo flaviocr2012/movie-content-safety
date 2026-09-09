@@ -6,3 +6,4 @@ faiss-cpu
 sentence-transformers
 pandas
 python-dotenv
+gradio>=4.0.0
