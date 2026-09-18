@@ -1,12 +1,17 @@
+"""
+RAG Chain for Movie Content Safety Classifier.
+Traces all invocations to LangSmith for observability.
+"""
+
+from config import GROQ_API_KEY, GROQ_MODEL, INDEX_PATH, LANGCHAIN_PROJECT
+
+# Now safe to import LangChain modules
 import os
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
-
-# Import configuration
-from config import GROQ_API_KEY, GROQ_MODEL, INDEX_PATH
 
 
 class RAGChain:
@@ -136,7 +141,6 @@ class RAGChain:
 
         return chain
 
-    # ✅ This method was missing - now it's here!
     def classify_movie(self, title: str, overview: str, genres: str = "Unknown", rating: str = "Unknown") -> str:
         """Classify a movie as safe or not safe for children."""
         print(f"\n🎬 Classifying: {title}")
@@ -152,7 +156,6 @@ class RAGChain:
 
         return result
 
-    # ✅ This method was also missing - now it's here!
     def classify_batch(self, movies: list[dict]) -> list[dict]:
         """Classify multiple movies in batch."""
         results = []

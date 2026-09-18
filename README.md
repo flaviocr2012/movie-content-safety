@@ -238,7 +238,6 @@ gradio>=4.0.0
 
 - [ ] Deploy to production
 - [ ] Add more test cases for edge cases
-- [ ] Add user feedback loop 
 
 ## 📫 Let's Connect!
 

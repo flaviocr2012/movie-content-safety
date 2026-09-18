@@ -11,7 +11,9 @@ from dataclasses import dataclass, asdict
 
 from rag_chain import RAGChain
 from main import classify_single_movie
-from config import IMDB_MOVIES_PATH
+
+from langsmith import Client
+from config import LANGCHAIN_API_KEY, LANGCHAIN_PROJECT
 
 
 @dataclass
@@ -35,23 +37,53 @@ class TestResult:
 
 
 class MovieSafetyEvaluator:
-    """
-    Evaluation framework for the Movie Safety Classifier.
-    Runs test suites and provides detailed metrics and reports.
-    """
+    """Evaluation framework with LangSmith integration."""
 
     def __init__(self, rag_chain: Optional[RAGChain] = None):
-        """
-        Initialize the evaluator with a RAG chain.
-
-        Args:
-            rag_chain: RAGChain instance (creates one if not provided)
-        """
         print("🔄 Initializing Movie Safety Evaluator...")
         self.rag = rag_chain if rag_chain else RAGChain()
         self.test_suite = self._load_test_suite()
         self.results: List[TestResult] = []
+
+        # ✅ LangSmith client
+        self.langsmith_client = None
+        if LANGCHAIN_API_KEY:
+            try:
+                self.langsmith_client = Client()
+                print(f"✅ LangSmith client initialized (project: {LANGCHAIN_PROJECT})")
+            except Exception as e:
+                print(f"⚠️ Could not initialize LangSmith: {e}")
+
         print(f"✅ Loaded {len(self.test_suite)} test cases")
+
+    def _log_to_langsmith(self, test_case: TestCase, result: str, passed: bool):
+        """Log a single eval result to LangSmith."""
+        if not self.langsmith_client:
+            return
+
+        try:
+            self.langsmith_client.create_run(
+                name=f"eval_{test_case.title}",
+                run_type="chain",
+                inputs={
+                    "title": test_case.title,
+                    "overview": test_case.overview,
+                    "genres": test_case.genres,
+                    "rating": test_case.rating
+                },
+                outputs={
+                    "actual": result,
+                    "expected": test_case.expected,
+                    "passed": passed
+                },
+                tags=["eval", "movie-safety", "Safe" if passed else "Failed"],
+                extra={
+                    "reason": test_case.reason,
+                    "project": LANGCHAIN_PROJECT
+                }
+            )
+        except Exception as e:
+            print(f"⚠️ Failed to log to LangSmith: {e}")
 
     def _load_test_suite(self) -> List[TestCase]:
         """
