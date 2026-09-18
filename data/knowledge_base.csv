@@ -1,102 +1,1145 @@
 question,answer
 Does this movie contain extreme graphic violence?,No
-Does this movie contain strong sexual content?,No
 Does this movie contain gore or gruesome scenes?,No
-Does this movie contain frequent use of strong profanity?,No
-Does this movie contain depictions of drug use?,No
 Does this movie contain scenes of torture?,No
+Does this movie contain realistic war violence?,No
+Does this movie contain graphic injury detail?,No
+Does this movie contain domestic violence?,No
+Does this movie contain animal cruelty?,No
+Does this movie contain child endangerment?,No
+Does this movie contain mass casualty events?,No
+Does this movie contain terrorism-related violence?,No
+Does this movie contain explicit sexual content?,No
 Does this movie contain explicit nudity?,No
+Does this movie contain sexual assault scenes?,No
+Does this movie contain graphic sexual dialogue?,No
+Does this movie contain pornographic material?,No
+Does this movie contain suggestive sexual scenes?,No
+Does this movie contain fetish content?,No
+Does this movie contain sexual exploitation?,No
+Does this movie contain adult-only romantic scenes?,No
+Does this movie contain explicit sexual references?,No
+Does this movie contain frequent use of strong profanity?,No
+Does this movie contain racial slurs?,No
+Does this movie contain homophobic language?,No
+Does this movie contain blasphemous language?,No
+Does this movie contain graphic insults?,No
+Does this movie contain excessive vulgar language?,No
+Does this movie contain offensive jokes?,No
+Does this movie contain hate speech?,No
+Does this movie contain demeaning language?,No
+Does this movie contain frequent mild profanity?,Yes
+Does this movie contain depiction of drug use?,No
+Does this movie contain glorification of drug use?,No
+Does this movie contain alcohol abuse?,No
+Does this movie contain smoking scenes?,No
+Does this movie contain substance addiction themes?,No
+Does this movie contain drug trafficking?,No
+Does this movie contain excessive drinking scenes?,No
+Does this movie contain drug-related violence?,No
+Does this movie contain substance abuse by minors?,No
+Does this movie contain glorification of alcohol?,No
 Does this movie contain disturbing or frightening imagery?,No
-Does this movie contain themes of suicide or self-harm?,No
-Does this movie contain hate speech or discrimination?,No
-Is The Dark Knight appropriate for children?,No
-Does The Dark Knight contain extreme graphic violence?,Yes
-Does The Dark Knight contain disturbing imagery?,Yes
-Is The Lion King appropriate for children?,Yes
-Does The Lion King contain extreme graphic violence?,No
-Is Pulp Fiction appropriate for children?,No
-Does Pulp Fiction contain strong violence?,Yes
-Is Finding Nemo appropriate for children?,Yes
-Does Finding Nemo contain extreme graphic violence?,No
-Is Toy Story appropriate for children?,Yes
-Is Shrek appropriate for children?,Yes
-Is The Godfather appropriate for children?,No
-Does The Godfather contain violence?,Yes
-Is The Matrix appropriate for children?,No
-Does The Matrix contain violence?,Yes
-Is Titanic appropriate for children?,Yes
-Does Titanic contain explicit content?,No
-Is Harry Potter appropriate for children?,Yes
-Does Harry Potter contain violence?,Mild fantasy violence
-Is The Lord of the Rings appropriate for children?,Yes
-Does The Lord of the Rings contain violence?,Fantasy violence
-Is Star Wars appropriate for children?,Yes
-Does Star Wars contain violence?,Fantasy violence
-Is Home Alone appropriate for children?,Yes
-Does Home Alone contain violence?,Slapstick cartoon violence
-Is Frozen appropriate for children?,Yes
-Does Frozen contain disturbing imagery?,No
-Is The Conjuring appropriate for children?,No
-Does The Conjuring contain disturbing imagery?,Yes
-Is The Terminator appropriate for children?,No
-Does The Terminator contain violence?,Yes
-Is Die Hard appropriate for children?,No
-Does Die Hard contain violence?,Yes
-Is The Avengers appropriate for children?,Yes
-Does The Avengers contain violence?,Fantasy violence
-Is Toy Story appropriate for children?,Yes
-Does Toy Story contain violence?,Slapstick cartoon violence
-Is Toy Story 2 appropriate for children?,Yes
-Does Toy Story 2 contain violence?,Slapstick cartoon violence
-Is Toy Story 3 appropriate for children?,Yes
-Does Toy Story 3 contain violence?,Slapstick cartoon violence
-Is Cars appropriate for children?,Yes
-Does Cars contain violence?,No
-Is Monsters Inc appropriate for children?,Yes
-Does Monsters Inc contain violence?,No
-Is Inside Out appropriate for children?,Yes
-Does Inside Out contain violence?,No
-Is Up appropriate for children?,Yes
-Does Up contain violence?,No
-Is Coco appropriate for children?,Yes
-Does Coco contain violence?,No
-Is Frozen appropriate for children?,Yes
-Does Frozen contain violence?,Fantasy violence
-Is Moana appropriate for children?,Yes
-Does Moana contain violence?,Fantasy violence
+Does this movie contain themes of suicide?,No
+Does this movie contain self-harm scenes?,No
+Does this movie contain graphic death scenes?,No
+Does this movie contain psychological horror?,No
+Does this movie contain supernatural horror?,No
+Does this movie contain body horror?,No
+Does this movie contain disturbing medical scenes?,No
+Does this movie contain frightening jump scares?,No
+Does this movie contain themes of child abuse?,No
+Is the movie appropriate for children aged 5-10?,Yes
+Is the movie suitable for family viewing?,Yes
+Does the movie promote positive messages?,Yes
+Does the movie teach moral lessons?,Yes
+Does the movie promote kindness and friendship?,Yes
+Does the movie have an uplifting ending?,Yes
+Does the movie feature animated characters?,Yes
+Does the movie have age-appropriate humor?,Yes
+Is the movie based on a children's book?,Yes
+Does the movie feature talking animals?,Yes
+Does the movie contain mild cartoon violence?,Yes
+Does the movie have a G or PG rating?,Yes
+Is the movie educational for children?,Yes
+Does the movie promote family values?,Yes
+Does the movie have a positive role model?,Yes
+Is the movie's runtime suitable for children?,Yes
+Does the movie avoid scary scenes?,Yes
+Does the movie avoid adult themes?,Yes
+Does the movie avoid graphic content?,Yes
+Is the movie widely recommended for children?,Yes
+Is Aladdin appropriate for children?,Yes
+Does Aladdin contain extreme violence?,No
+Is Aladdin suitable for family viewing?,Yes
+Does Aladdin have positive messages?,Yes
+Does Aladdin contain adult themes?,No
+Does Aladdin feature animated characters?,Yes
+Does Aladdin contain age-appropriate humor?,Yes
+Does Aladdin contain exciting adventure?,Yes
+Is Beauty and the Beast appropriate for children?,Yes
+Does Beauty and the Beast contain extreme violence?,No
+Is Beauty and the Beast suitable for family viewing?,Yes
+Does Beauty and the Beast have positive messages?,Yes
+Does Beauty and the Beast contain adult themes?,No
+Does Beauty and the Beast feature animated characters?,Yes
+Does Beauty and the Beast promote family values?,Yes
+Is The Little Mermaid appropriate for children?,Yes
+Does The Little Mermaid contain extreme violence?,No
+Is The Little Mermaid suitable for family viewing?,Yes
+Does The Little Mermaid have positive messages?,Yes
+Does The Little Mermaid contain adult themes?,No
+Does The Little Mermaid feature animated characters?,Yes
+Does The Little Mermaid promote family values?,Yes
+Is Mulan appropriate for children?,Yes
+Does Mulan contain extreme violence?,No
+Is Mulan suitable for family viewing?,Yes
+Does Mulan have positive messages?,Yes
+Does Mulan contain adult themes?,No
+Does Mulan feature animated characters?,Yes
+Does Mulan contain age-appropriate humor?,Yes
+Does Mulan contain exciting adventure?,Yes
+Is Tarzan appropriate for children?,Yes
+Does Tarzan contain extreme violence?,No
+Is Tarzan suitable for family viewing?,Yes
+Does Tarzan have positive messages?,Yes
+Does Tarzan contain adult themes?,No
+Does Tarzan feature animated characters?,Yes
+Does Tarzan contain age-appropriate humor?,Yes
+Does Tarzan contain exciting adventure?,Yes
+Is Hercules appropriate for children?,Yes
+Does Hercules contain extreme violence?,No
+Is Hercules suitable for family viewing?,Yes
+Does Hercules have positive messages?,Yes
+Does Hercules contain adult themes?,No
+Does Hercules feature animated characters?,Yes
+Does Hercules contain age-appropriate humor?,Yes
+Does Hercules contain exciting adventure?,Yes
+Is Pocahontas appropriate for children?,Yes
+Does Pocahontas contain extreme violence?,No
+Is Pocahontas suitable for family viewing?,Yes
+Does Pocahontas have positive messages?,Yes
+Does Pocahontas contain adult themes?,No
+Does Pocahontas feature animated characters?,Yes
+Does Pocahontas contain emotional themes?,Yes
+Does Pocahontas contain exciting adventure?,Yes
+Is The Hunchback of Notre Dame appropriate for children?,Yes
+Does The Hunchback of Notre Dame contain extreme violence?,No
+Is The Hunchback of Notre Dame suitable for family viewing?,Yes
+Does The Hunchback of Notre Dame have positive messages?,Yes
+Does The Hunchback of Notre Dame contain adult themes?,No
+Does The Hunchback of Notre Dame feature animated characters?,Yes
+Does The Hunchback of Notre Dame promote family values?,Yes
+Does The Hunchback of Notre Dame contain emotional themes?,Yes
 Is Zootopia appropriate for children?,Yes
-Does Zootopia contain violence?,Cartoon violence
-Is The Incredibles appropriate for children?,Yes
-Does The Incredibles contain violence?,Cartoon violence
-Is Ratatouille appropriate for children?,Yes
-Does Ratatouille contain violence?,No
-Is Wall-E appropriate for children?,Yes
-Does Wall-E contain violence?,No
-Is Brave appropriate for children?,Yes
-Does Brave contain violence?,Fantasy violence
+Does Zootopia contain extreme violence?,No
+Is Zootopia suitable for family viewing?,Yes
+Does Zootopia have positive messages?,Yes
+Does Zootopia contain adult themes?,No
+Does Zootopia feature animated characters?,Yes
+Does Zootopia contain age-appropriate humor?,Yes
+Does Zootopia contain exciting adventure?,Yes
+Is Moana appropriate for children?,Yes
+Does Moana contain extreme violence?,No
+Is Moana suitable for family viewing?,Yes
+Does Moana have positive messages?,Yes
+Does Moana contain adult themes?,No
+Does Moana feature animated characters?,Yes
+Does Moana contain age-appropriate humor?,Yes
+Does Moana contain exciting adventure?,Yes
+Is Wreck-It Ralph appropriate for children?,Yes
+Does Wreck-It Ralph contain extreme violence?,No
+Is Wreck-It Ralph suitable for family viewing?,Yes
+Does Wreck-It Ralph have positive messages?,Yes
+Does Wreck-It Ralph contain adult themes?,No
+Does Wreck-It Ralph feature animated characters?,Yes
+Does Wreck-It Ralph contain age-appropriate humor?,Yes
+Does Wreck-It Ralph contain exciting adventure?,Yes
+Is Big Hero 6 appropriate for children?,Yes
+Does Big Hero 6 contain extreme violence?,No
+Is Big Hero 6 suitable for family viewing?,Yes
+Does Big Hero 6 have positive messages?,Yes
+Does Big Hero 6 contain adult themes?,No
+Does Big Hero 6 feature animated characters?,Yes
+Does Big Hero 6 contain exciting adventure?,Yes
 Is Tangled appropriate for children?,Yes
-Does Tangled contain violence?,Cartoon violence
-Is How to Train Your Dragon appropriate for children?,Yes
-Does How to Train Your Dragon contain violence?,Fantasy violence
-Is Shrek appropriate for children?,Yes
-Does Shrek contain violence?,Cartoon violence
-Is Kung Fu Panda appropriate for children?,Yes
-Does Kung Fu Panda contain violence?,Cartoon violence
-Is Madagascar appropriate for children?,Yes
-Does Madagascar contain violence?,Cartoon violence
-Is Ice Age appropriate for children?,Yes
-Does Ice Age contain violence?,Cartoon violence
-Is The Secret Life of Pets appropriate for children?,Yes
-Does The Secret Life of Pets contain violence?,Cartoon violence
-Is Sing appropriate for children?,Yes
-Does Sing contain violence?,No
+Does Tangled contain extreme violence?,No
+Is Tangled suitable for family viewing?,Yes
+Does Tangled have positive messages?,Yes
+Does Tangled contain adult themes?,No
+Does Tangled feature animated characters?,Yes
+Does Tangled contain age-appropriate humor?,Yes
+Does Tangled contain exciting adventure?,Yes
+Is Brave appropriate for children?,Yes
+Does Brave contain extreme violence?,No
+Is Brave suitable for family viewing?,Yes
+Does Brave have positive messages?,Yes
+Does Brave contain adult themes?,No
+Does Brave feature animated characters?,Yes
+Does Brave contain age-appropriate humor?,Yes
+Does Brave contain exciting adventure?,Yes
+Is Ratatouille appropriate for children?,Yes
+Does Ratatouille contain extreme violence?,No
+Is Ratatouille suitable for family viewing?,Yes
+Does Ratatouille have positive messages?,Yes
+Does Ratatouille contain adult themes?,No
+Does Ratatouille feature animated characters?,Yes
+Does Ratatouille contain age-appropriate humor?,Yes
+Does Ratatouille contain exciting adventure?,Yes
+Is Wall-E appropriate for children?,Yes
+Does Wall-E contain extreme violence?,No
+Is Wall-E suitable for family viewing?,Yes
+Does Wall-E have positive messages?,Yes
+Does Wall-E contain adult themes?,No
+Does Wall-E feature animated characters?,Yes
+Does Wall-E promote family values?,Yes
+Does Wall-E contain exciting adventure?,Yes
+"Is Monsters, Inc. appropriate for children?",Yes
+"Does Monsters, Inc. contain extreme violence?",No
+"Is Monsters, Inc. suitable for family viewing?",Yes
+"Does Monsters, Inc. have positive messages?",Yes
+"Does Monsters, Inc. contain adult themes?",No
+"Does Monsters, Inc. feature animated characters?",Yes
+"Does Monsters, Inc. contain age-appropriate humor?",Yes
+"Does Monsters, Inc. contain exciting adventure?",Yes
+Is Inside Out appropriate for children?,Yes
+Does Inside Out contain extreme violence?,No
+Is Inside Out suitable for family viewing?,Yes
+Does Inside Out have positive messages?,Yes
+Does Inside Out contain adult themes?,No
+Does Inside Out feature animated characters?,Yes
+Does Inside Out contain age-appropriate humor?,Yes
+Does Inside Out contain exciting adventure?,Yes
+Is The Good Dinosaur appropriate for children?,Yes
+Does The Good Dinosaur contain extreme violence?,No
+Is The Good Dinosaur suitable for family viewing?,Yes
+Does The Good Dinosaur have positive messages?,Yes
+Does The Good Dinosaur contain adult themes?,No
+Does The Good Dinosaur feature animated characters?,Yes
+Does The Good Dinosaur contain age-appropriate humor?,Yes
+Does The Good Dinosaur contain exciting adventure?,Yes
+Is Onward appropriate for children?,Yes
+Does Onward contain extreme violence?,No
+Is Onward suitable for family viewing?,Yes
+Does Onward have positive messages?,Yes
+Does Onward contain adult themes?,No
+Does Onward feature animated characters?,Yes
+Does Onward contain age-appropriate humor?,Yes
+Does Onward contain exciting adventure?,Yes
+Is Soul appropriate for children?,Yes
+Does Soul contain extreme violence?,No
+Is Soul suitable for family viewing?,Yes
+Does Soul have positive messages?,Yes
+Does Soul contain adult themes?,No
+Does Soul feature animated characters?,Yes
+Does Soul contain age-appropriate humor?,Yes
+Does Soul contain exciting adventure?,Yes
+Is Luca appropriate for children?,Yes
+Does Luca contain extreme violence?,No
+Is Luca suitable for family viewing?,Yes
+Does Luca have positive messages?,Yes
+Does Luca contain adult themes?,No
+Does Luca feature animated characters?,Yes
+Does Luca contain age-appropriate humor?,Yes
+Does Luca contain exciting adventure?,Yes
+Is Encanto appropriate for children?,Yes
+Does Encanto contain extreme violence?,No
+Is Encanto suitable for family viewing?,Yes
+Does Encanto have positive messages?,Yes
+Does Encanto contain adult themes?,No
+Does Encanto feature animated characters?,Yes
+Does Encanto contain age-appropriate humor?,Yes
+Does Encanto contain exciting adventure?,Yes
+Is Turning Red appropriate for children?,Yes
+Does Turning Red contain extreme violence?,No
+Is Turning Red suitable for family viewing?,Yes
+Does Turning Red have positive messages?,Yes
+Does Turning Red contain adult themes?,No
+Does Turning Red feature animated characters?,Yes
+Does Turning Red contain age-appropriate humor?,Yes
+Does Turning Red contain exciting adventure?,Yes
 Is The Bad Guys appropriate for children?,Yes
-Does The Bad Guys contain violence?,Cartoon violence
-Is Puss in Boots appropriate for children?,Yes
-Does Puss in Boots contain violence?,Cartoon violence
-Is The Croods appropriate for children?,Yes
-Does The Croods contain violence?,Cartoon violence
+Does The Bad Guys contain extreme violence?,No
+Is The Bad Guys suitable for family viewing?,Yes
+Does The Bad Guys have positive messages?,Yes
+Does The Bad Guys contain adult themes?,No
+Does The Bad Guys feature animated characters?,Yes
+Does The Bad Guys contain exciting adventure?,Yes
+Is Puss in Boots: The Last Wish appropriate for children?,Yes
+Does Puss in Boots: The Last Wish contain extreme violence?,No
+Is Puss in Boots: The Last Wish suitable for family viewing?,Yes
+Does Puss in Boots: The Last Wish have positive messages?,Yes
+Does Puss in Boots: The Last Wish contain adult themes?,No
+Does Puss in Boots: The Last Wish feature animated characters?,Yes
+Does Puss in Boots: The Last Wish contain exciting adventure?,Yes
+Is Elemental appropriate for children?,Yes
+Does Elemental contain extreme violence?,No
+Is Elemental suitable for family viewing?,Yes
+Does Elemental have positive messages?,Yes
+Does Elemental contain adult themes?,No
+Does Elemental feature animated characters?,Yes
+Does Elemental contain age-appropriate humor?,Yes
+Does Elemental contain exciting adventure?,Yes
+Is The Wizard of Oz appropriate for children?,Yes
+Does The Wizard of Oz contain extreme violence?,No
+Is The Wizard of Oz suitable for family viewing?,Yes
+Does The Wizard of Oz have positive messages?,Yes
+Does The Wizard of Oz contain adult themes?,No
+Does The Wizard of Oz promote family values?,Yes
+Does The Wizard of Oz contain exciting adventure?,Yes
+Is Mary Poppins appropriate for children?,Yes
+Does Mary Poppins contain extreme violence?,No
+Is Mary Poppins suitable for family viewing?,Yes
+Does Mary Poppins have positive messages?,Yes
+Does Mary Poppins contain adult themes?,No
+Does Mary Poppins promote family values?,Yes
+Does Mary Poppins contain age-appropriate humor?,Yes
+Is The Sound of Music appropriate for children?,Yes
+Does The Sound of Music contain extreme violence?,No
+Is The Sound of Music suitable for family viewing?,Yes
+Does The Sound of Music have positive messages?,Yes
+Does The Sound of Music contain adult themes?,No
+Does The Sound of Music promote family values?,Yes
+Does The Sound of Music contain emotional themes?,Yes
+Is Willy Wonka & the Chocolate Factory appropriate for children?,Yes
+Does Willy Wonka & the Chocolate Factory contain extreme violence?,No
+Is Willy Wonka & the Chocolate Factory suitable for family viewing?,Yes
+Does Willy Wonka & the Chocolate Factory have positive messages?,Yes
+Does Willy Wonka & the Chocolate Factory contain adult themes?,No
+Does Willy Wonka & the Chocolate Factory promote family values?,Yes
+Is E.T. the Extra-Terrestrial appropriate for children?,Yes
+Does E.T. the Extra-Terrestrial contain extreme violence?,No
+Is E.T. the Extra-Terrestrial suitable for family viewing?,Yes
+Does E.T. the Extra-Terrestrial have positive messages?,Yes
+Does E.T. the Extra-Terrestrial contain adult themes?,No
+Does E.T. the Extra-Terrestrial contain intense action sequences?,Yes
+Does E.T. the Extra-Terrestrial contain frightening imagery?,Yes
+Does E.T. the Extra-Terrestrial contain perilous situations?,Yes
+Does E.T. the Extra-Terrestrial promote family values?,Yes
+Does E.T. the Extra-Terrestrial contain exciting adventure?,Yes
+Is The Princess Bride appropriate for children?,Yes
+Does The Princess Bride contain extreme violence?,No
+Is The Princess Bride suitable for family viewing?,Yes
+Does The Princess Bride have positive messages?,Yes
+Does The Princess Bride contain adult themes?,No
+Does The Princess Bride promote family values?,Yes
+Does The Princess Bride contain age-appropriate humor?,Yes
+Does The Princess Bride contain exciting adventure?,Yes
+Is Matilda appropriate for children?,Yes
+Does Matilda contain extreme violence?,No
+Is Matilda suitable for family viewing?,Yes
+Does Matilda have positive messages?,Yes
+Does Matilda contain adult themes?,No
+Does Matilda promote family values?,Yes
+Does Matilda contain age-appropriate humor?,Yes
+Is Jumanji appropriate for children?,Yes
+Does Jumanji contain extreme violence?,No
+Is Jumanji suitable for family viewing?,Yes
+Does Jumanji have positive messages?,Yes
+Does Jumanji contain adult themes?,No
+Does Jumanji promote family values?,Yes
+Does Jumanji contain age-appropriate humor?,Yes
+Does Jumanji contain exciting adventure?,Yes
+Is The Parent Trap appropriate for children?,Yes
+Does The Parent Trap contain extreme violence?,No
+Is The Parent Trap suitable for family viewing?,Yes
+Does The Parent Trap have positive messages?,Yes
+Does The Parent Trap contain adult themes?,No
+Does The Parent Trap promote family values?,Yes
+Does The Parent Trap contain age-appropriate humor?,Yes
+Is The Sandlot appropriate for children?,Yes
+Does The Sandlot contain extreme violence?,No
+Is The Sandlot suitable for family viewing?,Yes
+Does The Sandlot have positive messages?,Yes
+Does The Sandlot contain adult themes?,No
+Does The Sandlot promote family values?,Yes
+Does The Sandlot contain age-appropriate humor?,Yes
+Does The Sandlot contain emotional themes?,Yes
+Is A Christmas Story appropriate for children?,Yes
+Does A Christmas Story contain extreme violence?,No
+Is A Christmas Story suitable for family viewing?,Yes
+Does A Christmas Story have positive messages?,Yes
+Does A Christmas Story contain adult themes?,No
+Does A Christmas Story promote family values?,Yes
+Does A Christmas Story contain age-appropriate humor?,Yes
+Is The Goonies appropriate for children?,Yes
+Does The Goonies contain extreme violence?,No
+Is The Goonies suitable for family viewing?,Yes
+Does The Goonies have positive messages?,Yes
+Does The Goonies contain adult themes?,No
+Does The Goonies promote family values?,Yes
+Does The Goonies contain age-appropriate humor?,Yes
+Does The Goonies contain exciting adventure?,Yes
+Is Paddington appropriate for children?,Yes
+Does Paddington contain extreme violence?,No
+Is Paddington suitable for family viewing?,Yes
+Does Paddington have positive messages?,Yes
+Does Paddington contain adult themes?,No
+Does Paddington promote family values?,Yes
+Does Paddington contain age-appropriate humor?,Yes
+Does Paddington contain exciting adventure?,Yes
+Is Paddington 2 appropriate for children?,Yes
+Does Paddington 2 contain extreme violence?,No
+Is Paddington 2 suitable for family viewing?,Yes
+Does Paddington 2 have positive messages?,Yes
+Does Paddington 2 contain adult themes?,No
+Does Paddington 2 promote family values?,Yes
+Does Paddington 2 contain age-appropriate humor?,Yes
+Does Paddington 2 contain exciting adventure?,Yes
+Is Wonder appropriate for children?,Yes
+Does Wonder contain extreme violence?,No
+Is Wonder suitable for family viewing?,Yes
+Does Wonder have positive messages?,Yes
+Does Wonder contain adult themes?,No
+Does Wonder promote family values?,Yes
+Does Wonder contain emotional themes?,Yes
+Is The Secret Garden appropriate for children?,Yes
+Does The Secret Garden contain extreme violence?,No
+Is The Secret Garden suitable for family viewing?,Yes
+Does The Secret Garden have positive messages?,Yes
+Does The Secret Garden contain adult themes?,No
+Does The Secret Garden promote family values?,Yes
+Does The Secret Garden contain emotional themes?,Yes
+Is A Beautiful Day in the Neighborhood appropriate for children?,Yes
+Does A Beautiful Day in the Neighborhood contain extreme violence?,No
+Is A Beautiful Day in the Neighborhood suitable for family viewing?,Yes
+Does A Beautiful Day in the Neighborhood have positive messages?,Yes
+Does A Beautiful Day in the Neighborhood contain adult themes?,No
+Does A Beautiful Day in the Neighborhood promote family values?,Yes
+Does A Beautiful Day in the Neighborhood contain emotional themes?,Yes
+Is Christopher Robin appropriate for children?,Yes
+Does Christopher Robin contain extreme violence?,No
+Is Christopher Robin suitable for family viewing?,Yes
+Does Christopher Robin have positive messages?,Yes
+Does Christopher Robin contain adult themes?,No
+Does Christopher Robin promote family values?,Yes
+Does Christopher Robin contain age-appropriate humor?,Yes
+Does Christopher Robin contain exciting adventure?,Yes
+Is The BFG appropriate for children?,Yes
+Does The BFG contain extreme violence?,No
+Is The BFG suitable for family viewing?,Yes
+Does The BFG have positive messages?,Yes
+Does The BFG contain adult themes?,No
+Does The BFG promote family values?,Yes
+Does The BFG contain exciting adventure?,Yes
+Is Pete's Dragon appropriate for children?,Yes
+Does Pete's Dragon contain extreme violence?,No
+Is Pete's Dragon suitable for family viewing?,Yes
+Does Pete's Dragon have positive messages?,Yes
+Does Pete's Dragon contain adult themes?,No
+Does Pete's Dragon promote family values?,Yes
+Does Pete's Dragon contain exciting adventure?,Yes
+Is A Wrinkle in Time appropriate for children?,Yes
+Does A Wrinkle in Time contain extreme violence?,No
+Is A Wrinkle in Time suitable for family viewing?,Yes
+Does A Wrinkle in Time have positive messages?,Yes
+Does A Wrinkle in Time contain adult themes?,No
+Does A Wrinkle in Time promote family values?,Yes
+Does A Wrinkle in Time contain exciting adventure?,Yes
+Is Dora and the Lost City of Gold appropriate for children?,Yes
+Does Dora and the Lost City of Gold contain extreme violence?,No
+Is Dora and the Lost City of Gold suitable for family viewing?,Yes
+Does Dora and the Lost City of Gold have positive messages?,Yes
+Does Dora and the Lost City of Gold contain adult themes?,No
+Does Dora and the Lost City of Gold promote family values?,Yes
+Does Dora and the Lost City of Gold contain age-appropriate humor?,Yes
+Does Dora and the Lost City of Gold contain exciting adventure?,Yes
+Is Cool Runnings appropriate for children?,Yes
+Does Cool Runnings contain extreme violence?,No
+Is Cool Runnings suitable for family viewing?,Yes
+Does Cool Runnings have positive messages?,Yes
+Does Cool Runnings contain adult themes?,No
+Does Cool Runnings promote family values?,Yes
+Does Cool Runnings contain age-appropriate humor?,Yes
+Does Cool Runnings contain exciting adventure?,Yes
+Is The Mighty Ducks appropriate for children?,Yes
+Does The Mighty Ducks contain extreme violence?,No
+Is The Mighty Ducks suitable for family viewing?,Yes
+Does The Mighty Ducks have positive messages?,Yes
+Does The Mighty Ducks contain adult themes?,No
+Does The Mighty Ducks promote family values?,Yes
+Does The Mighty Ducks contain age-appropriate humor?,Yes
+Does The Mighty Ducks contain emotional themes?,Yes
+Is Little Giants appropriate for children?,Yes
+Does Little Giants contain extreme violence?,No
+Is Little Giants suitable for family viewing?,Yes
+Does Little Giants have positive messages?,Yes
+Does Little Giants contain adult themes?,No
+Does Little Giants promote family values?,Yes
+Does Little Giants contain age-appropriate humor?,Yes
+Is Space Jam appropriate for children?,Yes
+Does Space Jam contain extreme violence?,No
+Is Space Jam suitable for family viewing?,Yes
+Does Space Jam have positive messages?,Yes
+Does Space Jam contain adult themes?,No
+Does Space Jam feature animated characters?,Yes
+Does Space Jam contain age-appropriate humor?,Yes
+Does Space Jam contain exciting adventure?,Yes
+Is Remember the Titans appropriate for children?,Yes
+Does Remember the Titans contain extreme violence?,No
+Is Remember the Titans suitable for family viewing?,Yes
+Does Remember the Titans have positive messages?,Yes
+Does Remember the Titans contain adult themes?,No
+Does Remember the Titans contain emotional themes?,Yes
+Is Miracle appropriate for children?,Yes
+Does Miracle contain extreme violence?,No
+Is Miracle suitable for family viewing?,Yes
+Does Miracle have positive messages?,Yes
+Does Miracle contain adult themes?,No
+Does Miracle contain emotional themes?,Yes
+Is Soul Surfer appropriate for children?,Yes
+Does Soul Surfer contain extreme violence?,No
+Is Soul Surfer suitable for family viewing?,Yes
+Does Soul Surfer have positive messages?,Yes
+Does Soul Surfer contain adult themes?,No
+Does Soul Surfer promote family values?,Yes
+Does Soul Surfer contain emotional themes?,Yes
+"Is The Chronicles of Narnia: The Lion, the Witch and the Wardrobe appropriate for children?",Yes
+"Does The Chronicles of Narnia: The Lion, the Witch and the Wardrobe contain extreme violence?",No
+"Is The Chronicles of Narnia: The Lion, the Witch and the Wardrobe suitable for family viewing?",Yes
+"Does The Chronicles of Narnia: The Lion, the Witch and the Wardrobe have positive messages?",Yes
+"Does The Chronicles of Narnia: The Lion, the Witch and the Wardrobe contain adult themes?",No
+"Does The Chronicles of Narnia: The Lion, the Witch and the Wardrobe promote family values?",Yes
+"Does The Chronicles of Narnia: The Lion, the Witch and the Wardrobe contain exciting adventure?",Yes
+Is The Spiderwick Chronicles appropriate for children?,Yes
+Does The Spiderwick Chronicles contain extreme violence?,No
+Is The Spiderwick Chronicles suitable for family viewing?,Yes
+Does The Spiderwick Chronicles have positive messages?,Yes
+Does The Spiderwick Chronicles contain adult themes?,No
+Does The Spiderwick Chronicles promote family values?,Yes
+Does The Spiderwick Chronicles contain exciting adventure?,Yes
+Is Percy Jackson & the Olympians: The Lightning Thief appropriate for children?,Yes
+Does Percy Jackson & the Olympians: The Lightning Thief contain extreme violence?,No
+Is Percy Jackson & the Olympians: The Lightning Thief suitable for family viewing?,Yes
+Does Percy Jackson & the Olympians: The Lightning Thief have positive messages?,Yes
+Does Percy Jackson & the Olympians: The Lightning Thief contain adult themes?,No
+Does Percy Jackson & the Olympians: The Lightning Thief promote family values?,Yes
+Does Percy Jackson & the Olympians: The Lightning Thief contain exciting adventure?,Yes
+Is The NeverEnding Story appropriate for children?,Yes
+Does The NeverEnding Story contain extreme violence?,No
+Is The NeverEnding Story suitable for family viewing?,Yes
+Does The NeverEnding Story have positive messages?,Yes
+Does The NeverEnding Story contain adult themes?,No
+Does The NeverEnding Story promote family values?,Yes
+Does The NeverEnding Story contain emotional themes?,Yes
+Does The NeverEnding Story contain exciting adventure?,Yes
+Is Labyrinth appropriate for children?,Yes
+Does Labyrinth contain extreme violence?,No
+Is Labyrinth suitable for family viewing?,Yes
+Does Labyrinth have positive messages?,Yes
+Does Labyrinth contain adult themes?,No
+Does Labyrinth promote family values?,Yes
+Does Labyrinth contain exciting adventure?,Yes
+Is The Dark Crystal appropriate for children?,Yes
+Does The Dark Crystal contain extreme violence?,No
+Is The Dark Crystal suitable for family viewing?,Yes
+Does The Dark Crystal have positive messages?,Yes
+Does The Dark Crystal contain adult themes?,No
+Does The Dark Crystal promote family values?,Yes
+Does The Dark Crystal contain exciting adventure?,Yes
+Is Willow appropriate for children?,Yes
+Does Willow contain extreme violence?,No
+Is Willow suitable for family viewing?,Yes
+Does Willow have positive messages?,Yes
+Does Willow contain adult themes?,No
+Does Willow contain exciting adventure?,Yes
+Is The Princess Diaries appropriate for children?,Yes
+Does The Princess Diaries contain extreme violence?,No
+Is The Princess Diaries suitable for family viewing?,Yes
+Does The Princess Diaries have positive messages?,Yes
+Does The Princess Diaries contain adult themes?,No
+Does The Princess Diaries promote family values?,Yes
+Does The Princess Diaries contain age-appropriate humor?,Yes
+Is Ella Enchanted appropriate for children?,Yes
+Does Ella Enchanted contain extreme violence?,No
+Is Ella Enchanted suitable for family viewing?,Yes
+Does Ella Enchanted have positive messages?,Yes
+Does Ella Enchanted contain adult themes?,No
+Does Ella Enchanted promote family values?,Yes
+Does Ella Enchanted contain age-appropriate humor?,Yes
+Is Enchanted appropriate for children?,Yes
+Does Enchanted contain extreme violence?,No
+Is Enchanted suitable for family viewing?,Yes
+Does Enchanted have positive messages?,Yes
+Does Enchanted contain adult themes?,No
+Does Enchanted feature animated characters?,Yes
+Does Enchanted contain age-appropriate humor?,Yes
+Does Enchanted contain exciting adventure?,Yes
+Is Kung Fu Panda appropriate for children?,Yes
+Does Kung Fu Panda contain extreme violence?,No
+Is Kung Fu Panda suitable for family viewing?,Yes
+Does Kung Fu Panda have positive messages?,Yes
+Does Kung Fu Panda contain adult themes?,No
+Does Kung Fu Panda feature animated characters?,Yes
+Does Kung Fu Panda contain exciting adventure?,Yes
+Is Kung Fu Panda 2 appropriate for children?,Yes
+Does Kung Fu Panda 2 contain extreme violence?,No
+Is Kung Fu Panda 2 suitable for family viewing?,Yes
+Does Kung Fu Panda 2 have positive messages?,Yes
+Does Kung Fu Panda 2 contain adult themes?,No
+Does Kung Fu Panda 2 feature animated characters?,Yes
+Does Kung Fu Panda 2 contain exciting adventure?,Yes
+Is Madagascar appropriate for children?,Yes
+Does Madagascar contain extreme violence?,No
+Is Madagascar suitable for family viewing?,Yes
+Does Madagascar have positive messages?,Yes
+Does Madagascar contain adult themes?,No
+Does Madagascar feature animated characters?,Yes
+Does Madagascar contain age-appropriate humor?,Yes
+Does Madagascar contain exciting adventure?,Yes
+Is Ice Age appropriate for children?,Yes
+Does Ice Age contain extreme violence?,No
+Is Ice Age suitable for family viewing?,Yes
+Does Ice Age have positive messages?,Yes
+Does Ice Age contain adult themes?,No
+Does Ice Age feature animated characters?,Yes
+Does Ice Age contain age-appropriate humor?,Yes
+Does Ice Age contain exciting adventure?,Yes
+Is Rio appropriate for children?,Yes
+Does Rio contain extreme violence?,No
+Is Rio suitable for family viewing?,Yes
+Does Rio have positive messages?,Yes
+Does Rio contain adult themes?,No
+Does Rio feature animated characters?,Yes
+Does Rio contain age-appropriate humor?,Yes
+Does Rio contain exciting adventure?,Yes
+Is Despicable Me appropriate for children?,Yes
+Does Despicable Me contain extreme violence?,No
+Is Despicable Me suitable for family viewing?,Yes
+Does Despicable Me have positive messages?,Yes
+Does Despicable Me contain adult themes?,No
+Does Despicable Me feature animated characters?,Yes
+Does Despicable Me contain age-appropriate humor?,Yes
+Does Despicable Me contain exciting adventure?,Yes
+Is The Lorax appropriate for children?,Yes
+Does The Lorax contain extreme violence?,No
+Is The Lorax suitable for family viewing?,Yes
+Does The Lorax have positive messages?,Yes
+Does The Lorax contain adult themes?,No
+Does The Lorax feature animated characters?,Yes
+Does The Lorax contain age-appropriate humor?,Yes
+Does The Lorax contain exciting adventure?,Yes
+Is The Secret Life of Pets appropriate for children?,Yes
+Does The Secret Life of Pets contain extreme violence?,No
+Is The Secret Life of Pets suitable for family viewing?,Yes
+Does The Secret Life of Pets have positive messages?,Yes
+Does The Secret Life of Pets contain adult themes?,No
+Does The Secret Life of Pets feature animated characters?,Yes
+Does The Secret Life of Pets contain age-appropriate humor?,Yes
+Does The Secret Life of Pets contain exciting adventure?,Yes
+Is Sing appropriate for children?,Yes
+Does Sing contain extreme violence?,No
+Is Sing suitable for family viewing?,Yes
+Does Sing have positive messages?,Yes
+Does Sing contain adult themes?,No
+Does Sing feature animated characters?,Yes
+Does Sing contain age-appropriate humor?,Yes
+Does Sing contain exciting adventure?,Yes
 Is Trolls appropriate for children?,Yes
-Does Trolls contain violence?,No
-Is Hotel Transylvania appropriate for children?,Yes
-Does Hotel Transylvania contain violence?,Cartoon violence
+Does Trolls contain extreme violence?,No
+Is Trolls suitable for family viewing?,Yes
+Does Trolls have positive messages?,Yes
+Does Trolls contain adult themes?,No
+Does Trolls feature animated characters?,Yes
+Does Trolls contain age-appropriate humor?,Yes
+Does Trolls contain exciting adventure?,Yes
+Is The Lego Movie appropriate for children?,Yes
+Does The Lego Movie contain extreme violence?,No
+Is The Lego Movie suitable for family viewing?,Yes
+Does The Lego Movie have positive messages?,Yes
+Does The Lego Movie contain adult themes?,No
+Does The Lego Movie feature animated characters?,Yes
+Does The Lego Movie contain exciting adventure?,Yes
+Is Spider-Man: Into the Spider-Verse appropriate for children?,Yes
+Does Spider-Man: Into the Spider-Verse contain extreme violence?,No
+Is Spider-Man: Into the Spider-Verse suitable for family viewing?,Yes
+Does Spider-Man: Into the Spider-Verse have positive messages?,Yes
+Does Spider-Man: Into the Spider-Verse contain adult themes?,No
+Does Spider-Man: Into the Spider-Verse feature animated characters?,Yes
+Does Spider-Man: Into the Spider-Verse contain exciting adventure?,Yes
+Is Klaus appropriate for children?,Yes
+Does Klaus contain extreme violence?,No
+Is Klaus suitable for family viewing?,Yes
+Does Klaus have positive messages?,Yes
+Does Klaus contain adult themes?,No
+Does Klaus feature animated characters?,Yes
+Does Klaus contain age-appropriate humor?,Yes
+Does Klaus contain exciting adventure?,Yes
+Is The Mitchells vs. the Machines appropriate for children?,Yes
+Does The Mitchells vs. the Machines contain extreme violence?,No
+Is The Mitchells vs. the Machines suitable for family viewing?,Yes
+Does The Mitchells vs. the Machines have positive messages?,Yes
+Does The Mitchells vs. the Machines contain adult themes?,No
+Does The Mitchells vs. the Machines feature animated characters?,Yes
+Does The Mitchells vs. the Machines contain age-appropriate humor?,Yes
+Does The Mitchells vs. the Machines contain exciting adventure?,Yes
+Is The Shining appropriate for children?,No
+Does The Shining contain disturbing content?,Yes
+Does The Shining contain violence?,Yes
+Does The Shining contain adult themes?,Yes
+Is The Shining suitable for young children?,No
+Does The Shining contain frightening imagery?,Yes
+Does The Shining contain emotional themes?,Yes
+Is A Nightmare on Elm Street appropriate for children?,No
+Does A Nightmare on Elm Street contain disturbing content?,Yes
+Does A Nightmare on Elm Street contain violence?,Yes
+Does A Nightmare on Elm Street contain adult themes?,Yes
+Is A Nightmare on Elm Street suitable for young children?,No
+Does A Nightmare on Elm Street contain frightening imagery?,Yes
+Is Halloween appropriate for children?,No
+Does Halloween contain disturbing content?,Yes
+Does Halloween contain violence?,Yes
+Does Halloween contain adult themes?,Yes
+Is Halloween suitable for young children?,No
+Does Halloween contain frightening imagery?,Yes
+Does Halloween contain intense suspense?,Yes
+Is The Exorcist appropriate for children?,No
+Does The Exorcist contain disturbing content?,Yes
+Does The Exorcist contain violence?,Yes
+Does The Exorcist contain adult themes?,Yes
+Is The Exorcist suitable for young children?,No
+Does The Exorcist contain frightening imagery?,Yes
+Is Rosemary's Baby appropriate for children?,No
+Does Rosemary's Baby contain disturbing content?,Yes
+Does Rosemary's Baby contain violence?,Yes
+Does Rosemary's Baby contain adult themes?,Yes
+Is Rosemary's Baby suitable for young children?,No
+Does Rosemary's Baby contain frightening imagery?,Yes
+Does Rosemary's Baby contain emotional themes?,Yes
+Is Hereditary appropriate for children?,No
+Does Hereditary contain disturbing content?,Yes
+Does Hereditary contain violence?,Yes
+Does Hereditary contain adult themes?,Yes
+Is Hereditary suitable for young children?,No
+Does Hereditary contain frightening imagery?,Yes
+Does Hereditary contain emotional themes?,Yes
+Is Midsommar appropriate for children?,No
+Does Midsommar contain disturbing content?,Yes
+Does Midsommar contain violence?,Yes
+Does Midsommar contain adult themes?,Yes
+Is Midsommar suitable for young children?,No
+Does Midsommar contain frightening imagery?,Yes
+Does Midsommar contain emotional themes?,Yes
+Is Get Out appropriate for children?,No
+Does Get Out contain disturbing content?,Yes
+Does Get Out contain violence?,Yes
+Does Get Out contain adult themes?,Yes
+Is Get Out suitable for young children?,No
+Does Get Out contain frightening imagery?,Yes
+Does Get Out contain intense suspense?,Yes
+Is Us appropriate for children?,No
+Does Us contain disturbing content?,Yes
+Does Us contain violence?,Yes
+Does Us contain adult themes?,Yes
+Is Us suitable for young children?,No
+Does Us contain frightening imagery?,Yes
+Does Us contain intense suspense?,Yes
+Is It appropriate for children?,No
+Does It contain disturbing content?,Yes
+Does It contain violence?,Yes
+Does It contain adult themes?,Yes
+Is It suitable for young children?,No
+Does It contain frightening imagery?,Yes
+Does It contain emotional themes?,Yes
+Is It Chapter Two appropriate for children?,No
+Does It Chapter Two contain disturbing content?,Yes
+Does It Chapter Two contain violence?,Yes
+Does It Chapter Two contain adult themes?,Yes
+Is It Chapter Two suitable for young children?,No
+Does It Chapter Two contain frightening imagery?,Yes
+Does It Chapter Two contain emotional themes?,Yes
+Is The Ring appropriate for children?,No
+Does The Ring contain disturbing content?,Yes
+Does The Ring contain violence?,Yes
+Does The Ring contain adult themes?,Yes
+Is The Ring suitable for young children?,No
+Does The Ring contain frightening imagery?,Yes
+Is The Grudge appropriate for children?,No
+Does The Grudge contain disturbing content?,Yes
+Does The Grudge contain violence?,Yes
+Does The Grudge contain adult themes?,Yes
+Is The Grudge suitable for young children?,No
+Does The Grudge contain frightening imagery?,Yes
+Does The Grudge contain intense suspense?,Yes
+Is Sinister appropriate for children?,No
+Does Sinister contain disturbing content?,Yes
+Does Sinister contain violence?,Yes
+Does Sinister contain adult themes?,Yes
+Is Sinister suitable for young children?,No
+Does Sinister contain frightening imagery?,Yes
+Does Sinister contain intense suspense?,Yes
+Is Insidious appropriate for children?,No
+Does Insidious contain disturbing content?,Yes
+Does Insidious contain violence?,Yes
+Does Insidious contain adult themes?,Yes
+Is Insidious suitable for young children?,No
+Does Insidious contain frightening imagery?,Yes
+Does Insidious contain intense suspense?,Yes
+Is The Babadook appropriate for children?,No
+Does The Babadook contain disturbing content?,Yes
+Does The Babadook contain violence?,Yes
+Does The Babadook contain adult themes?,Yes
+Is The Babadook suitable for young children?,No
+Does The Babadook contain frightening imagery?,Yes
+Does The Babadook contain emotional themes?,Yes
+Is The Witch appropriate for children?,No
+Does The Witch contain disturbing content?,Yes
+Does The Witch contain violence?,Yes
+Does The Witch contain adult themes?,Yes
+Is The Witch suitable for young children?,No
+Does The Witch contain frightening imagery?,Yes
+Does The Witch contain emotional themes?,Yes
+Is The Invisible Man appropriate for children?,No
+Does The Invisible Man contain disturbing content?,Yes
+Does The Invisible Man contain violence?,Yes
+Does The Invisible Man contain adult themes?,Yes
+Is The Invisible Man suitable for young children?,No
+Does The Invisible Man contain frightening imagery?,Yes
+Is A Quiet Place appropriate for children?,No
+Does A Quiet Place contain disturbing content?,Yes
+Does A Quiet Place contain violence?,Yes
+Does A Quiet Place contain adult themes?,Yes
+Is A Quiet Place suitable for young children?,No
+Does A Quiet Place contain frightening imagery?,Yes
+Does A Quiet Place contain emotional themes?,Yes
+Is Bird Box appropriate for children?,No
+Does Bird Box contain disturbing content?,Yes
+Does Bird Box contain violence?,Yes
+Does Bird Box contain adult themes?,Yes
+Is Bird Box suitable for young children?,No
+Does Bird Box contain frightening imagery?,Yes
+Does Bird Box contain intense suspense?,Yes
+Is Se7en appropriate for children?,No
+Does Se7en contain disturbing content?,Yes
+Does Se7en contain violence?,Yes
+Does Se7en contain adult themes?,Yes
+Is Se7en suitable for young children?,No
+Does Se7en contain criminal activity?,Yes
+Does Se7en contain emotional themes?,Yes
+Is Fight Club appropriate for children?,No
+Does Fight Club contain disturbing content?,Yes
+Does Fight Club contain violence?,Yes
+Does Fight Club contain adult themes?,Yes
+Is Fight Club suitable for young children?,No
+Does Fight Club contain intense suspense?,Yes
+Does Fight Club contain emotional themes?,Yes
+Is American Psycho appropriate for children?,No
+Does American Psycho contain disturbing content?,Yes
+Does American Psycho contain violence?,Yes
+Does American Psycho contain adult themes?,Yes
+Is American Psycho suitable for young children?,No
+Does American Psycho contain criminal activity?,Yes
+Does American Psycho contain intense suspense?,Yes
+Does American Psycho contain emotional themes?,Yes
+Is No Country for Old Men appropriate for children?,No
+Does No Country for Old Men contain disturbing content?,Yes
+Does No Country for Old Men contain violence?,Yes
+Does No Country for Old Men contain adult themes?,Yes
+Is No Country for Old Men suitable for young children?,No
+Does No Country for Old Men contain criminal activity?,Yes
+Does No Country for Old Men contain intense suspense?,Yes
+Does No Country for Old Men contain emotional themes?,Yes
+Is There Will Be Blood appropriate for children?,No
+Does There Will Be Blood contain disturbing content?,Yes
+Does There Will Be Blood contain violence?,Yes
+Does There Will Be Blood contain adult themes?,Yes
+Is There Will Be Blood suitable for young children?,No
+Does There Will Be Blood contain intense suspense?,Yes
+Does There Will Be Blood contain emotional themes?,Yes
+Is The Departed appropriate for children?,No
+Does The Departed contain disturbing content?,Yes
+Does The Departed contain violence?,Yes
+Does The Departed contain adult themes?,Yes
+Is The Departed suitable for young children?,No
+Does The Departed contain criminal activity?,Yes
+Does The Departed contain intense suspense?,Yes
+Does The Departed contain emotional themes?,Yes
+Is Goodfellas appropriate for children?,No
+Does Goodfellas contain disturbing content?,Yes
+Does Goodfellas contain violence?,Yes
+Does Goodfellas contain adult themes?,Yes
+Is Goodfellas suitable for young children?,No
+Does Goodfellas contain criminal activity?,Yes
+Does Goodfellas contain emotional themes?,Yes
+Is Casino appropriate for children?,No
+Does Casino contain disturbing content?,Yes
+Does Casino contain violence?,Yes
+Does Casino contain adult themes?,Yes
+Is Casino suitable for young children?,No
+Does Casino contain criminal activity?,Yes
+Does Casino contain emotional themes?,Yes
+Is Scarface appropriate for children?,No
+Does Scarface contain disturbing content?,Yes
+Does Scarface contain violence?,Yes
+Does Scarface contain adult themes?,Yes
+Is Scarface suitable for young children?,No
+Does Scarface contain criminal activity?,Yes
+Does Scarface contain emotional themes?,Yes
+Is The Silence of the Lambs appropriate for children?,No
+Does The Silence of the Lambs contain disturbing content?,Yes
+Does The Silence of the Lambs contain violence?,Yes
+Does The Silence of the Lambs contain adult themes?,Yes
+Is The Silence of the Lambs suitable for young children?,No
+Does The Silence of the Lambs contain criminal activity?,Yes
+Does The Silence of the Lambs contain intense suspense?,Yes
+Does The Silence of the Lambs contain emotional themes?,Yes
+Is Zodiac appropriate for children?,No
+Does Zodiac contain disturbing content?,Yes
+Does Zodiac contain violence?,Yes
+Does Zodiac contain adult themes?,Yes
+Is Zodiac suitable for young children?,No
+Does Zodiac contain criminal activity?,Yes
+Does Zodiac contain emotional themes?,Yes
+Is Prisoners appropriate for children?,No
+Does Prisoners contain disturbing content?,Yes
+Does Prisoners contain violence?,Yes
+Does Prisoners contain adult themes?,Yes
+Is Prisoners suitable for young children?,No
+Does Prisoners contain criminal activity?,Yes
+Does Prisoners contain emotional themes?,Yes
+Is Gone Girl appropriate for children?,No
+Does Gone Girl contain disturbing content?,Yes
+Does Gone Girl contain violence?,Yes
+Does Gone Girl contain adult themes?,Yes
+Is Gone Girl suitable for young children?,No
+Does Gone Girl contain intense suspense?,Yes
+Does Gone Girl contain emotional themes?,Yes
+Is Nightcrawler appropriate for children?,No
+Does Nightcrawler contain disturbing content?,Yes
+Does Nightcrawler contain violence?,Yes
+Does Nightcrawler contain adult themes?,Yes
+Is Nightcrawler suitable for young children?,No
+Does Nightcrawler contain criminal activity?,Yes
+Does Nightcrawler contain intense suspense?,Yes
+Does Nightcrawler contain emotional themes?,Yes
+Is Sicario appropriate for children?,No
+Does Sicario contain disturbing content?,Yes
+Does Sicario contain violence?,Yes
+Does Sicario contain adult themes?,Yes
+Is Sicario suitable for young children?,No
+Does Sicario contain criminal activity?,Yes
+Does Sicario contain emotional themes?,Yes
+Is Wind River appropriate for children?,No
+Does Wind River contain disturbing content?,Yes
+Does Wind River contain violence?,Yes
+Does Wind River contain adult themes?,Yes
+Is Wind River suitable for young children?,No
+Does Wind River contain criminal activity?,Yes
+Does Wind River contain emotional themes?,Yes
+Is The Girl with the Dragon Tattoo appropriate for children?,No
+Does The Girl with the Dragon Tattoo contain disturbing content?,Yes
+Does The Girl with the Dragon Tattoo contain violence?,Yes
+Does The Girl with the Dragon Tattoo contain adult themes?,Yes
+Is The Girl with the Dragon Tattoo suitable for young children?,No
+Does The Girl with the Dragon Tattoo contain criminal activity?,Yes
+Does The Girl with the Dragon Tattoo contain emotional themes?,Yes
+Is Saving Private Ryan appropriate for children?,Yes
+Does Saving Private Ryan contain extreme violence?,No
+Is Saving Private Ryan suitable for family viewing?,Yes
+Does Saving Private Ryan have positive messages?,Yes
+Does Saving Private Ryan contain adult themes?,No
+Does Saving Private Ryan contain emotional themes?,Yes
+Is Schindler's List appropriate for children?,Yes
+Does Schindler's List contain extreme violence?,No
+Is Schindler's List suitable for family viewing?,Yes
+Does Schindler's List have positive messages?,Yes
+Does Schindler's List contain adult themes?,No
+Does Schindler's List contain emotional themes?,Yes
+Is Full Metal Jacket appropriate for children?,Yes
+Does Full Metal Jacket contain extreme violence?,No
+Is Full Metal Jacket suitable for family viewing?,Yes
+Does Full Metal Jacket have positive messages?,Yes
+Does Full Metal Jacket contain adult themes?,No
+Does Full Metal Jacket contain emotional themes?,Yes
+Is Apocalypse Now appropriate for children?,Yes
+Does Apocalypse Now contain extreme violence?,No
+Is Apocalypse Now suitable for family viewing?,Yes
+Does Apocalypse Now have positive messages?,Yes
+Does Apocalypse Now contain adult themes?,No
+Does Apocalypse Now contain emotional themes?,Yes
+Is Platoon appropriate for children?,Yes
+Does Platoon contain extreme violence?,No
+Is Platoon suitable for family viewing?,Yes
+Does Platoon have positive messages?,Yes
+Does Platoon contain adult themes?,No
+Does Platoon contain emotional themes?,Yes
+Is Black Hawk Down appropriate for children?,Yes
+Does Black Hawk Down contain extreme violence?,No
+Is Black Hawk Down suitable for family viewing?,Yes
+Does Black Hawk Down have positive messages?,Yes
+Does Black Hawk Down contain adult themes?,No
+Does Black Hawk Down contain emotional themes?,Yes
+Is American History X appropriate for children?,No
+Does American History X contain disturbing content?,Yes
+Does American History X contain violence?,Yes
+Does American History X contain adult themes?,Yes
+Is American History X suitable for young children?,No
+Does American History X contain criminal activity?,Yes
+Does American History X contain emotional themes?,Yes
+Is John Wick appropriate for children?,No
+Does John Wick contain disturbing content?,Yes
+Does John Wick contain violence?,Yes
+Does John Wick contain adult themes?,Yes
+Is John Wick suitable for young children?,No
+Does John Wick contain criminal activity?,Yes
+Does John Wick contain intense suspense?,Yes
+Is John Wick: Chapter 2 appropriate for children?,No
+Does John Wick: Chapter 2 contain disturbing content?,Yes
+Does John Wick: Chapter 2 contain violence?,Yes
+Does John Wick: Chapter 2 contain adult themes?,Yes
+Is John Wick: Chapter 2 suitable for young children?,No
+Does John Wick: Chapter 2 contain criminal activity?,Yes
+Does John Wick: Chapter 2 contain intense suspense?,Yes
+Is John Wick: Chapter 3 - Parabellum appropriate for children?,No
+Does John Wick: Chapter 3 - Parabellum contain disturbing content?,Yes
+Does John Wick: Chapter 3 - Parabellum contain violence?,Yes
+Does John Wick: Chapter 3 - Parabellum contain adult themes?,Yes
+Is John Wick: Chapter 3 - Parabellum suitable for young children?,No
+Does John Wick: Chapter 3 - Parabellum contain criminal activity?,Yes
+Does John Wick: Chapter 3 - Parabellum contain intense suspense?,Yes
+Is Kill Bill: Vol. 1 appropriate for children?,No
+Does Kill Bill: Vol. 1 contain disturbing content?,Yes
+Does Kill Bill: Vol. 1 contain violence?,Yes
+Does Kill Bill: Vol. 1 contain adult themes?,Yes
+Is Kill Bill: Vol. 1 suitable for young children?,No
+Does Kill Bill: Vol. 1 contain criminal activity?,Yes
+Does Kill Bill: Vol. 1 contain intense suspense?,Yes
+Is Kill Bill: Vol. 2 appropriate for children?,No
+Does Kill Bill: Vol. 2 contain disturbing content?,Yes
+Does Kill Bill: Vol. 2 contain violence?,Yes
+Does Kill Bill: Vol. 2 contain adult themes?,Yes
+Is Kill Bill: Vol. 2 suitable for young children?,No
+Does Kill Bill: Vol. 2 contain criminal activity?,Yes
+Does Kill Bill: Vol. 2 contain intense suspense?,Yes
+Is The Raid: Redemption appropriate for children?,No
+Does The Raid: Redemption contain disturbing content?,Yes
+Does The Raid: Redemption contain violence?,Yes
+Does The Raid: Redemption contain adult themes?,Yes
+Is The Raid: Redemption suitable for young children?,No
+Does The Raid: Redemption contain intense suspense?,Yes
+Is Mad Max: Fury Road appropriate for children?,Yes
+Does Mad Max: Fury Road contain extreme violence?,No
+Is Mad Max: Fury Road suitable for family viewing?,Yes
+Does Mad Max: Fury Road have positive messages?,Yes
+Does Mad Max: Fury Road contain adult themes?,No
+Does Mad Max: Fury Road contain intense action sequences?,Yes
+Does Mad Max: Fury Road contain frightening imagery?,Yes
+Does Mad Max: Fury Road contain perilous situations?,Yes
+Does Mad Max: Fury Road contain exciting adventure?,Yes
+Is Logan appropriate for children?,Yes
+Does Logan contain extreme violence?,No
+Is Logan suitable for family viewing?,Yes
+Does Logan have positive messages?,Yes
+Does Logan contain adult themes?,No
+Does Logan contain intense action sequences?,Yes
+Does Logan contain frightening imagery?,Yes
+Does Logan contain perilous situations?,Yes
+Does Logan contain emotional themes?,Yes
+Is Blade Runner appropriate for children?,No
+Does Blade Runner contain disturbing content?,Yes
+Does Blade Runner contain violence?,Yes
+Does Blade Runner contain adult themes?,Yes
+Is Blade Runner suitable for young children?,No
+Does Blade Runner contain intense suspense?,Yes
+Is Blade Runner 2049 appropriate for children?,Yes
+Does Blade Runner 2049 contain extreme violence?,No
+Is Blade Runner 2049 suitable for family viewing?,Yes
+Does Blade Runner 2049 have positive messages?,Yes
+Does Blade Runner 2049 contain adult themes?,No
+Does Blade Runner 2049 contain emotional themes?,Yes
+Is A Clockwork Orange appropriate for children?,No
+Does A Clockwork Orange contain disturbing content?,Yes
+Does A Clockwork Orange contain violence?,Yes
+Does A Clockwork Orange contain adult themes?,Yes
+Is A Clockwork Orange suitable for young children?,No
+Does A Clockwork Orange contain criminal activity?,Yes
+Does A Clockwork Orange contain emotional themes?,Yes
+Is Children of Men appropriate for children?,Yes
+Does Children of Men contain extreme violence?,No
+Is Children of Men suitable for family viewing?,Yes
+Does Children of Men have positive messages?,Yes
+Does Children of Men contain adult themes?,No
+Does Children of Men contain intense action sequences?,Yes
+Does Children of Men contain frightening imagery?,Yes
+Does Children of Men contain perilous situations?,Yes
+Does Children of Men contain emotional themes?,Yes
+Does Children of Men contain exciting adventure?,Yes
+Is Ex Machina appropriate for children?,Yes
+Does Ex Machina contain extreme violence?,No
+Is Ex Machina suitable for family viewing?,Yes
+Does Ex Machina have positive messages?,Yes
+Does Ex Machina contain adult themes?,No
+Does Ex Machina contain emotional themes?,Yes
+Is Arrival appropriate for children?,Yes
+Does Arrival contain extreme violence?,No
+Is Arrival suitable for family viewing?,Yes
+Does Arrival have positive messages?,Yes
+Does Arrival contain adult themes?,No
+Does Arrival contain emotional themes?,Yes
+Is Dune appropriate for children?,Yes
+Does Dune contain extreme violence?,No
+Is Dune suitable for family viewing?,Yes
+Does Dune have positive messages?,Yes
+Does Dune contain adult themes?,No
+Does Dune contain emotional themes?,Yes
+Does Dune contain exciting adventure?,Yes
+Is Dune: Part Two appropriate for children?,Yes
+Does Dune: Part Two contain extreme violence?,No
+Is Dune: Part Two suitable for family viewing?,Yes
+Does Dune: Part Two have positive messages?,Yes
+Does Dune: Part Two contain adult themes?,No
+Does Dune: Part Two contain emotional themes?,Yes
+Does Dune: Part Two contain exciting adventure?,Yes
+Is Requiem for a Dream appropriate for children?,Yes
+Does Requiem for a Dream contain extreme violence?,No
+Is Requiem for a Dream suitable for family viewing?,Yes
+Does Requiem for a Dream have positive messages?,Yes
+Does Requiem for a Dream contain adult themes?,No
+Does Requiem for a Dream contain emotional themes?,Yes
+Is Trainspotting appropriate for children?,Yes
+Does Trainspotting contain extreme violence?,No
+Is Trainspotting suitable for family viewing?,Yes
+Does Trainspotting have positive messages?,Yes
+Does Trainspotting contain adult themes?,No
+Does Trainspotting contain emotional themes?,Yes
+Is A Star Is Born appropriate for children?,Yes
+Does A Star Is Born contain extreme violence?,No
+Is A Star Is Born suitable for family viewing?,Yes
+Does A Star Is Born have positive messages?,Yes
+Does A Star Is Born contain adult themes?,No
+Does A Star Is Born contain emotional themes?,Yes
+Is Joker appropriate for children?,No
+Does Joker contain disturbing content?,Yes
+Does Joker contain violence?,Yes
+Does Joker contain adult themes?,Yes
+Is Joker suitable for young children?,No
+Does Joker contain criminal activity?,Yes
+Does Joker contain intense suspense?,Yes
+Does Joker contain emotional themes?,Yes
+Is The Wolf of Wall Street appropriate for children?,No
+Does The Wolf of Wall Street contain disturbing content?,Yes
+Does The Wolf of Wall Street contain violence?,Yes
+Does The Wolf of Wall Street contain adult themes?,Yes
+Is The Wolf of Wall Street suitable for young children?,No
+Does The Wolf of Wall Street contain age-appropriate humor?,Yes
+Does The Wolf of Wall Street contain criminal activity?,Yes
+Is Boogie Nights appropriate for children?,Yes
+Does Boogie Nights contain extreme violence?,No
+Is Boogie Nights suitable for family viewing?,Yes
+Does Boogie Nights have positive messages?,Yes
+Does Boogie Nights contain adult themes?,No
+Does Boogie Nights contain emotional themes?,Yes
+Is Eyes Wide Shut appropriate for children?,No
+Does Eyes Wide Shut contain disturbing content?,Yes
+Does Eyes Wide Shut contain violence?,Yes
+Does Eyes Wide Shut contain adult themes?,Yes
+Is Eyes Wide Shut suitable for young children?,No
+Does Eyes Wide Shut contain intense suspense?,Yes
+Does Eyes Wide Shut contain emotional themes?,Yes
+Is Basic Instinct appropriate for children?,No
+Does Basic Instinct contain disturbing content?,Yes
+Does Basic Instinct contain violence?,Yes
+Does Basic Instinct contain adult themes?,Yes
+Is Basic Instinct suitable for young children?,No
+Does Basic Instinct contain intense suspense?,Yes
+Does Basic Instinct contain emotional themes?,Yes

@@ -1,0 +1,208 @@
+"""
+Script to generate an expanded movie database.
+Adds 100+ movies categorized as Safe or Not Safe for children.
+"""
+
+import csv
+import os
+
+# Project paths
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(PROJECT_ROOT, "data", "imdb_movies.csv")
+
+
+# ========== SAFE MOVIES (Family-Friendly) ==========
+SAFE_MOVIES = [
+    # Animated Classics
+    ("Aladdin", "A kind-hearted street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make their deepest wishes come true.", 8.0, 1992, "Animation, Adventure, Comedy"),
+    ("Beauty and the Beast", "A selfish prince is cursed to become a monster, and only true love can break the spell.", 8.0, 1991, "Animation, Family, Fantasy"),
+    ("The Little Mermaid", "A mermaid princess makes a Faustian bargain with an unscrupulous sea-witch to meet a human prince.", 7.6, 1989, "Animation, Family, Fantasy"),
+    ("Mulan", "A young Chinese maiden disguises herself as a male warrior to save her father.", 7.6, 1998, "Animation, Adventure, Comedy"),
+    ("Tarzan", "A man raised by gorillas must decide where he really belongs.", 7.3, 1999, "Animation, Adventure, Comedy"),
+    ("Hercules", "The son of Zeus and Hera is stripped of his immortality as a baby and must prove himself a true hero.", 7.3, 1997, "Animation, Adventure, Comedy"),
+    ("Pocahontas", "A Native American woman and an English soldier fall in love, bridging two cultures.", 6.7, 1995, "Animation, Adventure, Drama"),
+    ("The Hunchback of Notre Dame", "A deformed bell-ringer must assert his independence from a vicious government minister.", 7.0, 1996, "Animation, Drama, Family"),
+    ("Zootopia", "In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together.", 8.0, 2016, "Animation, Adventure, Comedy"),
+    ("Moana", "A young woman uses her navigational talents to set sail for a fabled island.", 7.6, 2016, "Animation, Adventure, Comedy"),
+    ("Wreck-It Ralph", "A video game villain wants to be a hero and sets out to fulfill his dream.", 7.7, 2012, "Animation, Adventure, Comedy"),
+    ("Big Hero 6", "A young robotics prodigy forms a superhero team to combat a masked villain.", 7.8, 2014, "Animation, Action, Adventure"),
+    ("Tangled", "A young woman with magical hair is determined to see the floating lanterns.", 7.7, 2010, "Animation, Adventure, Comedy"),
+    ("Brave", "A young Scottish princess must undo a curse that threatens her family.", 7.1, 2012, "Animation, Adventure, Comedy"),
+    ("Ratatouille", "A rat who can cook makes an unusual alliance with a young kitchen worker.", 8.1, 2007, "Animation, Adventure, Comedy"),
+    ("Wall-E", "A small waste-collecting robot embarks on a journey that will decide the fate of mankind.", 8.4, 2008, "Animation, Adventure, Family"),
+    ("Monsters, Inc.", "Two monsters must return a human child to her world before it's too late.", 8.1, 2001, "Animation, Adventure, Comedy"),
+    ("Inside Out", "A young girl's emotions come to life as she navigates a move to a new city.", 8.1, 2015, "Animation, Adventure, Comedy"),
+    ("The Good Dinosaur", "A young dinosaur befriends a human boy on a journey to reunite with his family.", 6.7, 2015, "Animation, Adventure, Comedy"),
+    ("Onward", "Two elf brothers embark on a quest to bring their father back for one day.", 7.4, 2020, "Animation, Adventure, Comedy"),
+    ("Soul", "A jazz musician's soul is separated from his body and must find its way back.", 8.0, 2020, "Animation, Adventure, Comedy"),
+    ("Luca", "Two sea monsters experience an unforgettable summer on the Italian Riviera.", 7.4, 2021, "Animation, Adventure, Comedy"),
+    ("Encanto", "A Colombian girl must save her family's magical home.", 7.2, 2021, "Animation, Adventure, Comedy"),
+    ("Turning Red", "A teenage girl turns into a giant red panda when she gets too excited.", 7.0, 2022, "Animation, Adventure, Comedy"),
+    ("The Bad Guys", "A group of animal outlaws try to become model citizens.", 6.8, 2022, "Animation, Action, Adventure"),
+    ("Puss in Boots: The Last Wish", "Puss in Boots must find the Last Wish to restore his nine lives.", 7.8, 2022, "Animation, Action, Adventure"),
+    ("Elemental", "A fire element and a water element discover something elemental: how much they actually have in common.", 6.7, 2023, "Animation, Adventure, Comedy"),
+
+    # Classic Family Films
+    ("The Wizard of Oz", "A young girl is swept away to a magical land and must find her way home.", 8.1, 1939, "Adventure, Family, Fantasy"),
+    ("Mary Poppins", "A magical nanny visits a family and changes their lives forever.", 7.8, 1964, "Comedy, Family, Fantasy"),
+    ("The Sound of Music", "A young novice becomes a governess and falls in love with a widowed captain.", 8.0, 1965, "Drama, Family, Musical"),
+    ("Willy Wonka & the Chocolate Factory", "A poor boy wins a tour of a mysterious chocolate factory.", 7.8, 1971, "Family, Fantasy, Musical"),
+    ("E.T. the Extra-Terrestrial", "A young boy befriends a friendly alien and helps him return home.", 7.9, 1982, "Adventure, Family, Sci-Fi"),
+    ("The Princess Bride", "A farm boy and a princess must overcome obstacles to find true love.", 8.1, 1987, "Adventure, Comedy, Family"),
+    ("Matilda", "A brilliant young girl uses her telekinetic powers to stand up to her cruel headmistress.", 7.5, 1996, "Comedy, Family, Fantasy"),
+    ("Jumanji", "Two kids discover a magical board game that brings jungle creatures to life.", 7.0, 1995, "Adventure, Comedy, Family"),
+    ("The Parent Trap", "Twin sisters separated at birth meet at summer camp and plot to reunite their parents.", 6.8, 1998, "Comedy, Family, Romance"),
+    ("The Sandlot", "A group of young baseball players have a summer adventure.", 7.8, 1993, "Comedy, Drama, Family"),
+    ("A Christmas Story", "A young boy tries to get a Red Ryder BB gun for Christmas.", 7.9, 1983, "Comedy, Family"),
+    ("The Goonies", "A group of kids set out on an adventure to find a legendary pirate treasure.", 7.7, 1985, "Adventure, Comedy, Family"),
+
+    # Modern Family Films
+    ("Paddington", "A young Peruvian bear travels to London in search of a home.", 7.2, 2014, "Adventure, Comedy, Family"),
+    ("Paddington 2", "Paddington tries to buy a unique pop-up book for his aunt's birthday.", 7.8, 2017, "Adventure, Comedy, Family"),
+    ("Wonder", "A young boy with facial differences attends a mainstream school for the first time.", 8.0, 2017, "Drama, Family"),
+    ("The Secret Garden", "An orphaned girl discovers a magical garden on her uncle's estate.", 6.6, 2020, "Drama, Family, Fantasy"),
+    ("A Beautiful Day in the Neighborhood", "A journalist forms a friendship with Fred Rogers.", 7.3, 2019, "Biography, Drama, Family"),
+    ("Christopher Robin", "Winnie the Pooh reunites with an adult Christopher Robin.", 7.2, 2018, "Adventure, Comedy, Family"),
+    ("The BFG", "A young girl befriends a benevolent giant.", 6.4, 2016, "Adventure, Family, Fantasy"),
+    ("Pete's Dragon", "A young boy befriends a magical dragon.", 6.7, 2016, "Adventure, Family, Fantasy"),
+    ("A Wrinkle in Time", "A young girl travels through space and time to find her missing father.", 5.3, 2018, "Adventure, Family, Fantasy"),
+    ("Dora and the Lost City of Gold", "Dora explores the jungle to save her parents.", 5.9, 2019, "Adventure, Comedy, Family"),
+
+    # Sports and Inspirational
+    ("Cool Runnings", "A Jamaican bobsled team tries to compete in the Winter Olympics.", 7.0, 1993, "Adventure, Comedy, Family"),
+    ("The Mighty Ducks", "A lawyer must coach a youth hockey team as community service.", 6.9, 1992, "Comedy, Drama, Family"),
+    ("Little Giants", "Two brothers coach opposing youth football teams.", 6.4, 1994, "Comedy, Family, Sport"),
+    ("Space Jam", "Michael Jordan teams up with the Looney Tunes to win a basketball game.", 6.5, 1996, "Animation, Adventure, Comedy"),
+    ("Remember the Titans", "A football coach helps integrate a high school team.", 7.8, 2000, "Biography, Drama, Sport"),
+    ("Miracle", "The story of the 1980 U.S. Olympic hockey team.", 7.4, 2004, "Biography, Drama, Sport"),
+    ("Soul Surfer", "A young surfer finds the courage to continue after losing her arm in a shark attack.", 7.0, 2011, "Biography, Drama, Family"),
+
+    # Adventure and Fantasy
+    ("The Chronicles of Narnia: The Lion, the Witch and the Wardrobe", "Four siblings discover a magical land through a wardrobe.", 6.9, 2005, "Adventure, Family, Fantasy"),
+    ("The Spiderwick Chronicles", "A boy discovers a field guide to fairies and other magical creatures.", 6.5, 2008, "Adventure, Family, Fantasy"),
+    ("Percy Jackson & the Olympians: The Lightning Thief", "A teenager discovers he's a demigod and must find Zeus's missing lightning bolt.", 5.8, 2010, "Adventure, Family, Fantasy"),
+    ("The NeverEnding Story", "A young boy discovers a magical book that transports him to a fantasy world.", 7.4, 1984, "Adventure, Drama, Family"),
+    ("Labyrinth", "A teenage girl must solve a maze to rescue her baby brother from the Goblin King.", 7.3, 1986, "Adventure, Family, Fantasy"),
+    ("The Dark Crystal", "Two Gelflings must find a shard of the Dark Crystal to save their world.", 7.0, 1982, "Adventure, Family, Fantasy"),
+    ("Willow", "A farmer must protect a baby princess from an evil queen.", 7.2, 1988, "Action, Adventure, Fantasy"),
+    ("The Princess Diaries", "A shy teenager discovers she's the heir to a European throne.", 6.3, 2001, "Comedy, Family, Romance"),
+    ("Ella Enchanted", "A young woman must break a spell of obedience.", 6.3, 2004, "Comedy, Family, Fantasy"),
+    ("Enchanted", "A fairy tale princess is transported to modern-day New York City.", 7.0, 2007, "Animation, Adventure, Comedy"),
+
+    # More Animated
+    ("Kung Fu Panda", "A clumsy panda becomes the Dragon Warrior and must protect his valley.", 7.6, 2008, "Animation, Action, Adventure"),
+    ("Kung Fu Panda 2", "Po must find inner peace to defeat a new enemy.", 7.3, 2011, "Animation, Action, Adventure"),
+    ("Madagascar", "Zoo animals must survive in the wild after being shipped to Africa.", 6.9, 2005, "Animation, Adventure, Comedy"),
+    ("Ice Age", "A group of prehistoric animals must return a human baby to its tribe.", 7.5, 2002, "Animation, Adventure, Comedy"),
+    ("Rio", "A rare blue macaw must learn to fly to save his species.", 6.9, 2011, "Animation, Adventure, Comedy"),
+    ("Despicable Me", "A supervillain adopts three orphaned girls and discovers the meaning of family.", 7.6, 2010, "Animation, Adventure, Comedy"),
+    ("The Lorax", "A boy searches for the one thing that will win him the girl of his dreams.", 6.4, 2012, "Animation, Adventure, Comedy"),
+    ("The Secret Life of Pets", "The quiet life of a terrier is upended when his owner brings home a mongrel.", 6.5, 2016, "Animation, Adventure, Comedy"),
+    ("Sing", "Animals compete in a singing competition.", 7.1, 2016, "Animation, Adventure, Comedy"),
+    ("Trolls", "Two trolls must rescue their friends from the Bergens.", 6.4, 2016, "Animation, Adventure, Comedy"),
+    ("The Lego Movie", "An ordinary LEGO minifigure is recruited to join a quest to save the LEGO universe.", 7.7, 2014, "Animation, Action, Adventure"),
+    ("Spider-Man: Into the Spider-Verse", "Teen Miles Morales becomes Spider-Man and joins a team of Spider-People.", 8.4, 2018, "Animation, Action, Adventure"),
+    ("Klaus", "A simple act of kindness from a young postman creates a legend about Santa Claus.", 8.1, 2019, "Animation, Adventure, Comedy"),
+    ("The Mitchells vs. the Machines", "A family road trip is interrupted by a robot apocalypse.", 7.6, 2021, "Animation, Adventure, Comedy"),
+]
+
+
+# ========== NOT SAFE MOVIES (Adult Content) ==========
+NOT_SAFE_MOVIES = [
+    # Horror
+    ("The Shining", "A family heads to an isolated hotel for the winter where a sinister presence influences the father.", 8.4, 1980, "Horror, Drama"),
+    ("A Nightmare on Elm Street", "The monstrous spirit of a slain child killer seeks revenge by invading the dreams of teenagers.", 7.4, 1984, "Horror, Mystery"),
+    ("Halloween", "Michael Myers escapes from a mental hospital and returns to his hometown to kill again.", 7.7, 1978, "Horror, Thriller"),
+    ("The Exorcist", "When a young girl is possessed by a mysterious entity, her mother seeks the help of two priests.", 8.1, 1973, "Horror, Mystery"),
+    ("Rosemary's Baby", "A young wife comes to believe that her offspring is not of this world.", 8.0, 1968, "Horror, Drama"),
+    ("Hereditary", "A grieving family is haunted by tragic and disturbing occurrences.", 7.3, 2018, "Horror, Drama, Mystery"),
+    ("Midsommar", "A couple travels to Sweden to visit a rural hometown's fabled mid-summer festival.", 7.1, 2019, "Horror, Drama, Mystery"),
+    ("Get Out", "A young African-American visits his white girlfriend's parents for the weekend.", 7.8, 2017, "Horror, Mystery, Thriller"),
+    ("Us", "A family's serene beach vacation turns to chaos when their doppelgängers appear.", 6.8, 2019, "Horror, Mystery, Thriller"),
+    ("It", "A group of bullied kids band together to destroy a shape-shifting monster.", 7.3, 2017, "Horror, Drama"),
+    ("It Chapter Two", "Twenty-seven years later, the Losers Club comes back to Derry to defeat Pennywise.", 6.5, 2019, "Horror, Drama, Fantasy"),
+    ("The Ring", "A journalist must investigate a mysterious videotape that seems to cause the death of anyone within a week.", 7.1, 2002, "Horror, Mystery"),
+    ("The Grudge", "An American nurse living and working in Tokyo is exposed to a mysterious supernatural curse.", 5.9, 2004, "Horror, Mystery, Thriller"),
+    ("Sinister", "A true-crime writer finds a cache of home movies that suggest the murder he is researching is the work of a supernatural entity.", 6.8, 2012, "Horror, Mystery, Thriller"),
+    ("Insidious", "A family looks to prevent evil spirits from trapping their comatose child in a realm called The Further.", 6.8, 2010, "Horror, Mystery, Thriller"),
+    ("The Babadook", "A single mother and her child fall into a deep well of paranoia when an eerie children's book manifests in their home.", 6.8, 2014, "Horror, Drama"),
+    ("The Witch", "A family in 1630s New England is torn apart by the forces of witchcraft, black magic, and possession.", 7.0, 2015, "Horror, Drama, Mystery"),
+    ("The Invisible Man", "When Cecilia's abusive ex takes his own life, she suspects his death was a hoax.", 7.1, 2020, "Horror, Mystery, Sci-Fi"),
+    ("A Quiet Place", "In a post-apocalyptic world, a family is forced to live in silence while hiding from monsters.", 7.5, 2018, "Horror, Drama, Sci-Fi"),
+    ("Bird Box", "A woman and a pair of children are blindfolded and make their way through a post-apocalyptic setting.", 6.6, 2018, "Horror, Sci-Fi, Thriller"),
+
+    # Thriller / Crime
+    ("Se7en", "Two detectives hunt a serial killer who uses the seven deadly sins as his motives.", 8.6, 1995, "Crime, Drama, Mystery"),
+    ("Fight Club", "An insomniac office worker and a devil-may-care soap maker form an underground fight club.", 8.8, 1999, "Drama, Thriller"),
+    ("American Psycho", "A wealthy New York City investment banking executive hides his alternate psychopathic ego.", 7.6, 2000, "Crime, Drama, Thriller"),
+    ("No Country for Old Men", "Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong.", 8.2, 2007, "Crime, Drama, Thriller"),
+    ("There Will Be Blood", "A story of family, religion, hatred, oil, and madness.", 8.2, 2007, "Drama, Thriller"),
+    ("The Departed", "An undercover cop and a mole in the police attempt to identify each other.", 8.5, 2006, "Crime, Drama, Thriller"),
+    ("Goodfellas", "The story of Henry Hill and his life in the mob.", 8.7, 1990, "Biography, Crime, Drama"),
+    ("Casino", "A tale of greed, deception, money, power, and murder in Las Vegas.", 8.2, 1995, "Crime, Drama"),
+    ("Scarface", "In 1980s Miami, a determined Cuban immigrant takes over a drug cartel.", 8.3, 1983, "Crime, Drama"),
+    ("The Silence of the Lambs", "A young FBI cadet must receive the help of an incarcerated cannibal killer to catch another serial killer.", 8.6, 1991, "Crime, Drama, Thriller"),
+    ("Zodiac", "Between 1968 and 1983, a San Francisco cartoonist becomes an amateur detective obsessed with tracking down the Zodiac Killer.", 7.7, 2007, "Crime, Drama, Mystery"),
+    ("Prisoners", "When his daughter and her friend go missing, a man takes matters into his own hands.", 8.1, 2013, "Crime, Drama, Mystery"),
+    ("Gone Girl", "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him.", 8.1, 2014, "Drama, Mystery, Thriller"),
+    ("Nightcrawler", "A young man stumbles upon the underground world of freelance crime journalism in Los Angeles.", 7.8, 2014, "Crime, Drama, Thriller"),
+    ("Sicario", "An idealistic FBI agent is enlisted by a government task force to aid in the escalating war against drugs.", 7.6, 2015, "Action, Crime, Drama"),
+    ("Wind River", "A veteran hunter helps an FBI agent investigate the murder of a young woman on a Wyoming Native American reservation.", 7.7, 2017, "Crime, Drama, Mystery"),
+    ("The Girl with the Dragon Tattoo", "A journalist and a hacker investigate the disappearance of a woman from 40 years ago.", 7.8, 2011, "Crime, Drama, Mystery"),
+
+    # Action / War
+    ("Saving Private Ryan", "Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines.", 8.6, 1998, "Drama, War"),
+    ("Schindler's List", "In German-occupied Poland, a businessman gradually becomes concerned for his Jewish workforce.", 9.0, 1993, "Biography, Drama, History"),
+    ("Full Metal Jacket", "A pragmatic U.S. Marine observes the dehumanizing effects of the Vietnam War.", 8.3, 1987, "Drama, War"),
+    ("Apocalypse Now", "A U.S. Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel.", 8.4, 1979, "Drama, Mystery, War"),
+    ("Platoon", "A young soldier in Vietnam faces a moral crisis when confronted with the horrors of war.", 8.1, 1986, "Drama, War"),
+    ("Black Hawk Down", "160 elite U.S. soldiers drop into Somalia to capture two top lieutenants of a renegade warlord.", 7.7, 2001, "Drama, History, War"),
+    ("American History X", "A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path.", 8.5, 1998, "Crime, Drama"),
+    ("John Wick", "An ex-hitman comes out of retirement to track down the gangsters who killed his dog.", 7.4, 2014, "Action, Crime, Thriller"),
+    ("John Wick: Chapter 2", "After returning to the criminal underworld, John Wick must repay a debt.", 7.5, 2017, "Action, Crime, Thriller"),
+    ("John Wick: Chapter 3 - Parabellum", "John Wick is on the run after killing a member of the international assassins' guild.", 7.4, 2019, "Action, Crime, Thriller"),
+    ("Kill Bill: Vol. 1", "After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.", 8.2, 2003, "Action, Crime, Thriller"),
+    ("Kill Bill: Vol. 2", "The Bride continues her quest of vengeance against her former boss and lover Bill.", 8.0, 2004, "Action, Crime, Thriller"),
+    ("The Raid: Redemption", "A S.W.A.T. team becomes trapped in a tenement run by a ruthless mobster.", 7.6, 2011, "Action, Thriller"),
+    ("Mad Max: Fury Road", "In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler.", 8.1, 2015, "Action, Adventure, Sci-Fi"),
+    ("Logan", "In a future where mutants are nearly extinct, an elderly Logan cares for an ailing Professor X.", 8.1, 2017, "Action, Drama, Sci-Fi"),
+
+    # Sci-Fi / Cyberpunk
+    ("Blade Runner", "A blade runner must pursue and terminate four replicants who stole a ship.", 8.1, 1982, "Sci-Fi, Thriller"),
+    ("Blade Runner 2049", "Young Blade Runner K's discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard.", 8.0, 2017, "Action, Drama, Mystery"),
+    ("A Clockwork Orange", "In a future Britain, a gang of violent delinquents terrorize the streets.", 8.3, 1971, "Crime, Drama, Sci-Fi"),
+    ("Children of Men", "In 2027, in a chaotic world in which women have become infertile, a former activist agrees to help transport a miraculously pregnant woman.", 7.9, 2006, "Adventure, Drama, Sci-Fi"),
+    ("Ex Machina", "A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence.", 7.7, 2014, "Drama, Mystery, Sci-Fi"),
+    ("Arrival", "A linguist works with the military to communicate with alien lifeforms.", 7.9, 2016, "Drama, Mystery, Sci-Fi"),
+    ("Dune", "A noble family becomes embroiled in a war for control over the galaxy's most valuable asset.", 8.0, 2021, "Action, Adventure, Drama"),
+    ("Dune: Part Two", "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators.", 8.5, 2024, "Action, Adventure, Drama"),
+
+    # Drama
+    ("Requiem for a Dream", "The drug-induced utopias of four Coney Island people are shattered.", 8.3, 2000, "Drama"),
+    ("Trainspotting", "Renton, deeply immersed in the Edinburgh drug scene, tries to clean up and get out.", 8.1, 1996, "Drama"),
+    ("A Star Is Born", "A musician helps a young singer find fame as age and alcoholism send his own career into a downward spiral.", 7.7, 2018, "Drama, Music, Romance"),
+    ("Joker", "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society.", 8.4, 2019, "Crime, Drama, Thriller"),
+    ("The Wolf of Wall Street", "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker.", 8.2, 2013, "Biography, Comedy, Crime"),
+    ("Boogie Nights", "The story of a young man's adventures in the California pornography industry.", 7.9, 1997, "Drama"),
+    ("Eyes Wide Shut", "A New York City doctor embarks on a harrowing, night-long odyssey of sexual and moral discovery.", 7.5, 1999, "Drama, Mystery, Thriller"),
+    ("Basic Instinct", "A violent police detective investigates a brutal murder that might involve a manipulative and seductive novelist.", 7.0, 1992, "Drama, Mystery, Thriller"),
+]
+
+
+def generate_movies_csv():
+    """Generate the expanded movies CSV file."""
+    all_movies = SAFE_MOVIES + NOT_SAFE_MOVIES
+
+    with open(DATA_PATH, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['title', 'overview', 'rating', 'year', 'genres'])
+        for movie in all_movies:
+            writer.writerow(movie)
+
+    print(f"✅ Generated {len(all_movies)} movies in {DATA_PATH}")
+    print(f"   - Safe: {len(SAFE_MOVIES)}")
+    print(f"   - Not Safe: {len(NOT_SAFE_MOVIES)}")
+
+
+if __name__ == "__main__":
+    generate_movies_csv()
