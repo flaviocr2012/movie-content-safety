@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-18T08:59:02.886202",
+  "timestamp": "2026-09-18T16:46:09.885939",
   "results": [
     {
       "title": "The Lion King",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** The Lion King is an animated, family\u2011friendly film rated PG with no horror, crime, or intense violence. It promotes responsibility and friendsh",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** The Lion King is an animated, family\u2011friendly film rated PG with no explicit violence or adult themes. It promotes responsibility, friendship, ",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, positive messages"
@@ -12,7 +12,7 @@
     {
       "title": "Toy Story",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Toy Story is an animated, family\u2011friendly film with no horror, crime, or intense violence. It is rated PG and falls under the cartoon violence",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Toy Story is an animated, family\u2011friendly film rated PG with no horror, crime, or intense violence. It fits the criteria for a safe movie for c",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, no violence"
@@ -28,7 +28,7 @@
     {
       "title": "Shrek",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Shrek is an animated, family\u2011friendly adventure/comedy rated PG. It contains only mild, cartoon\u2011style violence and no horror, crime, or adult t",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Shrek is an animated, PG\u2011rated adventure/comedy with no horror, crime, or intense violence. It fits the \u201ccartoon violence\u201d category, which is c",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, cartoon violence only"
@@ -36,7 +36,7 @@
     {
       "title": "Home Alone",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Home\u202fAlone is a PG\u2011rated comedy/family film with no horror, crime, or intense violence. It features lighthearted, non\u2011graphic conflict and is w",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Home Alone is a PG\u2011rated, family\u2011comedy film with light, comedic \u201cprank\u201d violence that is not graphic or intense. It contains no horror, crime,",
       "passed": true,
       "error": null,
       "reason": "Family comedy, slapstick violence only"
@@ -44,7 +44,7 @@
     {
       "title": "The Incredibles",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** The Incredibles is an animated, PG\u2011rated film featuring heroic family themes and cartoon\u2011style action that aligns with the \u201cSafe for children\u201d ",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** The Incredibles is an animated, family\u2011friendly film with a PG rating and cartoon\u2011style action that is designed for a general audience. It cont",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, cartoon violence only"
@@ -52,7 +52,7 @@
     {
       "title": "Up",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Up is an animated, family\u2011friendly adventure/comedy rated PG with no horror, crime, or explicit violence. It fits the criteria for a child\u2011appr",
+      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Up is an animated, family\u2011friendly film rated PG with adventure and comedy elements. It contains no horror, crime, thriller content, or explic",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, positive messages"
@@ -60,7 +60,7 @@
     {
       "title": "Coco",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Coco is an animated, family\u2011friendly adventure with no horror, crime, or explicit violence. Its PG\u2011style tone and positive themes make it appro",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Coco is an animated, family\u2011friendly adventure film with no horror, crime, or intense violence. It is rated PG\u2011like and focuses on music, famil",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, positive themes"
@@ -84,7 +84,7 @@
     {
       "title": "Toy Story 2",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Toy Story\u202f2 is an animated, family\u2011friendly film rated PG with no horror, crime, or intense violence. It follows a light\u2011hearted adventure tha",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Toy Story\u202f2 is an animated, family\u2011friendly adventure/comedy rated PG. It contains no horror, crime, or intense violence, and follows the heroi",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly"
@@ -100,7 +100,7 @@
     {
       "title": "The Lord of the Rings: The Fellowship of the Ring",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** The film is a fantasy adventure with heroic themes and non\u2011graphic violence. It is not rated R, contains no explicit or disturbing content, and",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** The film is a fantasy adventure with heroic themes and non\u2011graphic violence. It contains no horror, crime, thriller elements, or explicit adult",
       "passed": true,
       "error": null,
       "reason": "Fantasy adventure with heroic themes, epic but not graphic violence"
@@ -108,7 +108,7 @@
     {
       "title": "Star Wars: Episode IV - A New Hope",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Star\u202fWars: Episode\u202fIV is a fantasy\u2011action film with heroic themes and is rated PG. According to the guidelines, fantasy violence (e.g., Star\u202fWa",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Star Wars: Episode\u202fIV is a fantasy\u2011action film with heroic themes and non\u2011graphic violence. It contains no horror, crime, or intense thriller e",
       "passed": true,
       "error": null,
       "reason": "Fantasy adventure, classic heroic story"
@@ -116,7 +116,7 @@
     {
       "title": "The Avengers",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** The Avengers is a superhero action film with heroic themes and no explicit or disturbing violence. It is rated PG\u201113 (not R) and contains no ad",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Avengers is a PG\u201113 action\u2011sci\u2011fi film with intense action sequences, violence, and mild language. These elements exceed the typical co",
       "passed": true,
       "error": null,
       "reason": "Superhero action, fantasy violence only"
@@ -124,15 +124,15 @@
     {
       "title": "Avatar",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Avatar is a PG\u201113 fantasy\u2011adventure film with heroic themes and non\u2011explicit violence. It does not contain horror, crime, or thriller elements,",
-      "passed": true,
-      "error": null,
+      "actual": "",
+      "passed": false,
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m1f1qqm3ewcsx40z6hmymxe2` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6997, Requested 1016. Please try again in 97.499999ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
       "reason": "Fantasy adventure, sci-fi action without explicit violence"
     },
     {
       "title": "Aladdin",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Aladdin is an animated, family\u2011friendly adventure/comedy rated PG\u2011like (rating 8.0). It contains no horror, crime, thriller elements, explicit ",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Aladdin is an animated, family\u2011friendly adventure/comedy rated PG\u2011like (8.0 rating). It contains no horror, crime, thriller elements, explicit ",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, positive messages"
@@ -140,7 +140,7 @@
     {
       "title": "Beauty and the Beast",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Beauty and the Beast is an animated, family\u2011friendly fantasy film with a PG\u2011style rating. It contains no horror, crime, thriller elements, or ",
+      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Beauty and the Beast is an animated, family\u2011friendly fantasy film with a PG\u2011style rating. It contains no horror, crime, or intense violence, a",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, positive messages"
@@ -148,7 +148,7 @@
     {
       "title": "Zootopia",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Zootopia is an animated, family\u2011friendly film rated PG with no horror, crime, or explicit violence. It follows a lighthearted adventure with po",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Zootopia is an animated, family\u2011friendly film with no horror, crime, or thriller elements and is rated PG. It contains lighthearted adventure a",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, positive messages"
@@ -164,7 +164,7 @@
     {
       "title": "Inside Out",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Inside\u202fOut is an animated, family\u2011friendly film rated PG with no horror, crime, or explicit violence. Its themes are emotional but presented in",
+      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Inside\u202fOut is an animated, family\u2011friendly film rated PG with no horror, crime, or explicit violence. Its themes revolve around emotions in a ",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, emotional but not scary"
@@ -188,7 +188,7 @@
     {
       "title": "Monsters, Inc.",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Monsters,\u202fInc. is an animated, family\u2011friendly film with no horror, crime, or intense violence. It is rated PG\u2011friendly and aligns with the exa",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Monsters, Inc. is an animated, family\u2011friendly film rated PG with no explicit violence, horror, or adult themes. It aligns with the examples an",
       "passed": true,
       "error": null,
       "reason": "Animated, family-friendly, no scary content"
@@ -196,7 +196,7 @@
     {
       "title": "The Wizard of Oz",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** The Wizard of Oz is an adventure/fantasy film with a family-friendly tone, no horror, crime, or intense violence, and is not rated R. It fits t",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** The Wizard of Oz is an adventure/fantasy film with a family-friendly tone, no horror, crime, or intense violence, and is typically rated PG. It",
       "passed": true,
       "error": null,
       "reason": "Classic family film, mild scary moments"
@@ -212,7 +212,7 @@
     {
       "title": "The Princess Bride",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** The Princess Bride is an adventure/comedy/family film rated PG\u2011like (8.1 rating) with no horror, crime, or explicit violence. It aligns with th",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** The Princess\u202fBride is an adventure/comedy/family film with no horror, crime, or intense violence. It is widely recognized as family\u2011friendly (P",
       "passed": true,
       "error": null,
       "reason": "Family-friendly fantasy, mild violence"
@@ -220,7 +220,7 @@
     {
       "title": "Matilda",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** \u201cMatilda\u201d is a family\u2011friendly fantasy comedy with no horror, crime, or intense violence. It is animated, features heroic themes, and is rated ",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** \u201cMatilda\u201d is a family\u2011friendly fantasy/comedy with no horror, crime, or intense violence. It is rated PG and contains only mild, non\u2011graphic co",
       "passed": true,
       "error": null,
       "reason": "Family-friendly, positive messages"
@@ -228,7 +228,7 @@
     {
       "title": "Paddington",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n**Explanation:** Paddington is an animated, family\u2011friendly adventure/comedy rated PG with no horror, crime, or explicit violence. It contains age\u2011appropriate h",
+      "actual": "**Classification:** Safe for children  \n**Explanation:** Paddington is an animated, family\u2011friendly adventure with a PG rating, no horror, crime, or intense violence. It contains age\u2011appropriate humor",
       "passed": true,
       "error": null,
       "reason": "Family-friendly, positive messages"
@@ -236,7 +236,7 @@
     {
       "title": "Paddington 2",
       "expected": "Safe",
-      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Paddington\u202f2 is an animated, family\u2011friendly film rated PG with no adult themes, explicit violence, or disturbing content. It falls squarely i",
+      "actual": "**Classification:** Safe for children  \n\n**Explanation:** Paddington\u202f2 is an animated, family\u2011friendly film with no adult themes, explicit violence, or disturbing content. It is rated PG, falls under ",
       "passed": true,
       "error": null,
       "reason": "Family-friendly, positive messages"
@@ -252,7 +252,7 @@
     {
       "title": "The Dark Knight",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Dark Knight is a Crime\u2011drama with intense violence, adult themes, and disturbing content. According to the safety rules, any crime\u2011orie",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Dark Knight is an Action/Crime/Drama film that contains intense violence, criminal activity, and mature themes. According to the safety",
       "passed": true,
       "error": null,
       "reason": "Extreme graphic violence, disturbing imagery"
@@ -260,7 +260,7 @@
     {
       "title": "Pulp Fiction",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Pulp Fiction is a crime\u2011drama featuring explicit violence, adult themes, and is rated R. According to the safety rules, any crime or thrill",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Pulp Fiction is a crime\u2011drama featuring explicit violence, adult themes, and is rated R. These factors meet the safety rules that disqualif",
       "passed": true,
       "error": null,
       "reason": "Strong violence, adult themes, strong profanity"
@@ -268,7 +268,7 @@
     {
       "title": "The Godfather",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Godfather is an R\u2011rated crime drama featuring organized\u2011crime violence, adult themes, and intense conflict. According to the safety rul",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Godfather is a crime\u2011drama featuring intense violence, criminal activity, and adult themes. It is rated R, which directly disqualifies ",
       "passed": true,
       "error": null,
       "reason": "Violence, adult themes, crime content"
@@ -276,7 +276,7 @@
     {
       "title": "The Matrix",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Matrix is an R\u2011rated action/sci\u2011fi film featuring intense, realistic war violence, graphic combat scenes, and mature themes. It does no",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Matrix is rated R, contains intense violence, graphic imagery, and mature themes that are unsuitable for children aged 5\u201110.",
       "passed": true,
       "error": null,
       "reason": "Violence, intense action scenes"
@@ -284,7 +284,7 @@
     {
       "title": "The Conjuring",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Conjuring is a horror/thriller film with a rating of 7.5 (R). It contains supernatural horror, frightening imagery, and intense, distur",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Conjuring is a horror/thriller film with a rating of 7.5 (R). It contains supernatural terror, frightening imagery, and intense, distur",
       "passed": true,
       "error": null,
       "reason": "Horror genre, disturbing imagery"
@@ -292,7 +292,7 @@
     {
       "title": "Paranormal Activity",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The film is a horror movie featuring a demonic presence and disturbing content, which falls under the safety rule that any horror genre is ",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The film is a horror movie featuring a demonic presence that creates intense fear and disturbing imagery. According to the safety rules, an",
       "passed": true,
       "error": null,
       "reason": "Horror genre, frightening imagery"
@@ -300,7 +300,7 @@
     {
       "title": "The Terminator",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** *The Terminator* is an intense action\u2011sci\u2011fi film featuring graphic violence, a relentless killer, and adult themes (death, revenge, and a ",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** *The Terminator* is an R\u2011rated action\u2011sci\u2011fi film featuring intense, graphic violence, adult themes, and a mature storyline. These elements",
       "passed": true,
       "error": null,
       "reason": "Violence, adult themes"
@@ -308,7 +308,7 @@
     {
       "title": "Die Hard",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Die\u202fHard is an R\u2011rated action\u2011thriller featuring intense violence, terrorism, and hostage\u2011taking scenes. The film\u2019s mature content and high",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Die\u202fHard is an R\u2011rated action\u2011thriller featuring intense violence, terrorism, and hostage\u2011taking scenes. These elements violate the safety ",
       "passed": true,
       "error": null,
       "reason": "Violence, intense action, adult themes"
@@ -316,7 +316,7 @@
     {
       "title": "Jurassic Park",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n\n**Explanation:** Jurassic\u202fPark is an R\u2011rated, high\u2011intensity sci\u2011fi adventure featuring frightening dinosaurs and intense action sequences. According to th",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Jurassic Park is a live\u2011action, R\u2011rated film featuring intense, frightening dinosaur encounters and violent action sequences. According to ",
       "passed": true,
       "error": null,
       "reason": "Intense violence, frightening imagery"
@@ -324,7 +324,7 @@
     {
       "title": "Jaws",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Jaws is an adventure\u2011thriller that features intense, frightening action and violent shark attacks. According to the safety rules, thrillers",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Jaws is a thriller with intense, violent shark attacks and frightening sequences. According to the rules, thrillers with violence and the \u201c",
       "passed": true,
       "error": null,
       "reason": "Frightening shark attacks, intense suspense"
@@ -332,7 +332,7 @@
     {
       "title": "Indiana Jones and the Raiders of the Lost Ark",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Indiana\u202fJones and the Raiders of the Lost Ark is an intense action\u2011adventure film featuring frequent gunfire, explosions, and frightening s",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Indiana\u202fJones is an intense action\u2011adventure film with frequent violence, gunfire, and frightening sequences (e.g., chases, explosions, and",
       "passed": true,
       "error": null,
       "reason": "Intense action, frightening imagery"
@@ -340,7 +340,7 @@
     {
       "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The film is a live\u2011action adventure with intense action sequences, frightening imagery, and perilous situations typical of the Pirates fran",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The film features intense action, frightening imagery, and perilous situations typical of the Pirates franchise, which falls under the \u201cint",
       "passed": true,
       "error": null,
       "reason": "Intense action, frightening imagery, perilous situations"
@@ -348,7 +348,7 @@
     {
       "title": "Se7en",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Se7en is a crime\u2011drama thriller featuring graphic violence, disturbing imagery, and an R rating. These elements disqualify it for children ",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Se7en is a crime\u2011drama thriller featuring graphic violence, disturbing imagery, and adult themes. It is rated R, which directly disqualifie",
       "passed": true,
       "error": null,
       "reason": "Extreme violence, disturbing content"
@@ -356,7 +356,7 @@
     {
       "title": "Fight Club",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Fight Club is a thriller with explicit violence, disturbing content, and adult themes, and it is rated R. According to the safety rules, an",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** *Fight Club* is a thriller with explicit violence, disturbing content, and adult themes. It is rated R, and its genre and content clearly v",
       "passed": true,
       "error": null,
       "reason": "Violence, adult themes, disturbing content"
@@ -372,7 +372,7 @@
     {
       "title": "No Country for Old Men",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The film is a crime\u2011thriller featuring graphic violence, drug\u2011related conflict, and adult themes, and it is rated R. These factors make it ",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The film is a crime\u2011thriller with graphic violence, adult themes, and an R rating, all of which disqualify it for children aged 5\u201110.",
       "passed": true,
       "error": null,
       "reason": "Extreme violence, disturbing content"
@@ -380,7 +380,7 @@
     {
       "title": "The Departed",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Departed is a crime\u2011thriller featuring intense violence, adult themes, and is rated R. According to the safety rules, any movie with th",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Departed is a crime\u2011thriller with graphic violence and adult themes, and it carries an R rating. These factors disqualify it for childr",
       "passed": true,
       "error": null,
       "reason": "Extreme violence, adult themes"
@@ -388,7 +388,7 @@
     {
       "title": "Goodfellas",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Goodfellas is a crime\u2011drama featuring explicit violence, adult themes, and is rated R. According to the safety rules, any movie with the Cr",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Goodfellas is a crime\u2011drama with explicit violence, adult themes, and an R rating. According to the safety rules, any movie with the Crime ",
       "passed": true,
       "error": null,
       "reason": "Violence, adult themes, crime content"
@@ -396,9 +396,9 @@
     {
       "title": "Scarface",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Scarface is a crime drama featuring drug trafficking, explicit violence, and adult themes, and it carries an R rating. According to the saf",
-      "passed": true,
-      "error": null,
+      "actual": "",
+      "passed": false,
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01m1f1qqm3ewcsx40z6hmymxe2` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7035, Requested 979. Please try again in 105ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
       "reason": "Extreme violence, drug use, strong profanity"
     },
     {
@@ -412,7 +412,7 @@
     {
       "title": "Saving Private Ryan",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** *Saving Private Ryan* is a war drama featuring intense, graphic violence and disturbing battlefield scenes. It is rated R, which the safety",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** *Saving Private Ryan* is a war film with intense, realistic combat scenes, graphic violence, and disturbing imagery. It is rated R, which t",
       "passed": true,
       "error": null,
       "reason": "Extreme war violence, graphic imagery"
@@ -420,7 +420,7 @@
     {
       "title": "Schindler's List",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Schindler\u2019s List is an R\u2011rated historical drama depicting graphic violence, Holocaust atrocities, and mature themes that are inappropriate ",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Schindler\u2019s List is a historical drama depicting the Holocaust with graphic violence, intense suffering, and mature themes. It is rated R a",
       "passed": true,
       "error": null,
       "reason": "Extreme violence, disturbing content"
@@ -428,7 +428,7 @@
     {
       "title": "Joker",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** Joker is a Crime/Thriller film with explicit violence, disturbing content, and an R rating. These factors disqualify it for children aged 5",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** Joker is a crime\u2011drama thriller rated R that contains disturbing content, violence, and criminal activity. These factors disqualify it for ",
       "passed": true,
       "error": null,
       "reason": "Extreme violence, disturbing content"
@@ -436,7 +436,7 @@
     {
       "title": "The Shining",
       "expected": "Not safe",
-      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Shining is a horror film with intense, disturbing imagery and an R rating, which directly violates the safety rules for children aged 5",
+      "actual": "**Classification:** Not safe for children  \n**Explanation:** The Shining is a horror film with intense, disturbing imagery and adult themes. It is not animated and is rated beyond PG, so it does not m",
       "passed": true,
       "error": null,
       "reason": "Horror genre, disturbing imagery"

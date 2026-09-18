@@ -1,13 +1,15 @@
 ======================================================================
 📊 MOVIE SAFETY EVALUATION REPORT
-Generated: 2026-09-18 08:59:02
+Generated: 2026-09-18 16:46:09
 ======================================================================
 
 Total Tests: 56
-Passed: 56 (100.0%)
-Failed: 0
+Passed: 54 (96.4%)
+Failed: 2
 
-Safe Movies: 100.0% accuracy
-Not Safe Movies: 100.0% accuracy
+Safe Movies: 96.8% accuracy
+Not Safe Movies: 96.0% accuracy
 
-✅ ALL TESTS PASSED!
+❌ FAILED CASES:
+  - Avatar
+  - Scarface

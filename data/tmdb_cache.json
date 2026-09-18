@@ -1733,5 +1733,15 @@
       "year": "1996",
       "genres": "Adventure, Action, Thriller"
     }
+  },
+  "search_harry potter": {
+    "cached_at": "2026-09-18T16:13:18.667327",
+    "data": {
+      "title": "Harry Potter and the Goblet of Fire",
+      "overview": "When his name emerges from the Goblet of Fire, Harry Potter becomes a competitor in a grueling battle for glory among three wizarding schools. Signs of Voldemort's return emerge as Harry's friends help him prepare for the Triwizard Tournament.",
+      "rating": "7.8",
+      "year": "2005",
+      "genres": "Adventure, Fantasy"
+    }
   }
 }

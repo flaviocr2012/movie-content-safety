@@ -118,7 +118,27 @@ class MovieSafetyAgent:
                 return "No movies found in database."
             return ", ".join(sorted(self.movie_titles))
 
-        return [safety_knowledge_base, movie_details, list_movies]
+        # Tool 4: Filter movies by genre
+        @tool
+        def filter_movies_by_genre(genre: str) -> str:
+            """
+            Filters movies by genre (e.g., "Fantasy", "Animation", "Comedy", "Horror").
+            Use this when the user asks for movies of a specific genre.
+            """
+            genre_lower = genre.lower()
+            matching = []
+
+            for movie in self.movies:
+                movie_genres = movie.get('genres', '').lower()
+                if genre_lower in movie_genres:
+                    matching.append(f"{movie['title']} ({movie.get('year', 'N/A')})")
+
+            if not matching:
+                return f"No movies found with genre '{genre}'."
+
+            return f"Movies with genre '{genre}' ({len(matching)} found):\n" + "\n".join(f"  - {m}" for m in matching)
+
+        return [safety_knowledge_base, movie_details, list_movies, filter_movies_by_genre]
 
     def _build_agent(self):
         """
@@ -128,19 +148,49 @@ class MovieSafetyAgent:
             CompiledStateGraph agent ready to process queries
         """
 
-        # ✅ Create the agent using create_agent with correct parameters
+        # ✅ Improved system prompt with explicit instruction to always respond
+        system_prompt = """You are a helpful AI assistant specialized in movie safety for children.
+
+Your task is to answer questions about whether movies are appropriate for children aged 5-10.
+
+**CRITICAL INSTRUCTION: You MUST ALWAYS provide a final text response to the user.**
+- Even if you use tools, you MUST synthesize the results into a clear answer.
+- NEVER return an empty response.
+- After calling any tool, use its results to answer the user's question.
+
+**Available Tools:**
+1. `safety_knowledge_base(query)` - Check safety rules and Q&A pairs
+2. `movie_details(movie_title)` - Get details about a specific movie
+3. `list_movies()` - List all available movies (use for broad questions)
+4. `filter_movies_by_genre(genre)` - Filter movies by genre (use for genre-specific questions)
+
+**When answering questions:**
+1. If the user asks about a **specific genre** (fantasy, animation, horror, etc.), use `filter_movies_by_genre`
+2. If the user asks about a **specific movie**, use `movie_details`
+3. If the user asks about **safety rules**, use `safety_knowledge_base`
+4. If the user asks **"what movies do you have"** or similar, use `list_movies`
+5. After getting tool results, synthesize a clear, friendly answer in the final response
+
+**Example interactions:**
+- User: "I like fantasy movies. What do you have?"
+  → Use `filter_movies_by_genre("Fantasy")` → Respond with a formatted list
+
+- User: "Is Jurassic Park safe?"
+  → Use `movie_details("Jurassic Park")` and `safety_knowledge_base("Jurassic Park safety")` → Respond with classification
+
+- User: "What movies do you have?"
+  → Use `list_movies()` → Respond with a summary (not the full list, just highlights)
+
+**Response format:**
+- Use emojis to make responses friendly
+- Format movie lists as bullet points
+- Always end with a helpful closing or offer to help more
+"""
+
         agent = create_agent(
-            model=self.llm,  # ✅ Use 'model' not 'llm'
+            model=self.llm,
             tools=self.tools,
-            system_prompt=(
-                "You are a helpful AI assistant specialized in movie safety for children. "
-                "Your task is to answer questions about whether movies are appropriate for children aged 5-10.\n\n"
-                "When answering questions about movie safety:\n"
-                "1. Use the Safety Knowledge Base to retrieve specific safety rules\n"
-                "2. Use Movie Details to get information about specific movies\n"
-                "3. Always consider: genres, rating, content, and explicit safety rules\n"
-                "4. If you're unsure, err on the side of caution and classify as 'Not safe for children'"
-            )
+            system_prompt=system_prompt
         )
 
         return agent
@@ -164,13 +214,44 @@ class MovieSafetyAgent:
                 {"messages": [{"role": "user", "content": question}]}
             )
 
-            # Extract the response from the agent's output
+            # ✅ Extract the final AI response correctly
             if "messages" in response:
-                return response["messages"][-1].content
-            elif "output" in response:
+                messages = response["messages"]
+
+                # Iterate from the end to find the last AI message with text content
+                for message in reversed(messages):
+                    # Get content
+                    content = getattr(message, "content", None)
+
+                    # Skip empty content
+                    if not content:
+                        continue
+
+                    # Handle string content (most common)
+                    if isinstance(content, str) and content.strip():
+                        # Skip tool calls (they usually start with specific patterns)
+                        if not content.strip().startswith('{'):
+                            return content.strip()
+
+                    # Handle list content (structured format)
+                    elif isinstance(content, list):
+                        text_parts = []
+                        for item in content:
+                            if isinstance(item, dict):
+                                if item.get("type") == "text":
+                                    text_parts.append(item.get("text", ""))
+                            elif isinstance(item, str):
+                                text_parts.append(item)
+                        if text_parts:
+                            return "\n".join(text_parts).strip()
+
+            # Fallback: check for output key
+            if "output" in response:
                 return response["output"]
-            else:
-                return str(response)
+
+            # Last resort: try to stringify
+            return "I processed your request but couldn't generate a text response. Please try rephrasing your question."
+
         except Exception as e:
             return f"Error processing question: {e}"
 
@@ -182,8 +263,10 @@ class MovieSafetyAgent:
         print("\n📋 Instructions:")
         print("  - Ask questions about movie safety")
         print("  - Type 'quit' or 'exit' to stop")
-        print("  - Example: 'Can you find me a movie like The Lion King that is appropriate for a 5-year-old?'")
+        print("  - Example: 'I like fantasy movies. What do you have?'")
+        print("  - Example: 'Can you find me a movie like The Lion King?'")
         print("  - Example: 'What movies are safe for children?'")
+        print("  - Example: 'Is Jurassic Park safe?'")
         print("=" * 70)
 
         while True:
@@ -207,9 +290,10 @@ def main():
     agent = MovieSafetyAgent()
 
     test_questions = [
-        "Can you find me a movie like The Lion King that is appropriate for a 5-year-old?",
+        "I like fantasy movies. What do you have?",
         "Is Jurassic Park safe for children?",
         "What are the best family movies in the database?",
+        "Show me animated movies",
     ]
 
     print("=" * 70)
