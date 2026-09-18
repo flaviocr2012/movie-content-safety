@@ -36,6 +36,25 @@ def load_movies_from_csv(file_path: str = IMDB_MOVIES_PATH) -> List[Dict[str, st
         return []
 
 
+def lookup_movie_from_tmdb(title: str) -> Optional[Dict]:
+    """
+    Look up a movie from TMDB on-demand.
+
+    Args:
+        title: Movie title to search for
+
+    Returns:
+        Formatted movie dictionary or None if not found
+    """
+    try:
+        from tmdb_client import TMDBClient
+        client = TMDBClient()
+        return client.search_movie(title)
+    except Exception as e:
+        print(f"⚠️ TMDB lookup failed: {e}")
+        return None
+
+
 def classify_single_movie(rag: RAGChain, title: str, overview: str = None,
                           genres: str = "Unknown", rating: str = "Unknown") -> str:
     """
@@ -155,7 +174,7 @@ def print_classification_summary(results: List[Dict[str, str]]) -> None:
 
 
 def interactive_mode():
-    """Run the application in interactive mode with CSV lookup."""
+    """Run the application in interactive mode with CSV lookup and TMDB fallback."""
     print("=" * 70)
     print("🎬 MOVIE CONTENT SAFETY CLASSIFIER - INTERACTIVE MODE")
     print("=" * 70)
@@ -192,10 +211,11 @@ def interactive_mode():
 
     print("\n" + "-" * 70)
     print("📋 INSTRUCTIONS:")
-    print("  - Enter a movie title and overview")
+    print("  - Enter a movie title to classify")
     print("  - Type 'quit' or 'exit' to stop")
     print("  - Type 'example' for a sample classification")
     print("  - Type 'batch' to classify all movies from CSV")
+    print("  - Unknown movies will be looked up on TMDB automatically")
     print("-" * 70)
 
     while True:
@@ -246,7 +266,8 @@ def interactive_mode():
             print("⚠️ Please enter a movie title or command.")
             continue
 
-        # ✅ ALWAYS try to load from CSV first
+        # ========== MAIN FLOW ==========
+        # Step 1: Try to load from CSV first
         if command.lower() in movies_dict:
             print(f"📖 Found '{command}' in CSV database!")
             overview = movies_dict[command.lower()]['overview']
@@ -256,22 +277,55 @@ def interactive_mode():
             print(f"📝 Year: {year} | Rating: {rating} | Genres: {genres}")
             print(f"📝 Overview: {overview[:150]}..." if len(overview) > 150 else f"📝 Overview: {overview}")
 
-            # ✅ Use the real overview without asking the user
+            # Classify with real data
+            try:
+                result = classify_single_movie(rag, command, overview, genres, rating)
+                print(f"\n📌 Result:\n{result}")
+            except Exception as e:
+                print(f"❌ Error: {e}")
+            continue
+
+        # Step 2: Not in CSV — try TMDB
+        print(f"⚠️ '{command}' not found in CSV database.")
+        print(f"🌐 Looking up on TMDB...")
+
+        movie = lookup_movie_from_tmdb(command)
+
+        if movie:
+            print(f"✅ Found on TMDB: {movie['title']} ({movie['year']})")
+            print(f"📝 Genres: {movie['genres']} | Rating: {movie['rating']}")
+            print(f"📝 Overview: {movie['overview'][:150]}..." if len(movie['overview']) > 150 else f"📝 Overview: {movie['overview']}")
+
+            # Classify with TMDB data
+            try:
+                result = classify_single_movie(
+                    rag,
+                    movie['title'],
+                    movie['overview'],
+                    movie['genres'],
+                    movie['rating']
+                )
+                print(f"\n📌 Result:\n{result}")
+            except Exception as e:
+                print(f"❌ Error: {e}")
+            continue
+
+        # Step 3: Not found on TMDB either — ask user for manual input
+        print(f"❌ '{command}' not found on TMDB either.")
+        overview = input("📝 Enter movie overview manually: ").strip()
+
+        if not overview:
+            print("⚠️ Overview is required for classification. Please try again.")
+            continue
+
+        genres = input("📝 Enter movie genres (or press Enter to skip): ").strip() or "Unknown"
+        rating = input("📝 Enter movie rating (or press Enter to skip): ").strip() or "Unknown"
+
+        try:
             result = classify_single_movie(rag, command, overview, genres, rating)
             print(f"\n📌 Result:\n{result}")
-        else:
-            # Movie not found in CSV - ask user for details
-            print(f"⚠️ '{command}' not found in database.")
-            overview = input("📝 Enter movie overview: ").strip()
-            if not overview:
-                print("⚠️ Overview is required for classification. Please try again.")
-                continue
-
-            genres = input("📝 Enter movie genres (or press Enter to skip): ").strip() or "Unknown"
-            rating = input("📝 Enter movie rating (or press Enter to skip): ").strip() or "Unknown"
-
-            result = classify_single_movie(rag, command, overview, genres, rating)
-            print(f"\n📌 Result:\n{result}")
+        except Exception as e:
+            print(f"❌ Error: {e}")
 
 
 def main():
