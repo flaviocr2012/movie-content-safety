@@ -493,23 +493,12 @@ flowchart TD
 
 ### Endpoints Used
 
-Endpoint
-
-Purpose
-
-`/movie/popular`
-
-Fetch popular movies
-
-`/movie/top_rated`
-
-Fetch top-rated movies
-
-`/discover/movie`
-
-Fetch family-friendly movies
-
-`/search/movie`
+| Endpoint | Purpose |
+|----------|---------|
+| `/movie/popular` | Fetch popular movies |
+| `/movie/top_rated` | Fetch top-rated movies |
+| `/discover/movie` | Fetch family-friendly movies |
+| `/search/movie` | Search for a specific movie |
 
 Search for a specific movie
 
