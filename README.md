@@ -137,29 +137,11 @@ LANGCHAIN_PROJECT=movie-content-safety
 
 > **Note:** Get your free API keys from:
 
-Service
-
-Purpose
-
-Link
-
-**Groq**
-
-LLM inference
-
-[console.groq.com](https://console.groq.com)
-
-**TMDB**
-
-Movie data
-
-[themoviedb.org](https://www.themoviedb.org/settings/api)
-
-**LangSmith**
-
-Observability
-
-[smith.langchain.com](https://smith.langchain.com)
+| Service | Purpose | Link |
+|---------|---------|------|
+| **Groq** | LLM inference | [console.groq.com](https://console.groq.com) |
+| **TMDB** | Movie data | [themoviedb.org](https://www.themoviedb.org/settings/api) |
+| **LangSmith** | Observability | [smith.langchain.com](https://smith.langchain.com) |
 
 ## 🚀 Run
 
