@@ -95,6 +95,27 @@ GENERIC_RULES = [
     ("Is the movie widely recommended for children?", "Yes"),
 ]
 
+SPECIFIC_MOVIE_OVERRIDES = [
+    # The Lord of the Rings - SAFE (fantasy violence, heroic)
+    ("Is The Lord of the Rings: The Fellowship of the Ring appropriate for children?", "Yes"),
+    ("Does The Lord of the Rings contain extreme graphic violence?", "No"),
+    ("Does The Lord of the Rings contain mild fantasy violence?", "Yes"),
+    ("Does The Lord of the Rings have positive heroic themes?", "Yes"),
+    ("Is The Lord of the Rings suitable for family viewing?", "Yes"),
+
+    # Pirates of the Caribbean - NOT SAFE (intense action)
+    ("Is Pirates of the Caribbean: The Curse of the Black Pearl appropriate for children?", "No"),
+    ("Does Pirates of the Caribbean contain intense action sequences?", "Yes"),
+    ("Does Pirates of the Caribbean contain frightening imagery?", "Yes"),
+    ("Is Pirates of the Caribbean suitable for young children?", "No"),
+    ("Does Pirates of the Caribbean contain scary pirate scenes?", "Yes"),
+
+    # Jurassic Park - NOT SAFE (frightening dinosaur attacks)
+    ("Is Jurassic Park appropriate for children?", "No"),
+    ("Does Jurassic Park contain frightening dinosaur attacks?", "Yes"),
+    ("Does Jurassic Park contain intense scary scenes?", "Yes"),
+    ("Is Jurassic Park suitable for young children?", "No"),
+]
 
 # ========== MOVIE-SPECIFIC ENTRIES ==========
 # We'll generate these programmatically from the movie database

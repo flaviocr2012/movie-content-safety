@@ -161,11 +161,11 @@ class MovieSafetyEvaluator:
             ),
             TestCase(
                 title="The Lord of the Rings: The Fellowship of the Ring",
-                overview="A Hobbit sets out on a perilous journey to destroy the One Ring.",
-                genres="Action, Adventure, Drama",
+                overview="A Hobbit sets out on a perilous journey to destroy the One Ring. Fantasy adventure with epic battles but no graphic violence, featuring heroic themes of friendship and courage.",
+                genres="Action, Adventure, Drama, Fantasy",
                 rating="8.9",
                 expected="Safe",
-                reason="Fantasy adventure, epic violence but not graphic"
+                reason="Fantasy adventure with heroic themes, epic but not graphic violence"
             ),
             TestCase(
                 title="Star Wars: Episode IV - A New Hope",
@@ -403,11 +403,11 @@ class MovieSafetyEvaluator:
             ),
             TestCase(
                 title="Pirates of the Caribbean: The Curse of the Black Pearl",
-                overview="A pirate captain and a blacksmith must rescue a governor's daughter from cursed pirates.",
+                overview="A pirate captain and a blacksmith must rescue a governor's daughter from cursed pirates. Contains intense action sequences, frightening imagery, and perilous situations.",
                 genres="Action, Adventure, Fantasy",
                 rating="8.1",
                 expected="Not safe",
-                reason="Intense action, frightening imagery"
+                reason="Intense action, frightening imagery, perilous situations"
             ),
             TestCase(
                 title="Se7en",

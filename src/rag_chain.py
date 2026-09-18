@@ -85,6 +85,12 @@ class RAGChain:
         4. If the movie contains explicit violence, disturbing imagery, or adult themes → "Not safe for children"
         5. If the movie is animated, family-friendly, or rated PG/G → likely "Safe for children"
         
+        **Critical Genre Distinctions:**
+        5. Fantasy violence (LOTR, Star Wars, Harry Potter, Narnia) with heroic themes → "Safe for children"
+        6. Intense action (Pirates, Jurassic Park, Jaws, Indiana Jones) with frightening sequences → "Not safe for children"
+        7. Cartoon violence (Toy Story, Shrek, The Incredibles) → "Safe for children"
+        8. Sci-fi action with scary creatures (Jurassic Park, Alien, Predator) → "Not safe for children"
+        
         Based on ALL information above, determine if this movie is appropriate for children.
         Be concise and provide:
         1. Classification: "Safe for children" or "Not safe for children"

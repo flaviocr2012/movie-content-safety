@@ -1,0 +1,24 @@
+[
+  {
+    "movie_title": "Jurassic Park",
+    "movie_overview": "A paleontologist must protect kids after the park's cloned dinosaurs run loose.",
+    "genres": "Action, Adventure, Sci-Fi",
+    "rating": "8.2",
+    "system_classification": "Safe for children",
+    "user_feedback": "wrong",
+    "correct_classification": "Not safe for children",
+    "user_comment": "Too scary for young children",
+    "timestamp": "2026-09-18T08:33:51.865862"
+  },
+  {
+    "movie_title": "The Lion King",
+    "movie_overview": "A young lion prince flees his kingdom after the murder of his father.",
+    "genres": "Animation, Adventure, Drama",
+    "rating": "8.5",
+    "system_classification": "Safe for children",
+    "user_feedback": "correct",
+    "correct_classification": null,
+    "user_comment": "Great family movie",
+    "timestamp": "2026-09-18T08:33:51.866080"
+  }
+]
