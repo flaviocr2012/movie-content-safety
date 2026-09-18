@@ -23,44 +23,17 @@ Built with **LangChain**, **FAISS**, and **Groq** — a complete RAG system with
 
 ## 🏗️ Architecture
 
-<div style="font-family: sans-serif; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 20px; background-color: #f9f9f9;">
-  <h3 style="border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-top: 0;">Architecture</h3>
-
-  <!-- User Interface Layer -->
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px; background: #fff;">
-    <strong>USER INTERFACE</strong>
-    <div>
-      <span style="margin-right: 10px;">[ Interactive CLI ]</span>
-      <span style="margin-right: 10px;">[ Batch Mode ]</span>
-      <span>[ Agent ]</span>
-    </div>
-  </div>
-
-  <!-- RAG Chain Layer -->
-  <div style="display: flex; justify-content: space-around; align-items: center; padding: 15px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px; background: #fff;">
-    <div style="text-align: center;"><strong>Retriever</strong><br><span style="font-size: 0.8em; color: #666;">(FAISS)</span></div>
-    <span style="font-size: 20px;">&rarr;</span>
-    <div style="text-align: center;"><strong>Context</strong><br><span style="font-size: 0.8em; color: #666;">(Top-5 Q&A)</span></div>
-    <span style="font-size: 20px;">&rarr;</span>
-    <div style="text-align: center;"><strong>LLM</strong><br><span style="font-size: 0.8em; color: #666;">(Groq)</span></div>
-  </div>
-
-  <!-- Data Layer -->
-  <div style="display: flex; justify-content: space-between; padding: 15px; border: 1px solid #ccc; border-radius: 5px; background: #fff;">
-    <div style="border-right: 1px solid #ddd; padding-right: 20px;">
-      <strong>Knowledge Base</strong><br>
-      <span style="font-size: 0.8em; color: #666;">(80+ Q&A pairs)</span>
-    </div>
-    <div>
-      <strong>Movie Database (CSV)</strong><br>
-      <span style="font-size: 0.8em; color: #666;">(30 movies with details)</span>
-    </div>
-  </div>
-
-</div>
-
-User → RAG Chain (Retriever → Context → LLM) → Data Layer (KB + Movies)
-
+```mermaid
+flowchart TD
+    A[User Interface<br/>CLI / Batch / Agent] --> B[RAG Chain]
+    B --> C[Retriever<br/>FAISS]
+    C --> D[Context<br/>Top-5 Q&A]
+    D --> E[LLM<br/>Groq]
+    E --> F[Classification]
+    B --> G[Data Layer]
+    G --> H[Knowledge Base<br/>1,132 Q&A]
+    G --> I[Movie Database<br/>148 movies]
+```
 
 **Flow:** Query → Embedding → FAISS Search → Top-5 Q&A → LLM → Classification
 
@@ -81,7 +54,7 @@ cd movie-content-safety
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-```
+
 
 ### Configure
 
