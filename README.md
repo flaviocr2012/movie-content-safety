@@ -14,8 +14,10 @@ Built with **LangChain**, **FAISS**, and **Groq** — a complete RAG system with
 | **AI Agent** | Answers complex questions using 3 tools |
 | **Interactive CLI** | Chat-style interface for movie safety queries |
 | **Batch Processing** | Classify multiple movies at once |
-| **Movie Database** | 30+ movies with details |
-| **Knowledge Base** | 80+ safety Q&A pairs |
+| **Web Interface** | Gradio-based UI with tabs for classification, agent, and batch |
+| **Evaluation Framework** | 55 test cases with accuracy metrics |
+| **Movie Database** | 148 movies with details |
+| **Knowledge Base** | 1,132 safety Q&A pairs |
 
 ---
 
@@ -74,7 +76,7 @@ User → RAG Chain (Retriever → Context → LLM) → Data Layer (KB + Movies)
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/movie-content-safety.git
+git clone https://github.com/flaviocr2012/movie-content-safety.git
 cd movie-content-safety
 python3 -m venv venv
 source venv/bin/activate
@@ -166,37 +168,83 @@ Classification: Not safe for children
 Explanation: The Conjuring is a horror film with a rating of 7.5 (R). It contains supernatural terror, frightening imagery, and intense suspense typical of the horror genre, making it unsuitable for children aged 5-10.
 ``` 
 
+### Web Interface (Gradio)
+
+```
+python src/app.py
+```
+
+    🔍 Classify a Movie — Enter any movie and get a classification
+
+    🤖 AI Agent — Ask complex questions
+
+    📊 Batch Classification — Classify multiple movies at once
+
+    ℹ️ About — Project details
+
+### Run Evaluations
+
+```
+python src/evals.py
+```
+
+📊 EVALUATION SUMMARY
+============================================================
+📈 Overall Accuracy: 100.0%
+✅ Passed: 55/55
+❌ Failed: 0/55
+
+🎯 Safe Movies: 100.0% accuracy
+✅ 30/30
+
+🎯 Not Safe Movies: 100.0% accuracy
+✅ 25/25
+============================================================
+
 ## 📁 Project Structure
 
 ```
 movie-content-safety/
+├── .env                            # Environment variables
+├── .gitignore                      # Git ignore rules
+├── requirements.txt                # Python dependencies
+├── movie-content-safety.iml        # IntelliJ module file
+├── README.md                       # This file
 ├── data/
-│   ├── knowledge_base.csv      # 80+ Q&A safety rules
-│   ├── imdb_movies.csv         # 30 movies with details
-│   └── faiss_index/            # FAISS vector index
+│   ├── knowledge_base.csv          # 1,132 Q&A safety rules
+│   ├── imdb_movies.csv             # 148 movies with details
+│   ├── evaluation_report.txt       # Human-readable report
+│   ├── evaluation_results.csv      # Eval results (CSV)
+│   ├── evaluation_results.json     # Eval results (JSON)
+│   └── faiss_index/                # FAISS vector index
 │       ├── index.faiss
 │       └── index.pkl
-├── src/
-│   ├── config.py               # Configuration & API keys
-│   ├── vector_store.py         # Build FAISS index
-│   ├── rag_chain.py            # RAG pipeline with Groq
-│   ├── main.py                 # Interactive CLI
-│   └── agent.py                # AI Agent for complex queries
-├── .env                        # Environment variables
-├── requirements.txt            # Python dependencies
-└── README.md                   # This file
+├── scripts/
+│   ├── generate_movies.py          # Generate movie database
+│   ├── generate_knowledge_base.py  # Generate knowledge base
+│   └── validate_knowledge_base.py  # Validate CSV integrity
+└── src/
+    ├── config.py                   # Configuration & API keys
+    ├── vector_store.py             # Build FAISS index
+    ├── rag_chain.py                # RAG pipeline with Groq
+    ├── main.py                     # Interactive CLI + Batch
+    ├── agent.py                    # AI Agent for complex queries
+    ├── app.py                      # Gradio web interface
+    ├── evals.py                    # Evaluation framework
+    └── document_loader.py          # Document loading utilities
 ``` 
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **LangChain** | LLM orchestration framework |
-| **FAISS** | Vector similarity search |
-| **Groq** | Fast, free LLM inference |
+| Technology      | Purpose                             |
+|-----------------|-------------------------------------|
+| **LangChain**   | LLM orchestration framework         |
+| **FAISS**       | Vector similarity search            |
+| **Groq**        | Fast, free LLM inference            |
 | **HuggingFace** | Embedding models (all-MiniLM-L6-v2) |
-| **Python** | Core programming language |
-| **Pandas** | CSV data handling |  
+| **Python**      | Core programming language           |
+| **Pandas**      | CSV data handling                   |  
+| **Gradio**      | Web Interface                       |  
 
 ## 📦 Dependencies
 
@@ -210,14 +258,13 @@ faiss-cpu
 sentence-transformers
 pandas
 python-dotenv
+gradio>=4.0.0
 ``` 
 
 ## 🔮 Next Steps
 
-- [ ] Add web interface (Gradio/Streamlit)
-- [ ] Add evaluation framework (evals)
 - [ ] Deploy to production
-- [ ] Expand knowledge base to 500+ movies
+- [ ] Add more test cases for edge cases
 - [ ] Add user feedback loop 
 
 ## 📫 Let's Connect!
