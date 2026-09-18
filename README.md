@@ -61,8 +61,6 @@ Full tracing, datasets, and experiments
 ## 🏗️ Architecture
 
 ```mermaid
-## 🏗️ Architecture
-
 flowchart TD
     A[User Interface<br/>CLI / Batch / Agent / Web UI] --> B[RAG Chain]
     B --> C[Retriever<br/>FAISS]
