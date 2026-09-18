@@ -56,12 +56,13 @@ class MovieSafetyEvaluator:
     def _load_test_suite(self) -> List[TestCase]:
         """
         Load the test suite of known good answers.
+        Expanded to 50+ test cases for better coverage.
 
         Returns:
             List of TestCase objects
         """
         return [
-            # ========== SAFE MOVIES ==========
+            # ========== SAFE MOVIES (30 cases) ==========
             TestCase(
                 title="The Lion King",
                 overview="A young lion prince flees his kingdom after the murder of his father and learns about responsibility and friendship.",
@@ -190,8 +191,128 @@ class MovieSafetyEvaluator:
                 expected="Safe",
                 reason="Fantasy adventure, sci-fi action without explicit violence"
             ),
+            TestCase(
+                title="Aladdin",
+                overview="A kind-hearted street urchin and a power-hungry Grand Vizier vie for a magic lamp.",
+                genres="Animation, Adventure, Comedy",
+                rating="8.0",
+                expected="Safe",
+                reason="Animated, family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Beauty and the Beast",
+                overview="A selfish prince is cursed to become a monster, and only true love can break the spell.",
+                genres="Animation, Family, Fantasy",
+                rating="8.0",
+                expected="Safe",
+                reason="Animated, family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Zootopia",
+                overview="In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work together.",
+                genres="Animation, Adventure, Comedy",
+                rating="8.0",
+                expected="Safe",
+                reason="Animated, family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Moana",
+                overview="A young woman uses her navigational talents to set sail for a fabled island.",
+                genres="Animation, Adventure, Comedy",
+                rating="7.6",
+                expected="Safe",
+                reason="Animated, family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Inside Out",
+                overview="A young girl's emotions come to life as she navigates a move to a new city.",
+                genres="Animation, Adventure, Comedy",
+                rating="8.1",
+                expected="Safe",
+                reason="Animated, family-friendly, emotional but not scary"
+            ),
+            TestCase(
+                title="Ratatouille",
+                overview="A rat who can cook makes an unusual alliance with a young kitchen worker.",
+                genres="Animation, Adventure, Comedy",
+                rating="8.1",
+                expected="Safe",
+                reason="Animated, family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Wall-E",
+                overview="A small waste-collecting robot embarks on a journey that will decide the fate of mankind.",
+                genres="Animation, Adventure, Family",
+                rating="8.4",
+                expected="Safe",
+                reason="Animated, family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Monsters, Inc.",
+                overview="Two monsters must return a human child to her world before it's too late.",
+                genres="Animation, Adventure, Comedy",
+                rating="8.1",
+                expected="Safe",
+                reason="Animated, family-friendly, no scary content"
+            ),
+            TestCase(
+                title="The Wizard of Oz",
+                overview="A young girl is swept away to a magical land and must find her way home.",
+                genres="Adventure, Family, Fantasy",
+                rating="8.1",
+                expected="Safe",
+                reason="Classic family film, mild scary moments"
+            ),
+            TestCase(
+                title="E.T. the Extra-Terrestrial",
+                overview="A young boy befriends a friendly alien and helps him return home.",
+                genres="Adventure, Family, Sci-Fi",
+                rating="7.9",
+                expected="Safe",
+                reason="Family-friendly sci-fi, positive messages"
+            ),
+            TestCase(
+                title="The Princess Bride",
+                overview="A farm boy and a princess must overcome obstacles to find true love.",
+                genres="Adventure, Comedy, Family",
+                rating="8.1",
+                expected="Safe",
+                reason="Family-friendly fantasy, mild violence"
+            ),
+            TestCase(
+                title="Matilda",
+                overview="A brilliant young girl uses her telekinetic powers to stand up to her cruel headmistress.",
+                genres="Comedy, Family, Fantasy",
+                rating="7.5",
+                expected="Safe",
+                reason="Family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Paddington",
+                overview="A young Peruvian bear travels to London in search of a home.",
+                genres="Adventure, Comedy, Family",
+                rating="7.2",
+                expected="Safe",
+                reason="Family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Paddington 2",
+                overview="Paddington tries to buy a unique pop-up book for his aunt's birthday.",
+                genres="Adventure, Comedy, Family",
+                rating="7.8",
+                expected="Safe",
+                reason="Family-friendly, positive messages"
+            ),
+            TestCase(
+                title="Wonder",
+                overview="A young boy with facial differences attends a mainstream school for the first time.",
+                genres="Drama, Family",
+                rating="8.0",
+                expected="Safe",
+                reason="Family-friendly, positive messages"
+            ),
 
-            # ========== NOT SAFE MOVIES ==========
+            # ========== NOT SAFE MOVIES (25 cases) ==========
             TestCase(
                 title="The Dark Knight",
                 overview="When the Joker wreaks havoc on Gotham, Batman must accept one of the greatest tests of his ability.",
@@ -263,6 +384,134 @@ class MovieSafetyEvaluator:
                 rating="8.2",
                 expected="Not safe",
                 reason="Intense violence, frightening imagery"
+            ),
+            TestCase(
+                title="Jaws",
+                overview="A police chief, a marine scientist, and a fisherman hunt a great white shark.",
+                genres="Adventure, Thriller",
+                rating="8.1",
+                expected="Not safe",
+                reason="Frightening shark attacks, intense suspense"
+            ),
+            TestCase(
+                title="Indiana Jones and the Raiders of the Lost Ark",
+                overview="An archaeologist races against Nazis to find the Ark of the Covenant.",
+                genres="Action, Adventure",
+                rating="8.4",
+                expected="Not safe",
+                reason="Intense action, frightening imagery"
+            ),
+            TestCase(
+                title="Pirates of the Caribbean: The Curse of the Black Pearl",
+                overview="A pirate captain and a blacksmith must rescue a governor's daughter from cursed pirates.",
+                genres="Action, Adventure, Fantasy",
+                rating="8.1",
+                expected="Not safe",
+                reason="Intense action, frightening imagery"
+            ),
+            TestCase(
+                title="Se7en",
+                overview="Two detectives hunt a serial killer who uses the seven deadly sins as his motives.",
+                genres="Crime, Drama, Mystery",
+                rating="8.6",
+                expected="Not safe",
+                reason="Extreme violence, disturbing content"
+            ),
+            TestCase(
+                title="Fight Club",
+                overview="An insomniac office worker and a devil-may-care soap maker form an underground fight club.",
+                genres="Drama, Thriller",
+                rating="8.8",
+                expected="Not safe",
+                reason="Violence, adult themes, disturbing content"
+            ),
+            TestCase(
+                title="American Psycho",
+                overview="A wealthy New York City investment banking executive hides his alternate psychopathic ego.",
+                genres="Crime, Drama, Thriller",
+                rating="7.6",
+                expected="Not safe",
+                reason="Extreme violence, disturbing content"
+            ),
+            TestCase(
+                title="No Country for Old Men",
+                overview="Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong.",
+                genres="Crime, Drama, Thriller",
+                rating="8.2",
+                expected="Not safe",
+                reason="Extreme violence, disturbing content"
+            ),
+            TestCase(
+                title="The Departed",
+                overview="An undercover cop and a mole in the police attempt to identify each other.",
+                genres="Crime, Drama, Thriller",
+                rating="8.5",
+                expected="Not safe",
+                reason="Extreme violence, adult themes"
+            ),
+            TestCase(
+                title="Goodfellas",
+                overview="The story of Henry Hill and his life in the mob.",
+                genres="Biography, Crime, Drama",
+                rating="8.7",
+                expected="Not safe",
+                reason="Violence, adult themes, crime content"
+            ),
+            TestCase(
+                title="Scarface",
+                overview="In 1980s Miami, a determined Cuban immigrant takes over a drug cartel.",
+                genres="Crime, Drama",
+                rating="8.3",
+                expected="Not safe",
+                reason="Extreme violence, drug use, strong profanity"
+            ),
+            TestCase(
+                title="The Silence of the Lambs",
+                overview="A young FBI cadet must receive the help of an incarcerated cannibal killer to catch another serial killer.",
+                genres="Crime, Drama, Thriller",
+                rating="8.6",
+                expected="Not safe",
+                reason="Extreme violence, disturbing content"
+            ),
+            TestCase(
+                title="Saving Private Ryan",
+                overview="Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines.",
+                genres="Drama, War",
+                rating="8.6",
+                expected="Not safe",
+                reason="Extreme war violence, graphic imagery"
+            ),
+            TestCase(
+                title="Schindler's List",
+                overview="In German-occupied Poland, a businessman gradually becomes concerned for his Jewish workforce.",
+                genres="Biography, Drama, History",
+                rating="9.0",
+                expected="Not safe",
+                reason="Extreme violence, disturbing content"
+            ),
+            TestCase(
+                title="Joker",
+                overview="In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society.",
+                genres="Crime, Drama, Thriller",
+                rating="8.4",
+                expected="Not safe",
+                reason="Extreme violence, disturbing content"
+            ),
+            TestCase(
+                title="The Shining",
+                overview="A family heads to an isolated hotel for the winter where a sinister presence influences the father.",
+                genres="Horror, Drama",
+                rating="8.4",
+                expected="Not safe",
+                reason="Horror genre, disturbing imagery"
+            ),
+            TestCase(
+                title="Hereditary",
+                overview="A grieving family is haunted by tragic and disturbing occurrences.",
+                genres="Horror, Drama, Mystery",
+                rating="7.3",
+                expected="Not safe",
+                reason="Horror genre, disturbing content"
             ),
         ]
 
@@ -347,7 +596,7 @@ class MovieSafetyEvaluator:
         safe_count = sum(1 for r in self.results if r.test_case.expected == "Safe")
         unsafe_count = sum(1 for r in self.results if r.test_case.expected == "Not safe")
 
-        # ✅ Calculate safe_passed and unsafe_passed
+        # Calculate safe_passed and unsafe_passed
         safe_passed = sum(1 for r in self.results
                           if r.test_case.expected == "Safe" and r.passed)
         unsafe_passed = sum(1 for r in self.results
