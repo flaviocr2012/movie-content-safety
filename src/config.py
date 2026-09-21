@@ -8,6 +8,18 @@ from dotenv import load_dotenv
 # Load .env file
 load_dotenv()
 
+def get_secret(key: str, default: str = None) -> str:
+    """Get secret from Streamlit Cloud or environment variables."""
+    # Try Streamlit secrets first
+    try:
+        import streamlit as st
+        if key in st.secrets:
+            return st.secrets[key]
+    except (ImportError, FileNotFoundError):
+        pass
+    # Fall back to environment variables (.env)
+    return os.getenv(key, default)
+
 # ============ LANGSMITH OBSERVABILITY ============
 LANGCHAIN_TRACING_V2 = os.getenv("LANGCHAIN_TRACING_V2", "true")
 LANGCHAIN_ENDPOINT = os.getenv("LANGCHAIN_ENDPOINT", "https://api.smith.langchain.com")

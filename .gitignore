@@ -27,3 +27,6 @@ Thumbs.db
 .ipynb_checkpoints/
 Untitled.ipynb
 EOF
+
+ Streamlit secrets
+.streamlit/secrets.toml
