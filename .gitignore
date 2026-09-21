@@ -22,3 +22,8 @@ __pycache__/
 Thumbs.db
 
 .gradio/
+
+# Jupyter
+.ipynb_checkpoints/
+Untitled.ipynb
+EOF

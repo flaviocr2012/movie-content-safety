@@ -44,8 +44,8 @@ class TrainingConfig:
     warmup_ratio: float = 0.03
     weight_decay: float = 0.01
     optim: str = "adamw_8bit"
-    fp16: bool = False
-    bf16: bool = True
+    fp16: bool = True
+    bf16: bool = False
     max_grad_norm: float = 0.3
     seed: int = 42
 
