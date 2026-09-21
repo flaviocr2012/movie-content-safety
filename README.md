@@ -549,6 +549,43 @@ flowchart TD
 | **Error Rate** | Monitors failed LLM calls, output parsing errors, and API timeouts |
 | **Feedback Score** | Aggregates user feedback ratings (thumbs up/down) on generated recommendations |
 
+## 🎓 Fine-Tuning Results
+
+The project includes a fine-tuning pipeline using **LoRA/QLoRA** on **Llama 3.1 8B**.
+
+### Training Setup
+
+| Parameter | Value |
+|-----------|-------|
+| **Base Model** | `unsloth/llama-3.1-8b-instruct-bnb-4bit` |
+| **Method** | QLoRA (4-bit quantization) + LoRA |
+| **LoRA Rank** | 16 |
+| **LoRA Alpha** | 16 |
+| **Target Modules** | q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj |
+| **Trainable Params** | ~41M (0.52% of total) |
+| **Training Examples** | 40 preference pairs |
+| **Epochs** | 2 |
+| **Precision** | fp16 (T4 GPU) |
+
+### Key Fixes Applied
+
+1. **Chat template alignment** — Used Llama 3.1's native format (`<|start_header_id|>`)
+2. **EOS token handling** — Prevented infinite generation
+3. **Response-only training** — Masked user prompts with `train_on_responses_only`
+4. **Inference format matching** — Ensured train/inference consistency
+
+### Results
+
+| Movie | Classification | Correct? |
+|-------|---------------|----------|
+| The Conjuring | Not safe for children | ✅ |
+| Finding Nemo | Safe for children | ✅ |
+| Jurassic Park | Not safe for children | ✅ |
+
+### Notebook
+
+The complete fine-tuning pipeline is available in [`notebooks/fine_tune_lora.ipynb`](notebooks/fine_tune_lora.ipynb).
+
 ## 🔮 Next Steps
 
 -    Deploy to production
