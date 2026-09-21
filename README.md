@@ -6,55 +6,22 @@ Built with **LangChain**, **FAISS**, and **Groq** — a complete RAG system with
 
 ---
 
-## ✨ Features
-
-Feature
-
-Description
-
-**RAG Classification**
-
-Semantic search to retrieve relevant safety rules
-
-**AI Agent**
-
-Answers complex questions using 3 tools
-
-**Interactive CLI**
-
-Chat-style interface for movie safety queries
-
-**Batch Processing**
-
-Classify multiple movies at once
-
-**Web Interface**
-
-Gradio-based UI with tabs for classification, agent, and batch
-
-**Evaluation Framework**
-
-56 test cases with accuracy metrics
-
-**User Feedback Loop**
-
-Collects user corrections to improve over time
-
-**TMDB API Integration**
-
-Fetches real movie data from The Movie Database
-
-**LangSmith Observability**
-
-Full tracing, datasets, and experiments
-
-**Movie Database**
-
-148+ movies with details
-
-**Knowledge Base**
-
-1,132 safety Q&A pairs
+| Feature | Description |
+|---------|-------------|
+| **RAG Classification** | Semantic search to retrieve relevant safety rules |
+| **AI Agent** | Answers complex questions using 4 tools |
+| **Interactive CLI** | Chat-style interface for movie safety queries |
+| **Batch Processing** | Classify multiple movies at once |
+| **Web Interface** | Gradio-based UI with tabs for classification, agent, and batch |
+| **Evaluation Framework** | 56 test cases with accuracy metrics |
+| **LLM-as-Judge** | Multi-dimension quality scoring using an LLM evaluator |
+| **User Feedback Loop** | Collects user corrections to improve over time |
+| **Preference Data Generator** | Converts feedback into DPO-ready training pairs |
+| **LLM Fine-Tuning** | LoRA/QLoRA pipeline on Llama 3.1 8B with Unsloth |
+| **TMDB API Integration** | Fetches real movie data from The Movie Database |
+| **LangSmith Observability** | Full tracing, datasets, and experiments |
+| **Movie Database** | 148+ movies with details |
+| **Knowledge Base** | 1,132 safety Q&A pairs |
 
 ---
 
@@ -312,6 +279,7 @@ movie-content-safety/
 ├── data/
 │   ├── knowledge_base.csv          # 1,132 Q&A safety rules
 │   ├── imdb_movies.csv             # 148 movies with details
+│   ├── preference_pairs.jsonl      # DPO-ready training data
 │   ├── user_feedback.json          # User feedback entries
 │   ├── tmdb_cache.json             # TMDB API cache
 │   ├── evaluation_report.txt       # Human-readable report
@@ -320,6 +288,8 @@ movie-content-safety/
 │   └── faiss_index/                # FAISS vector index
 │       ├── index.faiss
 │       └── index.pkl
+├── notebooks/
+│   └── fine_tune_lora.ipynb        # LoRA fine-tuning notebook (Colab)
 ├── scripts/
 │   ├── generate_movies.py          # Generate movie database
 │   ├── generate_knowledge_base.py  # Generate knowledge base
@@ -336,66 +306,61 @@ movie-content-safety/
     ├── agent.py                    # AI Agent for complex queries
     ├── app.py                      # Gradio web interface
     ├── evals.py                    # Evaluation framework
+    ├── llm_judge.py                # LLM-as-Judge evaluator
     ├── feedback.py                 # User feedback manager
+    ├── preference_data.py          # Preference data generator
+    ├── fine_tuning_config.py       # LoRA/QLoRA configuration
     ├── tmdb_client.py              # TMDB API client
     └── document_loader.py          # Document loading utilities
 ```
 
 ## 🛠️ Tech Stack
 
-Technology
-
-Purpose
-
-**LangChain**
-
-LLM orchestration framework
-
-**FAISS**
-
-Vector similarity search
-
-**Groq**
-
-Fast, free LLM inference
-
-**HuggingFace**
-
-Embedding models (all-MiniLM-L6-v2)
-
-**Python**
-
-Core programming language
-
-**Pandas**
-
-CSV data handling
-
-**Gradio**
-
-Web Interface
-
-**TMDB API**
-
-Movie Data Source
-
-**Lang Smith**
-
-LLM observability and evaluation
+| Technology | Purpose |
+|------------|---------|
+| **LangChain** | LLM orchestration framework |
+| **FAISS** | Vector similarity search |
+| **Groq** | Fast, free LLM inference |
+| **HuggingFace** | Embedding models + Transformers + PEFT |
+| **Unsloth** | Fast LoRA/QLoRA fine-tuning |
+| **TRL** | SFT and DPO training |
+| **PyTorch** | Deep learning framework |
+| **Gradio** | Web interface |
+| **TMDB API** | Movie data source |
+| **LangSmith** | LLM observability and evaluation |
+| **Python** | Core programming language |
+| **Pandas** | CSV data handling |
 
 ## 📦 Dependencies
 
 ```txt
+# Core
 langchain>=0.3.0
 langchain-community>=0.3.0
 langchain-core>=0.3.0
 langchain-groq>=0.1.0
 langchain-huggingface
+
+# Vector Store & Embeddings
 faiss-cpu
 sentence-transformers
+
+# Fine-Tuning
+torch
+transformers
+peft
+trl
+datasets
+accelerate
+bitsandbytes
+
+# Observability
+langsmith>=0.1.0
+
+# Web & Utilities
+gradio>=4.0.0
 pandas
 python-dotenv
-gradio>=4.0.0
 requests>=2.31.0
 ```
 
@@ -573,6 +538,38 @@ The project includes a fine-tuning pipeline using **LoRA/QLoRA** on **Llama 3.1 
 2. **EOS token handling** — Prevented infinite generation
 3. **Response-only training** — Masked user prompts with `train_on_responses_only`
 4. **Inference format matching** — Ensured train/inference consistency
+
+## ⚖️ LLM-as-Judge Evaluation
+
+Beyond binary pass/fail, the project uses an **LLM-as-Judge** to score the quality of each classification on 4 dimensions.
+
+### Scoring Dimensions
+
+| Dimension | Range | What It Measures |
+|-----------|-------|------------------|
+| **Correctness** | 1–5 | Does the classification match the expected result? |
+| **Reasoning** | 1–5 | Is the explanation logical and well-supported? |
+| **Safety** | 1–5 | Does it err on the side of caution when uncertain? |
+| **Clarity** | 1–5 | Is the response clear and well-formatted? |
+| **Overall** | 0.0–5.0 | Average of the four scores |
+
+### How It Works
+
+```mermaid
+flowchart TD
+    A[Movie + Expected + Actual] --> B[LLM Judge Prompt]
+    B --> C[Groq LLM]
+    C --> D[JSON Score]
+    D --> E[Correctness 1-5]
+    D --> F[Reasoning 1-5]
+    D --> G[Safety 1-5]
+    D --> H[Clarity 1-5]
+    D --> I[Feedback Text]
+
+    style A fill:#e1f5ff
+    style C fill:#ffe1f5
+    style D fill:#e1ffe1
+```
 
 ### Results
 
