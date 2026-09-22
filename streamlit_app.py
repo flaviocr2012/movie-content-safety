@@ -20,13 +20,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# ============ IMPORTS ============
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
-from langchain_core.prompts import PromptTemplate
-from langchain_groq import ChatGroq
-from langchain_core.output_parsers import StrOutputParser
-
 
 # ============ SECRETS LOADING ============
 def get_secret(key: str, default: str = None) -> str:
@@ -38,10 +31,26 @@ def get_secret(key: str, default: str = None) -> str:
         pass
     return os.getenv(key, default)
 
-
 GROQ_API_KEY = get_secret("GROQ_API_KEY")
 GROQ_MODEL = get_secret("GROQ_MODEL", "openai/gpt-oss-20b")
 
+LANGCHAIN_API_KEY = get_secret("LANGCHAIN_API_KEY")
+LANGCHAIN_PROJECT = get_secret("LANGCHAIN_PROJECT", "movie-content-safety-prod")
+LANGCHAIN_TRACING_V2 = get_secret("LANGCHAIN_TRACING_V2", "true")
+LANGCHAIN_ENDPOINT = get_secret("LANGCHAIN_ENDPOINT", "https://api.smith.langchain.com")
+
+if LANGCHAIN_API_KEY:
+    os.environ["LANGCHAIN_TRACING_V2"] = str(LANGCHAIN_TRACING_V2)
+    os.environ["LANGCHAIN_ENDPOINT"] = str(LANGCHAIN_ENDPOINT)
+    os.environ["LANGCHAIN_API_KEY"] = str(LANGCHAIN_API_KEY)
+    os.environ["LANGCHAIN_PROJECT"] = str(LANGCHAIN_PROJECT)
+
+# ============ IMPORTS ============
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import PromptTemplate
+from langchain_groq import ChatGroq
+from langchain_core.output_parsers import StrOutputParser
 
 # ============ VALIDATION ============
 if not GROQ_API_KEY:
