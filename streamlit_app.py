@@ -221,7 +221,64 @@ with tab2:
             progress.progress((i + 1) / limit)
         st.markdown("\n".join(results))
 
-# --- Tab 3: About ---
+# --- Tab 3: AI Agent ---
+with tab3:
+    st.markdown("### 🤖 AI Agent")
+    st.markdown("Ask the agent complex questions about movie safety.")
+
+    # Load agent (cached)
+    @st.cache_resource
+    def load_agent():
+        """Load the Movie Safety Agent (cached)."""
+        import sys
+        import os
+        sys.path.insert(0, os.path.abspath("src"))
+
+        from agent import MovieSafetyAgent
+        return MovieSafetyAgent()
+
+    try:
+        with st.spinner("Loading AI Agent (this takes ~30 seconds)..."):
+            agent = load_agent()
+        st.success("✅ Agent ready!")
+    except Exception as e:
+        st.error(f"❌ Failed to load agent: {e}")
+        st.stop()
+
+    # Example questions
+    st.markdown("#### 💡 Try these questions:")
+    example_questions = [
+        "What movies do you have?",
+        "Is Jurassic Park safe for children?",
+        "Show me animated movies",
+        "I like fantasy movies. What do you have?",
+        "Can you find me a movie like The Lion King?",
+    ]
+
+    for q in example_questions:
+        if st.button(f"💭 {q}", key=f"agent_q_{q}"):
+            st.session_state["agent_question"] = q
+
+    # Input
+    question = st.text_area(
+        "Your question:",
+        value=st.session_state.get("agent_question", ""),
+        height=80,
+        placeholder="Ask anything about movie safety..."
+    )
+
+    if st.button("🤖 Ask Agent", type="primary"):
+        if question:
+            with st.spinner("Thinking..."):
+                try:
+                    result = agent.ask(question)
+                    st.success(result)
+                except Exception as e:
+                    st.error(f"❌ Error: {e}")
+        else:
+            st.warning("Please enter a question")
+
+# --- Tab 4: About ---
 with tab3:
     st.markdown("""
     ### About This Project
