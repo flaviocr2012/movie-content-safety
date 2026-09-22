@@ -1,10 +1,15 @@
 # 🎬 Movie Content Safety Classifier
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://flaviocr2012-movie-content-safety.streamlit.app)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/flaviocr2012/movie-content-safety)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/flavio-rodrigues-7563b631/)
+
+> **🚀 [Try the live app →](https://flaviocr2012-movie-content-safety.streamlit.app)**
+
 > AI-powered system that determines if a movie is appropriate for children aged 5-10
-
-Built with **LangChain**, **FAISS**, and **Groq** — a complete RAG system with an AI Agent for complex queries.
-
 ---
+
+## ✨ Features
 
 | Feature | Description |
 |---------|-------------|
@@ -12,7 +17,7 @@ Built with **LangChain**, **FAISS**, and **Groq** — a complete RAG system with
 | **AI Agent** | Answers complex questions using 4 tools |
 | **Interactive CLI** | Chat-style interface for movie safety queries |
 | **Batch Processing** | Classify multiple movies at once |
-| **Web Interface** | Gradio-based UI with tabs for classification, agent, and batch |
+| **Web Interface (Deployed)** | Streamlit app live on Streamlit Cloud |
 | **Evaluation Framework** | 56 test cases with accuracy metrics |
 | **LLM-as-Judge** | Multi-dimension quality scoring using an LLM evaluator |
 | **User Feedback Loop** | Collects user corrections to improve over time |
@@ -583,10 +588,43 @@ flowchart TD
 
 The complete fine-tuning pipeline is available in [`notebooks/fine_tune_lora.ipynb`](notebooks/fine_tune_lora.ipynb).
 
+## 🚀 Deployment
+
+The app is deployed on **Streamlit Cloud** and publicly accessible.
+
+### Live URL
+
+**https://flaviocr2012-movie-content-safety.streamlit.app**
+
+### Deployment Stack
+
+| Component | Service | Cost |
+|-----------|---------|------|
+| **App Hosting** | Streamlit Cloud | Free |
+| **LLM Inference** | Groq API | Free |
+| **Vector Search** | FAISS (local) | Free |
+| **Embeddings** | HuggingFace (local) | Free |
+
+### Deployment Notes
+
+- **Secrets** are managed via Streamlit Cloud's encrypted secrets panel (not committed)
+- **Requirements** are minimized to only what the app needs (~600MB vs ~3GB with fine-tuning deps)
+- **FAISS index** is pre-built and committed to the repo (no runtime indexing)
+- **Caching** is used for both the RAG chain and movie data to reduce load time
+
+### Deployment Challenges Solved
+
+1. **Secrets management** — Used `st.secrets` with fallback to `.env` for local dev
+2. **Memory optimization** — Removed fine-tuning dependencies (torch, peft, trl) from deploy
+3. **Tab numbering bug** — Fixed duplicate `tab3` references (4 tabs: Classify, Batch, AI Agent, About)
+4. **TOML syntax** — Corrected secrets format (quoted values required)
+5. **Auto-reload** — Forced reboot in Streamlit Cloud after push
+
 ## 🔮 Next Steps
 
--    Deploy to production
--    Add more test cases for edge cases
+- [ ] Run DPO training on preference pairs
+- [ ] Deploy fine-tuned model to Hugging Face Hub
+- [ ] Add more test cases for edge cases
 
 ## 📫 Let's Connect!
 
