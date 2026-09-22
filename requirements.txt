@@ -19,3 +19,5 @@ requests>=2.31.0
 
 # Observability (optional)
 langsmith>=0.1.0
+
+torchvision
