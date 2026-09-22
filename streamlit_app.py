@@ -163,7 +163,7 @@ st.write("---")
 st.title("🎬 Movie Content Safety Classifier")
 st.markdown("AI-powered RAG system that determines if a movie is appropriate for children aged 5-10")
 
-tab1, tab2, tab3 = st.tabs(["Classify", "Batch", "About"])
+tab1, tab2, tab3, tab4 = st.tabs(["Classify", "Batch", "🤖 AI Agent", "About"])
 
 # --- Tab 1: Classify ---
 with tab1:
@@ -279,7 +279,7 @@ with tab3:
             st.warning("Please enter a question")
 
 # --- Tab 4: About ---
-with tab3:
+with tab4:
     st.markdown("""
     ### About This Project
 
