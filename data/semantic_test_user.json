@@ -1,0 +1,12 @@
+{
+  "user_id": "test_user",
+  "updated_at": "2026-09-22T20:10:46.442640",
+  "facts": [
+    {
+      "fact": "User has a 5-year-old daughter",
+      "category": "family",
+      "timestamp": "2026-09-22T20:10:46.442604",
+      "confidence": 1.0
+    }
+  ]
+}

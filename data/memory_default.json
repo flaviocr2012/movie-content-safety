@@ -1,0 +1,13 @@
+{
+  "user_id": "default",
+  "updated_at": "2026-09-22T20:54:03.943660",
+  "preferences": {
+    "favorite_genre": {
+      "key": "favorite_genre",
+      "value": "Animation",
+      "confidence": 1.0,
+      "timestamp": "2026-09-22T20:54:03.943474",
+      "source": "explicit"
+    }
+  }
+}
