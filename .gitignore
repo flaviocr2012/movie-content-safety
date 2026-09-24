@@ -30,3 +30,9 @@ EOF
 
  Streamlit secrets
 .streamlit/secrets.toml
+
+# Memory files (runtime state)
+data/memory_*.json
+data/semantic_*.json
+data/user_feedback.json
+data/tmdb_cache.json
