@@ -35,10 +35,7 @@ class RecommenderAgent:
     - Explain why each movie is recommended
     """
 
-    # Known safe genres for children 5-10
     SAFE_GENRES = {"animation", "family", "adventure", "comedy", "fantasy"}
-
-    # Genres to avoid recommending
     UNSAFE_GENRES = {"horror", "crime", "thriller"}
 
     def __init__(self, model_name: str = None, user_id: str = "default"):
@@ -48,29 +45,23 @@ class RecommenderAgent:
 
         print("💡 Initializing Recommender Agent...")
 
-        # Memory
         self.memory = MemoryManager(user_id=user_id)
         self.user_id = user_id
 
-        # RAG chain for safety filtering
         self.rag = RAGChain(model_name)
 
-        # LLM (higher temp for creative recommendations)
+        # ✅ OPTIMIZATION: Lower max_tokens from 800 → 400 for faster responses
         self.llm = ChatGroq(
             model_name=model_name,
             temperature=0.5,
-            max_tokens=800,
+            max_tokens=400,  # Reduced from 800
             groq_api_key=GROQ_API_KEY
         )
 
-        # Load movies
         self.movies = load_movies_from_csv()
         print(f"📚 Loaded {len(self.movies)} movies")
 
-        # Tools
         self.tools = self._create_tools()
-
-        # Build agent
         self.agent = self._build_agent()
 
         print("✅ Recommender Agent ready!")
@@ -82,13 +73,59 @@ class RecommenderAgent:
             return False
         return True
 
+    def _find_safe_movies(self, genre: str = None, keyword: str = None,
+                          min_rating: float = 0.0, limit: int = 15) -> List[Dict]:
+        """
+        Unified movie search — filters by genre AND/OR keyword.
+        This replaces the separate find_safe_movies_by_genre and
+        find_safe_movies_by_keyword tools.
+        """
+        matches = []
+        for m in self.movies:
+            if not self._is_movie_safe(m):
+                continue
+
+            # Genre filter
+            if genre:
+                genre_lower = genre.lower().strip()
+                if genre_lower not in m.get('genres', '').lower():
+                    continue
+
+            # Keyword filter
+            if keyword:
+                keyword_lower = keyword.lower().strip()
+                title = m.get('title', '').lower()
+                overview = m.get('overview', '').lower()
+                if keyword_lower not in title and keyword_lower not in overview:
+                    continue
+
+            # Rating filter
+            try:
+                rating = float(m.get('rating', 0) or 0)
+                if rating < min_rating:
+                    continue
+            except (ValueError, TypeError):
+                pass
+
+            matches.append(m)
+
+        # Sort by rating (highest first)
+        matches.sort(key=lambda m: float(m.get('rating', 0) or 0), reverse=True)
+        return matches[:limit]
+
     def _create_tools(self):
-        """Create recommendation tools."""
+        """
+        Create recommendation tools.
+
+        ✅ OPTIMIZATION: Reduced from 6 tools to 4.
+        Merged find_safe_movies_by_genre + find_safe_movies_by_keyword into
+        a single find_safe_movies tool.
+        """
 
         @tool
         def get_user_preferences() -> str:
             """
-            Get all known user preferences from memory.
+            Get all known user preferences and facts from memory.
             Use this FIRST to personalize recommendations.
             """
             prefs = self.memory.long_term.get_all_preferences()
@@ -107,46 +144,50 @@ class RecommenderAgent:
             return "\n".join(lines)
 
         @tool
-        def find_safe_movies_by_genre(genre: str) -> str:
+        def find_safe_movies(genre: str = "", keyword: str = "", min_rating: float = 0.0) -> str:
             """
-            Find movies in a genre, filtered to only safe ones.
-            Use this to get candidate movies for recommendations.
-            """
-            genre_lower = genre.lower().strip()
-            matches = [
-                m for m in self.movies
-                if genre_lower in m.get('genres', '').lower()
-                   and self._is_movie_safe(m)
-            ]
-            if not matches:
-                return f"No safe movies found in genre '{genre}'."
-            matches.sort(key=lambda m: float(m.get('rating', 0) or 0), reverse=True)
-            lines = [f"Safe movies in '{genre}' (sorted by rating):"]
-            for m in matches[:15]:
-                lines.append(f"- {m['title']} ({m.get('year', 'N/A')}) — {m.get('rating', 'N/A')}/10")
-            return "\n".join(lines)
+            Find safe movies matching optional criteria (genre, keyword, min_rating).
+            Both genre and keyword are optional — provide either, both, or neither.
 
-        @tool
-        def find_safe_movies_by_keyword(keyword: str) -> str:
+            Args:
+                genre: Optional genre filter (e.g., "Animation", "Comedy")
+                keyword: Optional keyword filter (e.g., "animals", "space", "friendship")
+                min_rating: Optional minimum rating (0-10)
+
+            Examples:
+                - find_safe_movies(genre="Animation")
+                - find_safe_movies(keyword="animals")
+                - find_safe_movies(genre="Animation", keyword="animals")
+                - find_safe_movies(min_rating=8.0)
             """
-            Search safe movies by keyword (theme, mood, etc.).
-            Use this when the user's request is thematic (e.g., 'friendship', 'space').
-            """
-            keyword_lower = keyword.lower().strip()
-            matches = []
-            for m in self.movies:
-                if not self._is_movie_safe(m):
-                    continue
-                title = m.get('title', '').lower()
-                overview = m.get('overview', '').lower()
-                if keyword_lower in title or keyword_lower in overview:
-                    matches.append(m)
+            genre_param = genre if genre else None
+            keyword_param = keyword if keyword else None
+
+            matches = self._find_safe_movies(
+                genre=genre_param,
+                keyword=keyword_param,
+                min_rating=min_rating,
+                limit=15
+            )
+
             if not matches:
-                return f"No safe movies found matching '{keyword}'."
-            matches.sort(key=lambda m: float(m.get('rating', 0) or 0), reverse=True)
-            lines = [f"Safe movies matching '{keyword}':"]
-            for m in matches[:10]:
-                lines.append(f"- {m['title']} ({m.get('year', 'N/A')}) — {m.get('rating', 'N/A')}/10")
+                # Build a helpful message
+                criteria = []
+                if genre:
+                    criteria.append(f"genre='{genre}'")
+                if keyword:
+                    criteria.append(f"keyword='{keyword}'")
+                if min_rating > 0:
+                    criteria.append(f"min_rating={min_rating}")
+                criteria_str = ", ".join(criteria) if criteria else "no criteria"
+                return f"No safe movies found with {criteria_str}."
+
+            lines = [f"Safe movies ({len(matches)} found):"]
+            for m in matches:
+                lines.append(
+                    f"- {m['title']} ({m.get('year', 'N/A')}) — "
+                    f"{m.get('rating', 'N/A')}/10 [{m.get('genres', 'N/A')}]"
+                )
             return "\n".join(lines)
 
         @tool
@@ -155,30 +196,14 @@ class RecommenderAgent:
             Get the top-rated safe movies overall.
             Use this when the user has no specific genre or theme.
             """
-            safe_movies = [m for m in self.movies if self._is_movie_safe(m)]
-            safe_movies.sort(key=lambda m: float(m.get('rating', 0) or 0), reverse=True)
+            matches = self._find_safe_movies(min_rating=0.0, limit=count)
             lines = [f"Top {count} safe movies overall:"]
-            for m in safe_movies[:count]:
-                lines.append(f"- {m['title']} ({m.get('year', 'N/A')}) — {m.get('rating', 'N/A')}/10 [{m.get('genres', 'N/A')}]")
+            for m in matches:
+                lines.append(
+                    f"- {m['title']} ({m.get('year', 'N/A')}) — "
+                    f"{m.get('rating', 'N/A')}/10 [{m.get('genres', 'N/A')}]"
+                )
             return "\n".join(lines)
-
-        @tool
-        def verify_movie_safety(movie_title: str) -> str:
-            """
-            Verify a movie is safe using the knowledge base.
-            Use this as a final check before recommending.
-            """
-            try:
-                docs = self.rag.retriever.invoke(f"{movie_title} safety")
-                if not docs:
-                    return f"No safety info found for {movie_title}."
-                lines = [f"Safety info for {movie_title}:"]
-                for doc in docs[:3]:
-                    lines.append(f"- Q: {doc.metadata['question']}")
-                    lines.append(f"  A: {doc.metadata['answer']}")
-                return "\n".join(lines)
-            except Exception as e:
-                return f"Error: {e}"
 
         @tool
         def remember_preference(key: str, value: str) -> str:
@@ -191,10 +216,8 @@ class RecommenderAgent:
 
         return [
             get_user_preferences,
-            find_safe_movies_by_genre,
-            find_safe_movies_by_keyword,
+            find_safe_movies,
             find_top_rated_safe_movies,
-            verify_movie_safety,
             remember_preference,
         ]
 
@@ -227,26 +250,32 @@ CRITICAL OUTPUT RULES:
 
 TOOLS AVAILABLE:
 - get_user_preferences(): check what you know about the user
-- find_safe_movies_by_genre(genre): get safe movies in a genre
-- find_safe_movies_by_keyword(keyword): thematic safe movie search
+- find_safe_movies(genre, keyword, min_rating): unified search by criteria
 - find_top_rated_safe_movies(count): best safe movies overall
-- verify_movie_safety(movie_title): final safety check
 - remember_preference(key, value): save a preference
 
-PROCESS:
-1. Call get_user_preferences() FIRST — always check what you know
-2. Based on preferences, pick the right search tool
-3. Get 3-5 candidate movies
-4. Recommend 3 movies with brief reasons
-5. NEVER recommend Horror, Crime, or Thriller genres
-6. If the user reveals a new preference, save it
+PROCESS (FOLLOW EXACTLY):
+
+STEP 1: ALWAYS call get_user_preferences() first.
+
+STEP 2: Based on the user's request AND preferences, call the right search tool:
+        - If user mentions a genre → find_safe_movies(genre="...")
+        - If user mentions a theme → find_safe_movies(keyword="...")
+        - If user mentions BOTH → find_safe_movies(genre="...", keyword="...")
+        - If user has no specific request → find_top_rated_safe_movies(10)
+
+STEP 3: You MUST receive tool results BEFORE writing the final answer.
+
+STEP 4: Pick the TOP 3 movies from the tool results.
+
+CRITICAL: DO NOT write a response until you have called at least 2 tools.
 
 RULES:
 - ALWAYS personalize based on known preferences
-- ALWAYS recommend at least 3 movies
-- NEVER recommend unsafe genres (Horror, Crime, Thriller)
+- ALWAYS recommend at least 3 movies from REAL tool results
+- NEVER recommend Horror, Crime, or Thriller genres
 - Be enthusiastic but concise
-- If no preferences are known, ask a follow-up question OR recommend top-rated safe movies
+- If the user reveals a new preference, save it
 - NEVER classify movies — only recommend
 
 EXAMPLE OUTPUT:
@@ -273,20 +302,8 @@ EXAMPLE OUTPUT:
         return agent
 
     def recommend(self, query: str, max_retries: int = 3, base_wait: int = 15) -> str:
-        """
-        Generate personalized movie recommendations with automatic retry on rate limits.
-
-        Args:
-            query: User's recommendation request
-            max_retries: Maximum number of retry attempts
-            base_wait: Base wait time between retries (seconds)
-
-        Returns:
-            Formatted recommendation response
-        """
+        """Generate personalized movie recommendations with automatic retry."""
         print(f"\n💡 Recommender Agent: {query}")
-
-        # Add to memory
         self.memory.add_user_message(query)
 
         for attempt in range(max_retries):
@@ -295,11 +312,10 @@ EXAMPLE OUTPUT:
                     {"messages": [{"role": "user", "content": query}]}
                 )
                 raw = self._extract_response(response)
+                print(f"🔍 Raw output length: {len(raw)} chars")
+
                 formatted = self._format_response(raw)
-
-                # Add response to memory
                 self.memory.add_assistant_message(formatted)
-
                 return formatted
 
             except Exception as e:
@@ -309,13 +325,13 @@ EXAMPLE OUTPUT:
                 if is_rate_limit and attempt < max_retries - 1:
                     wait_time = base_wait * (attempt + 1)
                     print(f"⚠️  Rate limit hit (attempt {attempt + 1}/{max_retries})")
-                    print(f"   Waiting {wait_time}s before retry...")
+                    print(f"   Waiting {wait_time}s...")
                     time.sleep(wait_time)
                     continue
 
                 return f"❌ Error: {e}"
 
-        return "❌ Max retries exceeded. Please wait 60 seconds and try again."
+        return "❌ Unable to generate recommendations after multiple attempts."
 
     def _extract_response(self, response: Dict) -> str:
         """Extract the final response from the agent output."""
@@ -341,90 +357,72 @@ EXAMPLE OUTPUT:
         return ""
 
     def _format_response(self, raw: str) -> str:
-        """Clean and standardize the response format."""
+        """Light cleanup of the response format."""
         if not raw:
-            return "**Top Recommendations:**\n1. No recommendations available\n\n**Why These:**\n- Please try again\n\n**Next Step:** Ask for a specific genre or theme."
-
-        lines = [line.strip() for line in raw.split('\n')]
-
-        while lines and not lines[0]:
-            lines.pop(0)
-        while lines and not lines[-1]:
-            lines.pop()
-
-        has_recs = any('recommendation' in line.lower() for line in lines)
-        has_why = any('why' in line.lower() for line in lines)
-
-        if not has_recs:
             return (
-                f"**Top Recommendations:**\n{raw}\n\n"
-                f"**Why These:**\n- Curated based on your request\n\n"
-                f"**Next Step:** Ask for more specific recommendations."
+                "**Top Recommendations:**\n"
+                "1. No recommendations available\n\n"
+                "**Why These:**\n- Please try again\n\n"
+                "**Next Step:** Ask for a specific genre or theme."
             )
 
-        formatted = []
+        lines = [line.rstrip() for line in raw.split('\n')]
+
+        while lines and not lines[0].strip():
+            lines.pop(0)
+        while lines and not lines[-1].strip():
+            lines.pop()
+
+        # Clean up the "- *Header:**" asterisk issue
+        cleaned_lines = []
         for line in lines:
-            if not line:
-                formatted.append("")
-                continue
+            stripped = line.lstrip()
+            indent = line[:len(line) - len(stripped)]
 
-            # Standardize headers
-            line = re.sub(r'\*\*\s*([^*]+?)\s*:\s*\*\*', r'**\1:** ', line)
+            # Fix: "- *Header:**" → "**Header:**"
+            if stripped.startswith('- *') and stripped.endswith('**'):
+                header_text = stripped[3:-2].strip()
+                line = f"{indent}**{header_text}**"
+            # Fix: "*Header:**" → "**Header:**"
+            elif stripped.startswith('*') and not stripped.startswith('**') and stripped.endswith('**'):
+                header_text = stripped[1:-2].strip()
+                line = f"{indent}**{header_text}**"
+            # Fix bullet chars
+            elif stripped.startswith('•') or stripped.startswith('·'):
+                line = f"{indent}- {stripped[1:].strip()}"
 
-            # Fix bullets
-            if line.startswith(('•', '*', '·')):
-                line = '- ' + line[1:].strip()
+            cleaned_lines.append(line)
 
-            formatted.append(line)
-
-        # Ensure Next Step exists
-        result = "\n".join(formatted)
-        if not has_why:
-            result += "\n\n**Why These:**\n- Curated for age-appropriate viewing"
-        if 'next step' not in result.lower():
-            result += "\n\n**Next Step:** Want more suggestions? Just ask!"
-
-        return result.strip()
+        return "\n".join(cleaned_lines).strip()
 
 
 # ============ TEST ============
 
 def main():
-    """Test the Recommender Agent with delays to avoid rate limits."""
+    """Test the Recommender Agent."""
     print("=" * 70)
     print("🧪 TESTING RECOMMENDER AGENT")
     print("=" * 70)
 
     agent = RecommenderAgent(user_id="test_recommender")
 
-    # Test 1: No preferences known
-    print("\n" + "=" * 70)
-    print("TEST 1: No preferences (cold start)")
-    print("=" * 70)
-    result = agent.recommend("What should I watch with my kids?")
-    print(f"\n📌 Response:\n{result}")
+    test_queries = [
+        "What should I watch with my kids?",
+        "I love animated movies with strong female leads",
+        "Do you have action movies with animals?",
+    ]
 
-    # Wait to avoid rate limits
-    print("\n⏳ Waiting 30s before next test (rate limit prevention)...")
-    time.sleep(30)
+    for query in test_queries:
+        print(f"\n{'=' * 70}")
+        print(f"❓ Query: {query}")
+        print(f"{'=' * 70}")
 
-    # Test 2: Explicit preference
-    print("\n" + "=" * 70)
-    print("TEST 2: User reveals preference")
-    print("=" * 70)
-    result = agent.recommend("I love animated movies with strong female leads")
-    print(f"\n📌 Response:\n{result}")
+        result = agent.recommend(query)
+        print(f"\n📌 Response:\n{result}")
 
-    # Wait to avoid rate limits
-    print("\n⏳ Waiting 30s before next test...")
-    time.sleep(30)
-
-    # Test 3: Personalized recommendation
-    print("\n" + "=" * 70)
-    print("TEST 3: Personalized recommendation")
-    print("=" * 70)
-    result = agent.recommend("Recommend something for me")
-    print(f"\n📌 Response:\n{result}")
+        # Rate limit prevention
+        print("\n⏳ Waiting 20s before next test...")
+        time.sleep(20)
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ os.environ["LANGCHAIN_PROJECT"] = str(LANGCHAIN_PROJECT)
 
 # ============ API KEYS ============
 GROQ_API_KEY = get_secret("GROQ_API_KEY")
-GROQ_MODEL = get_secret("GROQ_MODEL", "openai/gpt-oss-20b")
+GROQ_MODEL = get_secret("GROQ_MODEL", "openai/gpt-oss-120b")
 TMDB_API_KEY = get_secret("TMDB_API_KEY")
 
 # ============ PROJECT PATHS ============
