@@ -1,6 +1,6 @@
 """
 Streamlit deployment for Movie Content Safety Classifier.
-Full Python backend with RAG chain.
+Full Python backend with RAG chain, multi-agent system, and memory.
 """
 
 import sys
@@ -172,7 +172,13 @@ st.write("---")
 st.title("🎬 Movie Content Safety Classifier")
 st.markdown("AI-powered RAG system that determines if a movie is appropriate for children aged 5-10")
 
-tab1, tab2, tab3, tab4 = st.tabs(["Classify", "Batch", "🤖 AI Agent", "About"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "Classify",
+    "Batch",
+    "🤖 AI Agent",
+    "🧠 Multi-Agent",
+    "About"
+])
 
 # --- Tab 1: Classify ---
 with tab1:
@@ -230,7 +236,7 @@ with tab2:
             progress.progress((i + 1) / limit)
         st.markdown("\n".join(results))
 
-# --- Tab 3: AI Agent ---
+# --- Tab 3: AI Agent (single, legacy) ---
 with tab3:
     st.markdown("### 🤖 AI Agent")
     st.markdown("Ask the agent complex questions about movie safety.")
@@ -287,19 +293,149 @@ with tab3:
         else:
             st.warning("Please enter a question")
 
-# --- Tab 4: About ---
+# --- Tab 4: Multi-Agent System ---
 with tab4:
+    st.markdown("### 🧠 Multi-Agent System")
+    st.markdown("""
+    **4 specialized agents** with LLM-based orchestration, memory, and intelligent routing:
+
+    - 🛡️ **Safety Agent** — Classifies movies as Safe/Not Safe
+    - 🔍 **Lookup Agent** — Retrieves movie info, lists by genre
+    - 💡 **Recommender Agent** — Personalized recommendations using memory
+    - ⚖️ **Comparison Agent** — Side-by-side movie comparison
+    """)
+
+    # Load multi-agent system (cached)
+    @st.cache_resource
+    def load_multi_agent_system():
+        """Load the Multi-Agent System (cached)."""
+        import sys
+        import os
+        sys.path.insert(0, os.path.abspath("src"))
+
+        from multi_agent_system import MultiAgentSystem
+        return MultiAgentSystem(user_id="streamlit_user")
+
+    try:
+        with st.spinner("Loading Multi-Agent System (this takes ~60 seconds)..."):
+            mas = load_multi_agent_system()
+        st.success("✅ Multi-Agent System ready!")
+    except Exception as e:
+        st.error(f"❌ Failed to load multi-agent system: {e}")
+        st.stop()
+
+    # Example questions (categorized)
+    st.markdown("#### 💡 Try these questions:")
+
+    col_a, col_b = st.columns(2)
+
+    with col_a:
+        st.markdown("**🛡️ Safety**")
+        safety_examples = [
+            "Is Jurassic Park safe for children?",
+            "Can my 5-year-old watch The Conjuring?",
+        ]
+        for q in safety_examples:
+            if st.button(f"💭 {q}", key=f"mas_safety_{q}"):
+                st.session_state["mas_question"] = q
+
+        st.markdown("**🔍 Lookup**")
+        lookup_examples = [
+            "Tell me about Moana",
+            "Do you have Batman?",
+        ]
+        for q in lookup_examples:
+            if st.button(f"💭 {q}", key=f"mas_lookup_{q}"):
+                st.session_state["mas_question"] = q
+
+    with col_b:
+        st.markdown("**💡 Recommender**")
+        recommend_examples = [
+            "What should I watch with my kids?",
+            "I want to see action movies",
+        ]
+        for q in recommend_examples:
+            if st.button(f"💭 {q}", key=f"mas_recommend_{q}"):
+                st.session_state["mas_question"] = q
+
+        st.markdown("**⚖️ Comparison**")
+        comparison_examples = [
+            "Is Frozen safer than Moana?",
+            "Compare Spider-Man and Big Hero 6",
+        ]
+        for q in comparison_examples:
+            if st.button(f"💭 {q}", key=f"mas_compare_{q}"):
+                st.session_state["mas_question"] = q
+
+    # Input
+    st.markdown("#### 💬 Ask anything:")
+    question = st.text_area(
+        "Your question:",
+        value=st.session_state.get("mas_question", ""),
+        height=80,
+        placeholder="Ask anything about movie safety...",
+        key="mas_input"
+    )
+
+    if st.button("🤖 Ask Multi-Agent System", type="primary", key="mas_ask"):
+        if question:
+            with st.spinner("Routing to the right agent..."):
+                try:
+                    result = mas.ask(question)
+                    st.success(result)
+
+                    # Show session stats
+                    stats = mas.get_stats()
+                    st.markdown("---")
+                    st.markdown("#### 📊 Session Stats")
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("Total Queries", stats['total_queries'])
+                    with col2:
+                        st.metric("Success Rate", stats['success_rate'])
+                    with col3:
+                        st.metric("Avg Latency", stats['average_latency_seconds'])
+
+                except Exception as e:
+                    st.error(f"❌ Error: {e}")
+        else:
+            st.warning("Please enter a question")
+
+# --- Tab 5: About ---
+with tab5:
     st.markdown("""
     ### About This Project
 
     An AI-powered movie content safety classifier built with modern LLM tooling.
 
+    #### 🤖 Multi-Agent System
+    - **Orchestrator** — LLM-based routing with context awareness
+    - **Safety Agent** — Classifies movies as Safe/Not Safe
+    - **Lookup Agent** — Retrieves movie info and lists
+    - **Recommender Agent** — Personalized recommendations using memory
+    - **Comparison Agent** — Side-by-side movie comparison
+
+    #### 🧠 Memory System
+    - **Short-term** — Conversation history (current session)
+    - **Long-term** — User preferences (persisted per session)
+    - **Semantic** — Facts about the user (persisted per session)
+
+    #### 🎓 Fine-Tuning Pipeline
+    - **Base Model** — Llama 3.1 8B
+    - **SFT Training** — LoRA/QLoRA with Unsloth + TRL
+    - **Preference Data** — Generated from user feedback
+    - **DPO Training** — Direct Preference Optimization
+    - **Evaluation** — 56 test cases + LLM-as-Judge
+
     #### Tech Stack
-    - LangChain - LLM orchestration
-    - FAISS - Vector similarity search
-    - Groq - Fast LLM inference
-    - HuggingFace - Embedding models
-    - Streamlit - Web interface
+    - LangChain / LangGraph — LLM orchestration
+    - FAISS — Vector similarity search
+    - Groq — Fast LLM inference
+    - HuggingFace — Embedding models + Transformers
+    - Unsloth — Fast LoRA/QLoRA fine-tuning
+    - TRL — SFT and DPO training
+    - LangSmith — LLM observability and evaluation
+    - Streamlit — Web interface
 
     #### Data
     - 1,132 safety Q&A pairs in the knowledge base
@@ -308,5 +444,6 @@ with tab4:
 
     #### Links
     - [GitHub Repository](https://github.com/flaviocr2012/movie-content-safety)
+    - [Live Demo](https://flaviocr2012-movie-content-safety.streamlit.app)
     - [LinkedIn](https://www.linkedin.com/in/flavio-rodrigues-7563b631/)
     """)
