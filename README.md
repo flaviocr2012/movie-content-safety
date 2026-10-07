@@ -7,6 +7,7 @@
 > **🚀 [Try the live app →](https://flaviocr2012-movie-content-safety.streamlit.app)**
 
 > AI-powered system that determines if a movie is appropriate for children aged 5-10
+
 ---
 
 ## ✨ Features
@@ -15,6 +16,8 @@
 |---------|-------------|
 | **RAG Classification** | Semantic search to retrieve relevant safety rules |
 | **AI Agent** | Answers complex questions using 4 tools |
+| **Multi-Agent System** | 4 specialized agents (Safety, Lookup, Recommender, Comparison) with LLM-based orchestration |
+| **Agent Memory** | Short-term, long-term, and semantic memory across conversations |
 | **Interactive CLI** | Chat-style interface for movie safety queries |
 | **Batch Processing** | Classify multiple movies at once |
 | **Web Interface (Deployed)** | Streamlit app live on Streamlit Cloud |
@@ -23,6 +26,7 @@
 | **User Feedback Loop** | Collects user corrections to improve over time |
 | **Preference Data Generator** | Converts feedback into DPO-ready training pairs |
 | **LLM Fine-Tuning** | LoRA/QLoRA pipeline on Llama 3.1 8B with Unsloth |
+| **DPO Training** | Direct Preference Optimization on user feedback data |
 | **TMDB API Integration** | Fetches real movie data from The Movie Database |
 | **LangSmith Observability** | Full tracing, datasets, and experiments |
 | **Movie Database** | 148+ movies with details |
@@ -34,36 +38,49 @@
 
 ```mermaid
 flowchart TD
-    A[User Interface<br/>CLI / Batch / Agent / Web UI] --> B[RAG Chain]
-    B --> C[Retriever<br/>FAISS]
-    C --> D[Context<br/>Top-5 Q&A]
-    D --> E[LLM<br/>Groq]
-    E --> F[Classification]
+    A[User Interface<br/>CLI / Batch / Agent / Web UI] --> B[Multi-Agent System]
+    B --> C[Orchestrator<br/>LLM-based Routing]
+    C --> D[Safety Agent]
+    C --> E[Lookup Agent]
+    C --> F[Recommender Agent]
+    C --> G[Comparison Agent]
 
-    B --> G[Data Layer]
-    G --> H[Knowledge Base<br/>1,132 Q&A]
-    G --> I[Movie Database<br/>148 movies]
-    G --> J[TMDB API<br/>On-demand lookup]
-    G --> K[User Feedback<br/>user_feedback.json]
+    D --> H[RAG Chain]
+    H --> I[Retriever<br/>FAISS]
+    I --> J[Context<br/>Top-5 Q&A]
+    J --> K[LLM<br/>Groq]
 
-    F --> L[LangSmith<br/>Tracing & Observability]
-    F --> M[Evaluation Framework<br/>56 test cases]
+    B --> L[Memory Layer]
+    L --> M[Short-term<br/>Conversation]
+    L --> N[Long-term<br/>Preferences]
+    L --> O[Semantic<br/>Facts]
 
-    K --> N[Apply Feedback Script]
-    N --> H
+    B --> P[Data Layer]
+    P --> Q[Knowledge Base<br/>1,132 Q&A]
+    P --> R[Movie Database<br/>148 movies]
+    P --> S[TMDB API<br/>On-demand lookup]
+    P --> T[User Feedback<br/>user_feedback.json]
 
-    L --> O[Datasets & Experiments]
-    M --> O
+    K --> U[LangSmith<br/>Tracing & Observability]
+    K --> V[Evaluation Framework<br/>56 test cases]
+
+    T --> W[Preference Data Generator]
+    W --> X[DPO Training]
+    X --> Y[Aligned Model]
 
     style A fill:#e1f5ff
     style B fill:#fff4e1
-    style E fill:#ffe1f5
-    style G fill:#e1ffe1
+    style C fill:#ffe1f5
     style L fill:#f5e1ff
-    style M fill:#f5e1ff
+    style P fill:#e1ffe1
+    style X fill:#ffe1f5
 ```
 
 **Flow:** Query → Embedding → FAISS Search → Top-5 Q&A → LLM → Classification
+
+**Memory:** Short-term (conversation) + Long-term (preferences) + Semantic (facts)
+
+**Fine-Tuning Pipeline:** Base Model → SFT → Feedback → Preference Data → DPO → Aligned Model
 
 **Feedback Loop:** Script → Knowledge Base → FAISS Rebuild → Improved Classifications
 

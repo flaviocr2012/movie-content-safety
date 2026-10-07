@@ -1,0 +1,13 @@
+{
+  "model": "DPO-aligned Llama 3.1 8B",
+  "test_prompt": "Movie: The Conjuring\nOverview: Paranormal investigators help a family terrorized by a dark presence.\nGenres: Horror, Mystery, Thriller\nRating: 7.5\n\nIs this movie appropriate for children aged 5-10?",
+  "response": "No, this movie is not appropriate for children aged 5-10. The Conjuring is a horror movie with intense and frightening supernatural elements that are not suitable for young children. It may cause nightmares and fear in children who are not mature enough to handle such content. It is recommended for viewers aged 16 and above.",
+  "timestamp": "2026-10-06",
+  "training_config": {
+    "method": "DPO",
+    "beta": 0.1,
+    "epochs": 3,
+    "lora_rank": 64,
+    "preference_pairs": 2
+  }
+}
