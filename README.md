@@ -561,6 +561,47 @@ The project includes a fine-tuning pipeline using **LoRA/QLoRA** on **Llama 3.1 
 3. **Response-only training** — Masked user prompts with `train_on_responses_only`
 4. **Inference format matching** — Ensured train/inference consistency
 
+## 🚀 Multi-GPU Training (DDP)
+
+The project supports multi-GPU DPO training using **PyTorch DDP** via `accelerate launch`.
+
+### Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| **Hardware** | 2x Tesla T4 (Kaggle) |
+| **Total VRAM** | 31.2 GB |
+| **Method** | DDP (Distributed Data Parallel) |
+| **Framework** | Hugging Face Accelerate |
+| **Launch Command** | `accelerate launch --num_processes=2 --multi_gpu train_dpo.py` |
+
+### Why DDP?
+
+PyTorch DDP is the standard for multi-GPU training:
+- ✅ Replicates the model on each GPU
+- ✅ Splits the batch across GPUs
+- ✅ Synchronizes gradients via `all_reduce`
+- ✅ Simple, robust, production-ready
+
+### Files
+
+- `notebooks/train_dpo_multi_gpu.py` — Training script
+- `notebooks/dpo_multi_gpu_training.ipynb` — Kaggle notebook
+
+### Results
+
+Training successfully ran on 2x T4 GPUs:
+- **Distributed initialized:** True
+- **World size:** 2
+- **Global step:** 1
+- **Training loss:** 0.6931 (ln(2) — expected at DPO start)
+- **Runtime:** 2.47s
+
+### Command
+
+```bash
+accelerate launch --num_processes=2 --multi_gpu train_dpo.py
+
 ## ⚖️ LLM-as-Judge Evaluation
 
 Beyond binary pass/fail, the project uses an **LLM-as-Judge** to score the quality of each classification on 4 dimensions.
@@ -639,7 +680,6 @@ The app is deployed on **Streamlit Cloud** and publicly accessible.
 
 ## 🔮 Next Steps
 
-- [ ] Run DPO training on preference pairs
 - [ ] Deploy fine-tuned model to Hugging Face Hub
 - [ ] Add more test cases for edge cases
 
