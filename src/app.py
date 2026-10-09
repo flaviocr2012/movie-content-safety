@@ -261,6 +261,12 @@ class MovieSafetyApp:
                     ## 🎬 Movie Content Safety Classifier
                     
                     This application uses **RAG (Retrieval-Augmented Generation)** to determine if movies are appropriate for children aged 5-10.
+                    
+                    ### 🔗 Resources
+                    
+                    - **Fine-tuned model on Hugging Face Hub:** [flaviocr2023/movie-safety-llama-3.1-8b](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b)
+                    - **LoRA adapter dataset on Kaggle:** [flaviocr2012/movie-safety-lora-adapter](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter)
+                    - **Source code:** [github.com/flaviocr2012/movie-content-safety](https://github.com/flaviocr2012/movie-content-safety)
                     """)
 
         return interface

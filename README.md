@@ -5,9 +5,20 @@
 [![Kaggle Dataset](https://img.shields.io/badge/Kaggle-Dataset-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/flaviocr2012/movie-content-safety)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/flavio-rodrigues-7563b631/)
+
 > **🚀 [Try the live app →](https://flaviocr2012-movie-content-safety.streamlit.app)**
 
 > AI-powered system that determines if a movie is appropriate for children aged 5-10
+
+---
+
+## 🏆 Project Highlights
+
+- **End-to-end AI system** — from RAG classification to multi-agent orchestration
+- **Fine-tuned model deployed** — Llama 3.1 8B with LoRA + DPO, live on [Hugging Face Hub](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b)
+- **100% accuracy** on a 56-case evaluation suite
+- **Full observability** — LangSmith tracing, LLM-as-judge, user feedback loop
+- **Production-deployed** — app with 1,132 Q&A knowledge base
 
 ---
 
@@ -21,7 +32,7 @@
 | **Agent Memory** | Short-term, long-term, and semantic memory across conversations |
 | **Interactive CLI** | Chat-style interface for movie safety queries |
 | **Batch Processing** | Classify multiple movies at once |
-| **Web Interface (Deployed)** | Streamlit app live on Streamlit Cloud |
+| **Web Interface (Deployed)** | App live on the cloud |
 | **Evaluation Framework** | 56 test cases with accuracy metrics |
 | **LLM-as-Judge** | Multi-dimension quality scoring using an LLM evaluator |
 | **User Feedback Loop** | Collects user corrections to improve over time |
@@ -48,6 +59,15 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 model = AutoModelForCausalLM.from_pretrained("flaviocr2023/movie-safety-llama-3.1-8b")
 tokenizer = AutoTokenizer.from_pretrained("flaviocr2023/movie-safety-llama-3.1-8b")
+```
+
+| Artifact | Link | Purpose |
+|---|---|---|
+| **Merged model** | [Hugging Face Hub](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b) | Standalone, ready-to-use fine-tuned model |
+| **LoRA adapter** | [Kaggle Dataset](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter) | Adapter weights for re-merging or continued training |
+| **Loading example** | [`models/load_finetuned.py`](models/load_finetuned.py) | Script to load and run inference from the Hub |
+
+---
 
 ## 🏗️ Architecture
 
@@ -110,15 +130,15 @@ flowchart TD
 -   Python 3.10+
 -   Groq API key (free) — [Get it here](https://console.groq.com)
 
-## Setup
+### Setup
 
-````bash
+```bash
 git clone https://github.com/flaviocr2012/movie-content-safety.git
 cd movie-content-safety
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-
+```
 
 ### Configure
 
@@ -136,8 +156,7 @@ LANGCHAIN_TRACING_V2=true
 LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
 LANGCHAIN_API_KEY=your_langsmith_api_key_here
 LANGCHAIN_PROJECT=movie-content-safety
-
-````
+```
 
 > **Note:** Get your free API keys from:
 
@@ -213,17 +232,7 @@ python src/agent.py
 python src/app.py
 ```
 
-This launches a web UI with:
-
-```
-🔍 Classify a Movie — Enter any movie and get a classification
-
-🤖 AI Agent — Ask complex questions
-
-📊 Batch Classification — Classify multiple movies at once
-
-ℹ️ About — Project details
-```
+This launches a web UI with four tabs: **Classify a Movie**, **AI Agent**, **Batch Classification**, and **About**.
 
 ### 7. Run Evaluations
 
@@ -231,13 +240,14 @@ This launches a web UI with:
 python src/evals.py
 ```
 
-# 📊 EVALUATION SUMMARY
+Expected output:
 
-📈 Overall Accuracy: 100.0% ✅ Passed: 55/55 ❌ Failed: 0/55
-
-🎯 Safe Movies: 100.0% accuracy ✅ 30/30
-
-# 🎯 Not Safe Movies: 100.0% accuracy ✅ 25/25
+```
+📊 EVALUATION SUMMARY
+📈 Overall Accuracy: 100.0% ✅ Passed: 56/56 ❌ Failed: 0/56
+🎯 Safe Movies: 100.0% accuracy ✅
+🎯 Not Safe Movies: 100.0% accuracy ✅
+```
 
 ### 8. User Feedback Loop
 
@@ -259,13 +269,13 @@ python scripts/create_langsmith_dataset.py
 python scripts/run_langsmith_experiment.py
 ```
 
-🧪 RUNNING LANGSMITH EXPERIMENT ✅ RAG Chain initialized successfully! 🧪 Running experiment against 'movie-safety-eval' dataset... ✅ Experiment complete! 🔗 View results at: [https://smith.langchain.com/projects/movie-content-safety](https://smith.langchain.com/projects/movie-content-safety)
+---
 
 ## 📊 Sample Outputs
 
 ### Agent Response
 
-
+```
 💭 Your question: What movies are safe for children?
 
 📌 Response:
@@ -281,7 +291,7 @@ Here are some movies that are safe for children aged 5-10:
 
 ### Movie Classification
 
-
+```
 🎬 Enter movie title (or command): The Conjuring
 📖 Found 'The Conjuring' in CSV database!
 📝 Year: 2013 | Rating: 7.5 | Genres: Horror, Mystery, Thriller
@@ -305,6 +315,8 @@ Classification: Not safe for children
 Explanation: The movie contains intense action sequences and is rated PG-13...
 ```
 
+---
+
 ## 📁 Project Structure
 
 ```
@@ -325,8 +337,13 @@ movie-content-safety/
 │   └── faiss_index/                # FAISS vector index
 │       ├── index.faiss
 │       └── index.pkl
+├── models/
+│   └── load_finetuned.py           # Load fine-tuned model from HF Hub
 ├── notebooks/
-│   └── fine_tune_lora.ipynb        # LoRA fine-tuning notebook (Colab)
+│   ├── fine_tune_lora.ipynb        # SFT with LoRA — Colab, T4, Llama 3.1 8B
+│   ├── dpo_training.ipynb          # DPO training on 40 preference pairs — Colab, T4
+│   ├── train_dpo_multi_gpu.ipynb   # DPO + DeepSpeed experiment — Kaggle, 2x T4
+│   └── dpo_hf_hub_deploy.ipynb     # Final DPO + merge + push to Hugging Face Hub
 ├── scripts/
 │   ├── generate_movies.py          # Generate movie database
 │   ├── generate_knowledge_base.py  # Generate knowledge base
@@ -351,6 +368,8 @@ movie-content-safety/
     └── document_loader.py          # Document loading utilities
 ```
 
+---
+
 ## 🛠️ Tech Stack
 
 | Technology | Purpose |
@@ -367,6 +386,8 @@ movie-content-safety/
 | **LangSmith** | LLM observability and evaluation |
 | **Python** | Core programming language |
 | **Pandas** | CSV data handling |
+
+---
 
 ## 📦 Dependencies
 
@@ -401,31 +422,20 @@ python-dotenv
 requests>=2.31.0
 ```
 
+---
+
 ## 📊 Evaluation Framework
 
 The project includes a comprehensive evaluation framework with **56 test cases** (31 Safe + 25 Not Safe movies).
 
 ### Metrics
 
-Metric
-
-Description
-
-**Overall Accuracy**
-
-% of correct classifications
-
-**Safe Accuracy**
-
-% of Safe movies correctly classified
-
-**Not Safe Accuracy**
-
-% of Not Safe movies correctly classified
-
-**Failed Cases**
-
-List of misclassified movies
+| Metric | Description |
+|--------|-------------|
+| **Overall Accuracy** | % of correct classifications |
+| **Safe Accuracy** | % of Safe movies correctly classified |
+| **Not Safe Accuracy** | % of Not Safe movies correctly classified |
+| **Failed Cases** | List of misclassified movies |
 
 ### Results
 
@@ -441,6 +451,8 @@ List of misclassified movies
 -   `data/evaluation_results.json` — Full results in JSON
 -   `data/evaluation_results.csv` — Results in CSV for Excel
 -   `data/evaluation_report.txt` — Human-readable report
+
+---
 
 ## 🔄 User Feedback Loop
 
@@ -463,6 +475,8 @@ flowchart TD
     style I fill:#e1ffe1
 ```
 
+---
+
 ## 🌐 TMDB API Integration
 
 The system integrates with **The Movie Database (TMDB)** for on-demand movie lookups.
@@ -484,7 +498,6 @@ flowchart TD
     style A fill:#e1f5ff
     style D fill:#fff4e1
     style J fill:#e1ffe1
-       
 ```
 
 ### Features
@@ -502,7 +515,7 @@ flowchart TD
 | `/discover/movie` | Fetch family-friendly movies |
 | `/search/movie` | Search for a specific movie |
 
-Search for a specific movie
+---
 
 ## 📊 LangSmith Observability
 
@@ -551,6 +564,8 @@ flowchart TD
 | **Error Rate** | Monitors failed LLM calls, output parsing errors, and API timeouts |
 | **Feedback Score** | Aggregates user feedback ratings (thumbs up/down) on generated recommendations |
 
+---
+
 ## 🎓 Fine-Tuning Results
 
 The project includes a fine-tuning pipeline using **LoRA/QLoRA** on **Llama 3.1 8B**.
@@ -583,7 +598,7 @@ The fine-tuned model has been merged with its base and deployed:
 | Artifact | Location | Format | Size |
 |---|---|---|---|
 | **Merged model** | [flaviocr2023/movie-safety-llama-3.1-8b](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b) | fp16 safetensors (2 shards) | ~5.7 GB |
-| **LoRA adapter** | [flaviocr2012/movie-safety-lora-adapter](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter) | PEFT adapter | ~50 MB |
+| **LoRA adapter** | [flaviocr2012/movie-safety-lora-adapter](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter) | PEFT adapter | ~185 MB |
 
 The merged model is self-contained: `from_pretrained` on the Hub ID loads everything without needing the base model separately.
 
@@ -592,52 +607,38 @@ The merged model is self-contained: `from_pretrained` on the Hub ID loads everyt
 To reproduce the training from scratch:
 
 1. Follow the setup in this README
-2. Run the DPO training notebook: [`notebooks/fine_tune_lora.ipynb`](notebooks/fine_tune_lora.ipynb)
-3. Merge the LoRA adapter with the base model
-4. Push to your own Hugging Face Hub repository
+2. Run the SFT notebook: [`notebooks/fine_tune_lora.ipynb`](notebooks/fine_tune_lora.ipynb)
+3. Run the DPO notebook: [`notebooks/dpo_training.ipynb`](notebooks/dpo_training.ipynb)
+4. Merge the LoRA adapter with the base model and push to your own Hugging Face Hub repository — see [`notebooks/dpo_hf_hub_deploy.ipynb`](notebooks/dpo_hf_hub_deploy.ipynb)
 
 See [`models/load_finetuned.py`](models/load_finetuned.py) for the loading and inference example.
 
-## 🚀 Multi-GPU Training (DDP)
+### Multi-GPU Training Experiment (DeepSpeed / DDP)
 
-The project supports multi-GPU DPO training using **PyTorch DDP** via `accelerate launch`.
+Attempted multi-GPU DPO training on Kaggle's 2x Tesla T4 with DeepSpeed ZeRO-2.
+The experiment surfaced two real issues:
 
-### Configuration
+- `warmup_ratio` is deprecated in newer `DPOConfig`; use `warmup_steps` instead
+- DeepSpeed DDP with `device_map=None` requires the model to be explicitly moved to `cuda:0`
 
-| Parameter | Value |
-|-----------|-------|
-| **Hardware** | 2x Tesla T4 (Kaggle) |
-| **Total VRAM** | 31.2 GB |
-| **Method** | DDP (Distributed Data Parallel) |
-| **Framework** | Hugging Face Accelerate |
-| **Launch Command** | `accelerate launch --num_processes=2 --multi_gpu train_dpo.py` |
+The final training ran in single-process mode after setting:
 
-### Why DDP?
+```python
+import os
+os.environ["ACCELERATE_USE_DEEPSPEED"] = "false"
+os.environ["RANK"] = "0"
+os.environ["WORLD_SIZE"] = "1"
+```
 
-PyTorch DDP is the standard for multi-GPU training:
-- ✅ Replicates the model on each GPU
-- ✅ Splits the batch across GPUs
-- ✅ Synchronizes gradients via `all_reduce`
-- ✅ Simple, robust, production-ready
+Final training output:
 
-### Files
+```
+TrainOutput(global_step=1, training_loss=0.6931, metrics={'train_runtime': 2.4735, 'epoch': 1.0})
+```
 
-- `notebooks/train_dpo_multi_gpu.py` — Training script
-- `notebooks/dpo_multi_gpu_training.ipynb` — Kaggle notebook
+The DeepSpeed ZeRO-2 config is saved at `notebooks/ds_config.json` for future multi-GPU runs.
 
-### Results
-
-Training successfully ran on 2x T4 GPUs:
-- **Distributed initialized:** True
-- **World size:** 2
-- **Global step:** 1
-- **Training loss:** 0.6931 (ln(2) — expected at DPO start)
-- **Runtime:** 2.47s
-
-### Command
-
-```bash
-accelerate launch --num_processes=2 --multi_gpu train_dpo.py
+---
 
 ## ⚖️ LLM-as-Judge Evaluation
 
@@ -679,13 +680,11 @@ flowchart TD
 | Finding Nemo | Safe for children | ✅ |
 | Jurassic Park | Not safe for children | ✅ |
 
-### Notebook
-
-The complete fine-tuning pipeline is available in [`notebooks/fine_tune_lora.ipynb`](notebooks/fine_tune_lora.ipynb).
+---
 
 ## 🚀 Deployment
 
-The app is deployed on **Streamlit Cloud** and publicly accessible.
+The app is deployed and publicly accessible.
 
 ### Live URL
 
@@ -699,13 +698,15 @@ The app is deployed on **Streamlit Cloud** and publicly accessible.
 | **LLM Inference** | Groq API | Free |
 | **Vector Search** | FAISS (local) | Free |
 | **Embeddings** | HuggingFace (local) | Free |
+| **Fine-tuned model** | Hugging Face Hub | Free |
 
 ### Deployment Notes
 
-- **Secrets** are managed via Streamlit Cloud's encrypted secrets panel (not committed)
+- **Secrets** are managed via the hosting platform's encrypted secrets panel (not committed)
 - **Requirements** are minimized to only what the app needs (~600MB vs ~3GB with fine-tuning deps)
 - **FAISS index** is pre-built and committed to the repo (no runtime indexing)
 - **Caching** is used for both the RAG chain and movie data to reduce load time
+- **Fine-tuned model** is deployed separately on Hugging Face Hub and is not loaded by the app at runtime
 
 ### Deployment Challenges Solved
 
@@ -713,14 +714,19 @@ The app is deployed on **Streamlit Cloud** and publicly accessible.
 2. **Memory optimization** — Removed fine-tuning dependencies (torch, peft, trl) from deploy
 3. **Tab numbering bug** — Fixed duplicate `tab3` references (4 tabs: Classify, Batch, AI Agent, About)
 4. **TOML syntax** — Corrected secrets format (quoted values required)
-5. **Auto-reload** — Forced reboot in Streamlit Cloud after push
+5. **Auto-reload** — Forced reboot in the hosting platform after push
+
+---
 
 ## 🔮 Next Steps
 
+- [x] ~~Deploy fine-tuned model to Hugging Face Hub~~ ✅ [Done](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b)
 - [ ] Add router classifier (small model for query routing)
 - [ ] Add adversarial + counterfactual evaluations
 - [ ] Add more test cases for edge cases
 - [ ] Calibrated LLM-as-judge (measure agreement with human labels)
+
+---
 
 ## 📫 Let's Connect!
 
