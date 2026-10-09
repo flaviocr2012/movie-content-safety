@@ -1,9 +1,10 @@
 # 🎬 Movie Content Safety Classifier
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://flaviocr2012-movie-content-safety.streamlit.app)
+[![Hugging Face Model](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-yellow)](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b)
+[![Kaggle Dataset](https://img.shields.io/badge/Kaggle-Dataset-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/flaviocr2012/movie-content-safety)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/flavio-rodrigues-7563b631/)
-
 > **🚀 [Try the live app →](https://flaviocr2012-movie-content-safety.streamlit.app)**
 
 > AI-powered system that determines if a movie is appropriate for children aged 5-10
@@ -33,6 +34,20 @@
 | **Knowledge Base** | 1,132 safety Q&A pairs |
 
 ---
+
+## 🤗 Model on Hugging Face Hub
+
+The fine-tuned **Llama 3.1 8B** model is deployed and publicly available:
+
+> **🔗 [flaviocr2023/movie-safety-llama-3.1-8b](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b)**
+
+Load it in one line:
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+model = AutoModelForCausalLM.from_pretrained("flaviocr2023/movie-safety-llama-3.1-8b")
+tokenizer = AutoTokenizer.from_pretrained("flaviocr2023/movie-safety-llama-3.1-8b")
 
 ## 🏗️ Architecture
 
@@ -561,6 +576,28 @@ The project includes a fine-tuning pipeline using **LoRA/QLoRA** on **Llama 3.1 
 3. **Response-only training** — Masked user prompts with `train_on_responses_only`
 4. **Inference format matching** — Ensured train/inference consistency
 
+### Model Artifacts
+
+The fine-tuned model has been merged with its base and deployed:
+
+| Artifact | Location | Format | Size |
+|---|---|---|---|
+| **Merged model** | [flaviocr2023/movie-safety-llama-3.1-8b](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b) | fp16 safetensors (2 shards) | ~5.7 GB |
+| **LoRA adapter** | [flaviocr2012/movie-safety-lora-adapter](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter) | PEFT adapter | ~50 MB |
+
+The merged model is self-contained: `from_pretrained` on the Hub ID loads everything without needing the base model separately.
+
+### Reproducibility
+
+To reproduce the training from scratch:
+
+1. Follow the setup in this README
+2. Run the DPO training notebook: [`notebooks/fine_tune_lora.ipynb`](notebooks/fine_tune_lora.ipynb)
+3. Merge the LoRA adapter with the base model
+4. Push to your own Hugging Face Hub repository
+
+See [`models/load_finetuned.py`](models/load_finetuned.py) for the loading and inference example.
+
 ## 🚀 Multi-GPU Training (DDP)
 
 The project supports multi-GPU DPO training using **PyTorch DDP** via `accelerate launch`.
@@ -680,8 +717,10 @@ The app is deployed on **Streamlit Cloud** and publicly accessible.
 
 ## 🔮 Next Steps
 
-- [ ] Deploy fine-tuned model to Hugging Face Hub
+- [ ] Add router classifier (small model for query routing)
+- [ ] Add adversarial + counterfactual evaluations
 - [ ] Add more test cases for edge cases
+- [ ] Calibrated LLM-as-judge (measure agreement with human labels)
 
 ## 📫 Let's Connect!
 
