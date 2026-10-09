@@ -1,12 +1,12 @@
 # 🎬 Movie Content Safety Classifier
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://flaviocr2012-movie-content-safety.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://flaviocr2012-movie-content-safety-streamlit-app-p9mrc2.streamlit.app)
 [![Hugging Face Model](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-yellow)](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b)
 [![Kaggle Dataset](https://img.shields.io/badge/Kaggle-Dataset-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/flaviocr2012/movie-safety-lora-adapter)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/flaviocr2012/movie-content-safety)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/flavio-rodrigues-7563b631/)
 
-> **🚀 [Try the live app →](https://flaviocr2012-movie-content-safety.streamlit.app)**
+> **🚀 [Try the live app →](https://flaviocr2012-movie-content-safety-streamlit-app-p9mrc2.streamlit.app)**
 
 > AI-powered system that determines if a movie is appropriate for children aged 5-10
 
@@ -688,7 +688,7 @@ The app is deployed and publicly accessible.
 
 ### Live URL
 
-**https://flaviocr2012-movie-content-safety.streamlit.app**
+**https://flaviocr2012-movie-content-safety-streamlit-app-p9mrc2.streamlit.app**
 
 ### Deployment Stack
 
