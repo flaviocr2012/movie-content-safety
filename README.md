@@ -32,7 +32,9 @@
 | **Agent Memory** | Short-term, long-term, and semantic memory across conversations |
 | **Interactive CLI** | Chat-style interface for movie safety queries |
 | **Batch Processing** | Classify multiple movies at once |
-| **Web Interface (Deployed)** | App live on the cloud |
+| **Web Interface (Gradio)** | Gradio UI with 4 tabs — used for local development |
+| **Web Interface (Streamlit, Deployed)** | Public app live on [Streamlit Cloud](https://flaviocr2012-movie-content-safety-streamlit-app-p9mrc2.streamlit.app) |
+| **Fine-Tuned Model (Deployed)** | LoRA + DPO fine-tuned Llama 3.1 8B live on [Hugging Face Hub](https://huggingface.co/flaviocr2023/movie-safety-llama-3.1-8b) |
 | **Evaluation Framework** | 56 test cases with accuracy metrics |
 | **LLM-as-Judge** | Multi-dimension quality scoring using an LLM evaluator |
 | **User Feedback Loop** | Collects user corrections to improve over time |
