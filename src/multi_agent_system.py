@@ -1,13 +1,17 @@
 """
 Multi-Agent System — Unified interface for the Movie Safety Classifier.
 Wraps the Orchestrator with session management, statistics, and clean APIs.
+
+Routing strategy:
+  1. Semantic router (fast, deterministic, embedding-based)
+  2. Fallback to LLM orchestrator when router confidence is low
 """
 
 import sys
 import os
 import time
 from datetime import datetime
-from typing import Dict, Optional, List, Any
+from typing import Dict, Optional, List, Any, Tuple
 from dataclasses import dataclass, field
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -17,6 +21,14 @@ if SRC_PATH not in sys.path:
 
 from agents.orchestrator import Orchestrator
 from memory import MemoryManager
+from routing.router import SemanticRouter
+
+
+# ============ CONFIG ============
+
+# Minimum router confidence to accept a routing decision.
+# Below this, we fall back to the LLM orchestrator.
+ROUTER_CONFIDENCE_THRESHOLD = 0.5
 
 
 # ============ DATA CLASSES ============
@@ -28,6 +40,8 @@ class QueryRecord:
     intent: str
     response: str
     latency_seconds: float
+    routing_method: str = "unknown"  # "router" | "llm" | "router_fallback" | "error"
+    router_confidence: float = 0.0
     timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
     error: Optional[str] = None
 
@@ -39,6 +53,7 @@ class SessionStats:
     successful_queries: int = 0
     failed_queries: int = 0
     intents: Dict[str, int] = field(default_factory=dict)
+    routing_methods: Dict[str, int] = field(default_factory=dict)
     total_latency: float = 0.0
     first_query_at: Optional[str] = None
     last_query_at: Optional[str] = None
@@ -52,6 +67,9 @@ class SessionStats:
             self.successful_queries += 1
 
         self.intents[query_record.intent] = self.intents.get(query_record.intent, 0) + 1
+        self.routing_methods[query_record.routing_method] = (
+                self.routing_methods.get(query_record.routing_method, 0) + 1
+        )
         self.total_latency += query_record.latency_seconds
 
         if self.first_query_at is None:
@@ -79,9 +97,11 @@ class MultiAgentSystem:
 
     Features:
     - Single entry point for all queries
+    - Semantic router for fast, deterministic intent classification
+    - LLM orchestrator as fallback for low-confidence cases
     - Session management (per user)
     - Context-aware routing (uses conversation history)
-    - Statistics tracking
+    - Statistics tracking (including routing method breakdown)
     - Memory integration
     - Error handling with graceful fallback
     """
@@ -99,7 +119,11 @@ class MultiAgentSystem:
         print("🧠 Initializing shared memory...")
         self.memory = MemoryManager(user_id=user_id)
 
-        # Initialize orchestrator
+        # Initialize semantic router
+        print("🧭 Initializing semantic router...")
+        self.router = SemanticRouter()
+
+        # Initialize orchestrator (used as fallback)
         print("🧠 Initializing orchestrator...")
         self.orchestrator = Orchestrator(model_name=model_name, user_id=user_id)
 
@@ -109,6 +133,41 @@ class MultiAgentSystem:
 
         print(f"✅ Multi-Agent System ready for user: {user_id}")
         print("=" * 70)
+
+    # ============ ROUTING ============
+
+    def route_query(
+            self,
+            query: str,
+            conversation_history: Optional[List[Dict]] = None,
+    ) -> Tuple[str, str, float]:
+        """
+        Route a query to an intent using the semantic router, with LLM fallback.
+
+        Returns:
+            (intent, routing_method, confidence)
+            routing_method is one of: "router", "router_fallback", "llm"
+        """
+        # Step 1: Try the semantic router first (fast path)
+        intent, confidence = self.router.classify(query)
+
+        if confidence >= ROUTER_CONFIDENCE_THRESHOLD:
+            print(f"🎯 Router: {intent} (confidence: {confidence:.2f})")
+            return intent, "router", confidence
+
+        # Step 2: Low confidence → fall back to the LLM orchestrator
+        print(f"⚠️  Router confidence low ({confidence:.2f}) — falling back to LLM orchestrator")
+        try:
+            llm_intent, method = self.orchestrator.classify_intent(
+                query,
+                conversation_history=conversation_history,
+            )
+            print(f"🎯 LLM orchestrator: {llm_intent} (via {method})")
+            return llm_intent, "router_fallback", confidence
+        except Exception as e:
+            # If the LLM fallback also fails, default to safety
+            print(f"❌ LLM fallback failed: {e} — defaulting to 'safety'")
+            return "safety", "error", confidence
 
     # ============ MAIN API ============
 
@@ -132,18 +191,18 @@ class MultiAgentSystem:
         # Add user message to memory
         self.memory.add_user_message(query)
 
-        # Classify intent ONCE with context
+        # Classify intent (router first, LLM fallback)
         error = None
         response = ""
         intent = "unknown"
+        routing_method = "unknown"
+        router_confidence = 0.0
 
         try:
-            # ✅ Pass conversation history for context-aware routing
-            intent, method = self.orchestrator.classify_intent(
+            intent, routing_method, router_confidence = self.route_query(
                 query,
-                conversation_history=conversation_history
+                conversation_history=conversation_history,
             )
-            print(f"🎯 Intent: {intent} (via {method})")
 
             # Dispatch based on intent
             response = self.orchestrator._dispatch(query, intent)
@@ -151,6 +210,7 @@ class MultiAgentSystem:
         except Exception as e:
             error = str(e)
             response = f"❌ System error: {e}"
+            routing_method = "error"
             print(f"❌ {response}")
 
         # Calculate latency
@@ -162,7 +222,9 @@ class MultiAgentSystem:
             intent=intent,
             response=response,
             latency_seconds=latency,
-            error=error
+            routing_method=routing_method,
+            router_confidence=router_confidence,
+            error=error,
         )
         self.query_history.append(record)
         self.stats.record(record)
@@ -212,6 +274,7 @@ class MultiAgentSystem:
             'success_rate': f"{self.stats.success_rate:.1f}%",
             'average_latency_seconds': f"{self.stats.average_latency:.2f}s",
             'intents': self.stats.intents,
+            'routing_methods': self.stats.routing_methods,
             'first_query_at': self.stats.first_query_at,
             'last_query_at': self.stats.last_query_at,
         }
@@ -224,6 +287,8 @@ class MultiAgentSystem:
                 'query': r.query,
                 'intent': r.intent,
                 'latency_seconds': round(r.latency_seconds, 2),
+                'routing_method': r.routing_method,
+                'router_confidence': round(r.router_confidence, 2),
                 'timestamp': r.timestamp,
                 'error': r.error,
             }
@@ -262,6 +327,7 @@ class MultiAgentSystem:
         print("=" * 70)
         print(f"👤 User: {self.user_id}")
         print(f"🧠 Agents: Safety, Lookup, Recommender, Comparison")
+        print(f"🧭 Router: semantic (threshold = {ROUTER_CONFIDENCE_THRESHOLD})")
         print("\n📋 Commands:")
         print("  • Ask any movie question")
         print("  • 'stats' — show session statistics")
@@ -323,7 +389,10 @@ class MultiAgentSystem:
         print("=" * 70)
         for h in history:
             status = "❌" if h['error'] else "✅"
-            print(f"  {status} [{h['intent']}] {h['query'][:60]} ({h['latency_seconds']}s)")
+            print(
+                f"  {status} [{h['intent']}|{h['routing_method']}] "
+                f"{h['query'][:50]} ({h['latency_seconds']}s, conf={h['router_confidence']})"
+            )
         print("=" * 70)
 
     def _print_memory(self):
@@ -357,6 +426,7 @@ class MultiAgentSystem:
         print(f"  Success rate: {stats['success_rate']}")
         print(f"  Average latency: {stats['average_latency_seconds']}")
         print(f"  Intents used: {stats['intents']}")
+        print(f"  Routing methods: {stats['routing_methods']}")
         print("=" * 70)
 
 
